@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://local-pdf-forms-signer.sociobot.in/sitemap.xml

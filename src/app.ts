@@ -108,7 +108,7 @@ export class FieldDeskApp {
           </div>
           ${this.loading ? '<div class="loading-line" role="status"><span></span>Reading your PDF locally…</div>' : ''}
           ${this.error ? `<div class="error-panel" role="alert"><strong>Couldn’t open that file.</strong><span>${this.escape(this.error)}</span></div>` : ''}
-          <p class="file-note">PDF files only · no file-size upload limit · large scans depend on device memory</p>
+          <p class="file-note">PDF files only · up to 175 MB · large scans depend on device memory</p>
         </div>
         <figure class="hero-visual">
           <picture>

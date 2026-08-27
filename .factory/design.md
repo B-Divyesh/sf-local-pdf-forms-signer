@@ -17,7 +17,7 @@ Single-mode, explicitly painted like vintage equipment; a second theme would wea
 | Charcoal | `#202a2a` | equipment housing and primary text |
 | Deep ink | `#17201f` | high-contrast headers |
 | Muted ink | `#5d625b` | secondary copy (passes 4.5:1 on paper) |
-| Safety orange | `#c94f2d` | primary actions and field handles |
+| Safety orange | `#b84427` | primary actions and field handles; darkened to pass AA with warm white |
 | Orange dark | `#94361f` | hover/active and readable links |
 | Signal teal | `#23756f` | local/offline-safe state and confirmations |
 | Ochre | `#9b6917` | warnings |

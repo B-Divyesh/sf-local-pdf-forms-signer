@@ -144,12 +144,11 @@ export async function exportPdf(
       const check = form.createCheckBox(name);
       check.addToPage(page, { x, y, width: fieldWidth, height: fieldHeight, borderWidth: 1, borderColor: lib.rgb(0.2, 0.24, 0.23) });
       if (field.checked) check.check();
+      check.updateAppearances();
       continue;
     }
 
     const text = form.createTextField(name);
-    text.setText(field.value);
-    text.setFontSize(Math.min(12, fieldHeight * 0.5));
     text.addToPage(page, {
       x,
       y,
@@ -160,11 +159,13 @@ export async function exportPdf(
       borderColor: lib.rgb(0.35, 0.38, 0.35),
       backgroundColor: lib.rgb(1, 0.99, 0.94),
     });
+    text.setText(field.value);
+    text.setFontSize(Math.min(12, fieldHeight * 0.5));
+    text.updateAppearances(font);
   }
 
   try {
-    form.updateFieldAppearances(font);
-    if (flatten) form.flatten();
+    if (flatten) form.flatten({ updateFieldAppearances: false });
   } catch {
     // Export remains usable even if a malformed source annotation cannot flatten.
   }
