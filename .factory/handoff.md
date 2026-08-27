@@ -1,5 +1,16 @@
 # Field Desk v1 handoff
 
+## Independent verification status — **FAIL** (2026-08-27)
+
+Candidate `1309298ee135dfa710c2510b5107d289334615fd` was independently tested
+from a clean detached checkout and compared byte-for-byte with
+<https://local-pdf-forms-signer.sociobot.in>. Do **not** treat the prior
+verification claims as current acceptance: `npm run test:e2e` fails (1 failed,
+3 passed, 2 skipped) and live field/signature placement logs CSP errors.
+See [`.factory/verification.md`](verification.md) for the exact evidence,
+normal/boundary/recovery product exercise, headers, privacy/outbound-request
+checks, accessibility/offline results, and required fixes.
+
 ## Delivered
 
 - A complete Vite + vanilla TypeScript static application in `dist/`.
