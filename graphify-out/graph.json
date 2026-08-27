@@ -696,16 +696,6 @@
       "source_location": "L5"
     },
     {
-      "id": "pdf_worker_min_mjs_url",
-      "label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
-      "_origin": "ast",
-      "community": 0,
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
-      "source_file": "pdfjs-dist/build/pdf.worker.min.mjs?url"
-    },
-    {
       "id": "src_app",
       "label": "app.ts",
       "_origin": "ast",
@@ -776,30 +766,10 @@
       "source_location": "L1"
     },
     {
-      "id": "pdf_lib_pdf_lib",
-      "label": "pdf-lib",
-      "_origin": "ast",
-      "community": 10,
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "pdf-lib",
-      "source_file": "pdf-lib"
-    },
-    {
-      "id": "pdfjs_dist_pdfjs_dist",
-      "label": "pdfjs-dist",
-      "_origin": "ast",
-      "community": 11,
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "pdfjs-dist",
-      "source_file": "pdfjs-dist"
-    },
-    {
       "id": "playwright_config",
       "label": "playwright.config.ts",
       "_origin": "ast",
-      "community": 12,
+      "community": 10,
       "file_type": "code",
       "norm_label": "playwright.config.ts",
       "source_file": "playwright.config.ts",
@@ -3752,15 +3722,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_pdf",
-      "target": "pdf_worker_min_mjs_url",
-      "relation": "dynamic_import",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pdf.ts"
-    },
-    {
       "source": "src_app_fielddeskapp",
       "target": "src_app_fielddeskapp_rendereditor",
       "relation": "method",
@@ -4169,5 +4130,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1309298ee135dfa710c2510b5107d289334615fd"
+  "built_at_commit": "c70412d9c5be8a1ddc2b5299d106240c4f0e8110"
 }
