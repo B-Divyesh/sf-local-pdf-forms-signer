@@ -1,4 +1,57 @@
-# Field Desk repair handoff — 2026-08-27
+# Field Desk verification handoff — FAIL — 2026-08-27
+
+**Candidate:** `4537015a2fcd850693dfc1b8cd2c728d615157c8`
+**URL:** <https://local-pdf-forms-signer.sociobot.in>
+**Acceptance status:** **FAIL — do not promote.** Full evidence is in
+[`verification-3.md`](verification-3.md).
+
+## Blocking defects
+
+1. **P1: Filled existing AcroForm fields are absent from the default editable
+   export.** A live real-PDF test filled source `full_name` and downloaded with
+   “Keep new fields editable”; parsing found source `full_name` in the input
+   and no fields in the output. With a new field present, only the new Field
+   Desk field remains. This fails the core fill-existing-fields/editable-export
+   work order.
+2. **P1: `npm run test:e2e` fails from a clean checkout.** The configured
+   two-worker run produces 1 failed / 4 passed / 3 skipped; the desktop
+   workflow times out at the five-second editor-ready wait. The focus test
+   passes serially, making this a nondeterministic release gate rather than a
+   successful full suite.
+
+## Verification summary
+
+- Passed: `npm ci`, `npm test` (6/6), exact `npm run build`, production/live
+  byte identity, privacy/no upload request checks, strict CSP/headers/cache,
+  axe desktop and 390 px, visible keyboard focus, reduced motion, PWA offline
+  reload/update smoke, invalid/recovery/176 MiB cases, and Lighthouse 100/100/
+  100/100 (performance/accessibility/best-practices/SEO).
+- The live site does match this candidate. The earlier deployment-only CSP
+  failure is not present: normal placement/signature/export has zero browser
+  console errors and zero inline field styles.
+
+## How to reproduce blockers
+
+```sh
+npm ci
+npm run build
+npm run test:e2e
+```
+
+Then use a source PDF with a `full_name` text field: fill it, choose default
+editable export, and parse the download with `pdf-lib`; its `getForm().getFields()`
+does not include `full_name`.
+
+## Required next steps
+
+- Preserve original AcroForm controls/values in the non-flattened export path
+  and add a UI-to-output regression test.
+- Make `data-editor-ready` deterministic under the configured parallel E2E
+  run, then demonstrate repeated green runs.
+
+---
+
+## Superseded builder handoff
 
 ## Delivered
 
