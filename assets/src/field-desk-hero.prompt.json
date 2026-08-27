@@ -1,0 +1,9 @@
+{
+  "tool": "/opt/fleet/lib/gen-image.sh",
+  "deployment": "factory-image",
+  "date": "2026-08-27",
+  "size": "1536x1024",
+  "quality": "high",
+  "prompt": "Use case: stylized-concept. Asset type: wide landing-page hero illustration. A single cream document sheet passing through a compact mid-century tabletop document console, visible blank form boxes, one simple check mark, page tabs, a fountain-pen nib, and a round teal local-status lamp. 1960s industrial design, powder-coated charcoal steel, warm ivory paper, bakelite safety-orange controls, muted brass details, subtle paper grain. Soft directional studio light, slightly elevated three-quarter orthographic view, crisp editorial product illustration, tactile cut-paper and gouache finish. Palette: parchment, charcoal, safety orange, signal teal, muted brass. Object centered with breathable plain parchment negative space. No people, no hands, no brand marks, no logos, no legible text, no watermark, no laptop, no phone, no cloud symbols, no glossy 3D SaaS aesthetic.",
+  "review": "Accepted: coherent console geometry, recognizable form sheet and pen, no text artifacts, logos, people, or brands. The extra fountain pen is intentional and reinforces signing."
+}
