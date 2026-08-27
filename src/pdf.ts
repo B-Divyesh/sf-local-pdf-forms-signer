@@ -36,7 +36,8 @@ export async function renderPage(canvas: HTMLCanvasElement, page: PageModel, max
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = Math.floor(viewport.width * ratio);
   canvas.height = Math.floor(viewport.height * ratio);
-  canvas.style.aspectRatio = `${viewport.width} / ${viewport.height}`;
+  // The width and height attributes establish the intrinsic aspect ratio. Do
+  // not write an inline style here: strict production CSP rejects style attrs.
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('Canvas rendering is not supported in this browser.');
   context.setTransform(ratio, 0, 0, ratio, 0, 0);

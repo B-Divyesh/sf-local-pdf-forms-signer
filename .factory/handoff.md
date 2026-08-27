@@ -17,6 +17,8 @@ This repair resolves both independent findings against candidate
   escaped before use in selectors. This is narrowly scoped to field geometry;
   the CSP was not loosened and does not allow `unsafe-inline`, nonces, or
   external style origins.
+- PDF canvases now rely on their intrinsic width/height attributes for aspect
+  ratio, removing the remaining runtime inline-style write from the renderer.
 - Added exact desktop regressions for the ready-state/filename sequence and
   for both text-field and typed-signature placement. The latter asserts no
   placed field has a `style` attribute and that no console error is emitted,
@@ -66,7 +68,7 @@ and cache directives.
   container; the Playwright integration is the authoritative completed scan.
 - Lighthouse: the CLI was attempted against the production-style emulator with
   Playwright Chromium, but that Chromium tab crashed before scoring. Build
-  budgets remain within limits: initial JS 39.14 KB raw / 12.76 KB gzip and CSS
+  budgets remain within limits: initial JS 39.09 KB raw / 12.74 KB gzip and CSS
   20.24 KB raw / 5.41 KB gzip; PDF.js and pdf-lib remain lazy chunks.
 
 ## Deployment and live verification
