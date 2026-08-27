@@ -29,6 +29,8 @@ This repair resolves both independent findings against candidate
   No ACR or container build is part of this product.
 - Added the CSS extension to the Static Web Apps navigation-fallback exclusion
   so `/field-positions.css` is always served as a stylesheet, not the SPA HTML.
+- Bumped the service-worker shell cache revision so existing offline clients
+  update away from the pre-repair editor bundle.
 
 ## Run and verify
 
