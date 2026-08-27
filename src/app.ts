@@ -38,9 +38,17 @@ export class FieldDeskApp {
   private deletedPage: { page: PageModel; index: number; fields: OverlayField[] } | null = null;
   private signatureDraft: { mode: 'draw' | 'type'; data: string; value: string } | null = null;
   private dragDepth = 0;
+  // Geometry is written to a same-origin stylesheet via CSSOM.  Keeping it out
+  // of style attributes lets the production CSP retain `style-src 'self'`.
+  private geometrySheet: CSSStyleSheet | null = null;
+  private geometryRules = new Map<string, CSSStyleRule>();
 
   constructor(root: HTMLElement) {
     this.root = root;
+    document.querySelector<HTMLLinkElement>('#field-positions')?.addEventListener('load', () => {
+      this.geometrySheet = null;
+      this.syncFieldGeometries();
+    });
     window.addEventListener('popstate', () => {
       this.route = this.routeFromLocation();
       this.render();
@@ -86,7 +94,10 @@ export class FieldDeskApp {
       ${this.renderExportDialog()}
     `;
     this.bindGlobal();
-    if (this.bytes && this.route === 'app') void this.renderCanvases();
+    if (this.bytes && this.route === 'app') {
+      this.syncFieldGeometries();
+      void this.renderCanvases();
+    }
   }
 
   private renderApp(): string {
@@ -140,10 +151,10 @@ export class FieldDeskApp {
     const selectedPage = this.pages.find((page) => page.id === this.selectedPageId) ?? this.pages[0];
     const selectedField = this.fields.find((field) => field.id === this.selectedFieldId);
     const pagePosition = Math.max(0, this.pages.indexOf(selectedPage));
-    return `<main id="main" class="editor-shell">
+    return `<main id="main" class="editor-shell" data-editor-ready="false" aria-busy="true">
       <h1 class="sr-only">Edit ${this.escape(this.filename)} in Field Desk</h1>
       <div class="document-bar">
-        <div class="document-id">${icon('file')}<div><strong>${this.escape(this.filename)}</strong><span>${this.pages.length} page${this.pages.length === 1 ? '' : 's'} · processing locally</span></div></div>
+        <div class="document-id">${icon('file')}<div><strong data-document-filename>${this.escape(this.filename)}</strong><span>${this.pages.length} page${this.pages.length === 1 ? '' : 's'} · processing locally</span></div></div>
         <div class="document-actions"><button class="secondary-button" type="button" data-action="close-file">Close</button><button class="primary-button" type="button" data-action="open-export">${icon('download')} Export PDF</button></div>
       </div>
       ${this.hasXfa ? '<div class="warning-bar" role="status"><strong>XFA form detected.</strong> Its live fields are not supported; you can still add fields and export page content.</div>' : ''}
@@ -194,7 +205,7 @@ export class FieldDeskApp {
 
   private renderOverlay(field: OverlayField): string {
     const display = field.kind === 'checkbox' ? (field.checked ? '✓' : '') : field.kind === 'signature' ? (field.value || 'Signature') : (field.value || field.label);
-    return `<button type="button" class="placed-field field-${field.kind} ${field.id === this.selectedFieldId ? 'is-selected' : ''}" data-field-id="${field.id}" style="left:${field.x * 100}%;top:${field.y * 100}%;width:${field.width * 100}%;height:${field.height * 100}%" aria-label="${this.escape(field.label)}. Select to edit; arrow keys move; Shift plus arrow moves farther."><span>${this.escape(display)}</span><i class="resize-handle" data-resize aria-hidden="true"></i></button>`;
+    return `<button type="button" class="placed-field field-${field.kind} ${field.id === this.selectedFieldId ? 'is-selected' : ''}" data-field-id="${field.id}" aria-label="${this.escape(field.label)}. Select to edit; arrow keys move; Shift plus arrow moves farther."><span>${this.escape(display)}</span><i class="resize-handle" data-resize aria-hidden="true"></i></button>`;
   }
 
   private renderDocumentInspector(pageIndex: number): string {
@@ -397,8 +408,7 @@ export class FieldDeskApp {
     else if (property === 'label' || property === 'value') field[property] = input.value;
     const overlay = this.root.querySelector<HTMLElement>(`[data-field-id="${field.id}"]`);
     if (overlay) {
-      overlay.style.width = `${field.width * 100}%`;
-      overlay.style.height = `${field.height * 100}%`;
+      this.syncFieldGeometry(field);
       const span = overlay.querySelector('span');
       if (span) span.textContent = field.kind === 'checkbox' ? (field.checked ? '✓' : '') : (field.value || field.label);
     }
@@ -447,8 +457,7 @@ export class FieldDeskApp {
       event.preventDefault();
       field.x = Math.max(0, Math.min(1 - field.width, field.x));
       field.y = Math.max(0, Math.min(1 - field.height, field.y));
-      element.style.left = `${field.x * 100}%`;
-      element.style.top = `${field.y * 100}%`;
+      this.syncFieldGeometry(field);
     });
     element.addEventListener('pointerdown', (event) => {
       if (!stage) return;
@@ -473,10 +482,7 @@ export class FieldDeskApp {
           field.x = Math.max(0, Math.min(1 - field.width, start.x + dx));
           field.y = Math.max(0, Math.min(1 - field.height, start.y + dy));
         }
-        element.style.left = `${field.x * 100}%`;
-        element.style.top = `${field.y * 100}%`;
-        element.style.width = `${field.width * 100}%`;
-        element.style.height = `${field.height * 100}%`;
+        this.syncFieldGeometry(field);
       };
       const end = () => {
         element.removeEventListener('pointermove', move);
@@ -534,6 +540,7 @@ export class FieldDeskApp {
     this.fields = [];
     this.existingFields = [];
     this.filename = '';
+    this.clearFieldGeometries();
     this.error = '';
     this.notice = 'Document cleared from this tab.';
     this.render();
@@ -551,6 +558,49 @@ export class FieldDeskApp {
       const thumbPage = this.pages.find((item) => item.id === canvas.dataset.thumb);
       if (thumbPage) void renderPage(canvas, thumbPage, 96, true).catch(() => undefined);
     }
+    const editor = main?.closest<HTMLElement>('[data-editor-ready]');
+    if (editor && this.root.contains(main)) {
+      editor.dataset.editorReady = 'true';
+      editor.setAttribute('aria-busy', 'false');
+    }
+  }
+
+  private fieldPositionSheet(): CSSStyleSheet | null {
+    const sheet = document.querySelector<HTMLLinkElement>('#field-positions')?.sheet;
+    if (!(sheet instanceof CSSStyleSheet)) return null;
+    if (this.geometrySheet !== sheet) {
+      this.geometrySheet = sheet;
+      this.geometryRules.clear();
+    }
+    return sheet;
+  }
+
+  private syncFieldGeometries(): void {
+    this.fields.forEach((field) => this.syncFieldGeometry(field));
+  }
+
+  private syncFieldGeometry(field: OverlayField): void {
+    const sheet = this.fieldPositionSheet();
+    if (!sheet) return;
+    let rule = this.geometryRules.get(field.id);
+    if (!rule) {
+      const selector = `[data-field-id="${CSS.escape(field.id)}"]`;
+      const ruleIndex = sheet.insertRule(`${selector}{}`, sheet.cssRules.length);
+      const inserted = sheet.cssRules[ruleIndex];
+      if (!(inserted instanceof CSSStyleRule)) return;
+      rule = inserted;
+      this.geometryRules.set(field.id, rule);
+    }
+    rule.style.setProperty('left', `${field.x * 100}%`);
+    rule.style.setProperty('top', `${field.y * 100}%`);
+    rule.style.setProperty('width', `${field.width * 100}%`);
+    rule.style.setProperty('height', `${field.height * 100}%`);
+  }
+
+  private clearFieldGeometries(): void {
+    const sheet = this.fieldPositionSheet();
+    if (sheet) while (sheet.cssRules.length) sheet.deleteRule(0);
+    this.geometryRules.clear();
   }
 
   private bindDialogs(): void {

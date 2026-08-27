@@ -35,7 +35,8 @@ test('opens, fills, edits pages, places a field, and exports', async ({ page }, 
   page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   await page.goto('/');
   await page.locator('#pdf-file').setInputFiles({ name: 'intake.pdf', mimeType: 'application/pdf', buffer: await fixturePdf() });
-  await expect(page.getByText('intake.pdf', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible();
+  await expect(page.locator('[data-document-filename]')).toHaveText('intake.pdf');
   await expect(page.getByLabel('full_name')).toBeVisible();
   await page.getByLabel('full_name').fill('Ada Lovelace');
   await page.getByRole('button', { name: 'Text field' }).click();
@@ -44,6 +45,7 @@ test('opens, fills, edits pages, places a field, and exports', async ({ page }, 
   if (!box) throw new Error('Page stage did not render');
   await stage.click({ position: { x: box.width * .55, y: box.height * .45 } });
   await expect(page.getByLabel(/Text field. Select to edit/)).toBeVisible();
+  await expect(page.locator('[data-field-id][style]')).toHaveCount(0);
   await page.getByLabel('Default value').fill('Local only');
   await page.getByRole('button', { name: 'Page controls' }).click();
   await page.getByRole('button', { name: /Move page 2 earlier/ }).click();
@@ -56,6 +58,29 @@ test('opens, fills, edits pages, places a field, and exports', async ({ page }, 
   await page.getByRole('button', { name: 'Download PDF' }).click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe('intake-field-desk.pdf');
+  expect(consoleErrors).toEqual([]);
+});
+
+test('typed signature placement keeps strict CSP geometry free of inline styles', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'mobile', 'Desktop exercises typed-signature placement; mobile covers responsive accessibility.');
+  const consoleErrors: string[] = [];
+  page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+  await page.goto('/');
+  await page.locator('#pdf-file').setInputFiles({ name: 'signature.pdf', mimeType: 'application/pdf', buffer: await fixturePdf() });
+  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible();
+  await expect(page.locator('[data-document-filename]')).toHaveText('signature.pdf');
+  await page.getByRole('button', { name: 'Signature' }).click();
+  await page.getByRole('tab', { name: 'Type' }).click();
+  await page.getByLabel('Your name').fill('Ada Lovelace');
+  await page.getByRole('button', { name: 'Use signature' }).click();
+  const stage = page.locator('[data-page-stage]');
+  const box = await stage.boundingBox();
+  if (!box) throw new Error('Page stage did not render');
+  await stage.click({ position: { x: box.width * .48, y: box.height * .52 } });
+  await expect(page.getByLabel(/Signature field. Select to edit/)).toBeVisible();
+  await expect(page.locator('[data-field-id][style]')).toHaveCount(0);
+  await page.getByLabel(/Signature field. Select to edit/).press('ArrowRight');
+  await expect(page.locator('[data-field-id][style]')).toHaveCount(0);
   expect(consoleErrors).toEqual([]);
 });
 

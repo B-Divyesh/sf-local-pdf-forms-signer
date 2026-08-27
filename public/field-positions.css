@@ -1,0 +1,5 @@
+/*
+ * A deliberately empty same-origin stylesheet. The editor updates CSS rules in
+ * this sheet through CSSOM for placed-field geometry, so strict CSP can keep
+ * rejecting inline style attributes.
+ */
