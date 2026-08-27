@@ -76,7 +76,19 @@ Deployed production build to
 (`sf-local-pdf-forms-signer`, Standard tier). No container deployment or
 `az acr build` was used.
 
-Post-deploy checks: pending final live URL verification for this repair commit.
+Post-deploy checks passed at the custom domain:
+
+- The factory URL verifier returned HTTPS 200 in 776 ms with one `h1`,
+  `lang="en"`, a `main` landmark, no missing image alt text/unlabelled buttons,
+  and zero console errors.
+- Live headers retain the strict `style-src 'self'` CSP and the deployed HTML
+  references `/field-positions.css` and the new application bundle.
+- A live browser exercise opened a real PDF, waited for the ready state, placed
+  and keyboard-moved both a text field and typed signature, and observed zero
+  console errors, no inline geometry styles, and non-zero rendered field sizes.
+- Live Axe scans at desktop and Pixel 5 viewports found zero serious or critical
+  violations. The live service worker took control and rendered the landing
+  page after an explicit offline reload with zero console errors.
 
 ## Known limits
 
