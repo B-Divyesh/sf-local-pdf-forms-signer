@@ -1,4 +1,14 @@
-# Field Desk v1 handoff
+# Field Desk v1 handoff — **FAIL (independent verification)**
+
+**Candidate:** `1309298ee135dfa710c2510b5107d289334615fd`
+**Live URL:** <https://local-pdf-forms-signer.sociobot.in>
+**Verification report:** [`.factory/verification.md`](verification.md)
+
+Do **not** treat this candidate as releasable. Independent verification on 2026-08-27 found two high-severity functional defects in the byte-identical live artifact: default editable export drops filled existing AcroForm fields, and the supposedly cached PWA shell fails an offline reload with a JavaScript MIME error. The normal `npm run test:e2e` command also fails reproducibly under its configured parallel run.
+
+Required next steps: preserve source field values in the default export; repair and regression-test offline reload/open; make field placement keyboard-operable; stabilize the full E2E command; and correct the candidate’s README Docker instructions (the referenced files are not present at this SHA).
+
+---
 
 ## Delivered
 
