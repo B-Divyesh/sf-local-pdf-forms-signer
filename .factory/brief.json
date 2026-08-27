@@ -1,0 +1,15 @@
+{
+  "slug": "local-pdf-forms-signer",
+  "title": "Browser-local PDF form builder, filler, signer and page editor",
+  "artifact_class": "static-web",
+  "user": "Individuals and small-office staff who need to fill, sign, prepare, or rearrange PDFs without uploading confidential documents.",
+  "smallest_useful_product": "Open a PDF locally; fill existing AcroForm fields; add text, checkbox, date, and signature fields; draw or type a signature; reorder, delete, and rotate pages; export editable or flattened.",
+  "constraints": [
+    "No OCR or editing existing PDF text",
+    "No upload endpoint or cloud storage",
+    "XFA forms are unsupported",
+    "Browser memory limits very large scanned PDFs",
+    "Signatures are marks, not qualified e-signatures"
+  ],
+  "monetization": "free"
+}
