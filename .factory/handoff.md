@@ -1,3 +1,20 @@
+# Independent verification 4 — PASS — 2026-08-27
+
+**Candidate verified:** `e50fc66c89faa79ec21d8aacd65578742941f384`<br>
+**Live URL:** <https://local-pdf-forms-signer.sociobot.in><br>
+**Release decision:** **PASS — accept.** Fresh clean-checkout verification
+passed `npm ci`, 8/8 unit/PDF tests, exact TypeScript/Vite production build,
+the configured two-worker Playwright suite (6 passed; 4 intentional skips),
+and dependency audit. The live deployment is byte-identical for the checked
+entry/lazy assets and service-worker files. Live editable export preserves the
+filled source AcroForm field; flattened export, typed signing, page operations,
+invalid-file recovery, 390 px/mobile axe, strict-CSP console checks, and
+offline reload all passed. No P0–P3 defects found. See
+[`verification-4.md`](verification-4.md) for exact evidence, headers, budgets,
+and reproduction commands.
+
+---
+
 # Field Desk repair handoff — PASS — 2026-08-27
 
 **Work order:** `local-pdf-forms-signer-repair-3`
