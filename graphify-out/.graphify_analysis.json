@@ -1,9 +1,6 @@
 {
   "communities": {
     "0": [
-      "pdf_lib",
-      "pdf_worker_min_mjs_url",
-      "pdfjs_dist",
       "src_app",
       "src_app_fielddeskapp_loadfile",
       "src_app_route",
@@ -35,6 +32,36 @@
       "src_types_tool"
     ],
     "1": [
+      "src_app_fielddeskapp",
+      "src_app_fielddeskapp_binddialogs",
+      "src_app_fielddeskapp_bindeditor",
+      "src_app_fielddeskapp_bindglobal",
+      "src_app_fielddeskapp_bindlanding",
+      "src_app_fielddeskapp_bindplacedfield",
+      "src_app_fielddeskapp_clearfieldgeometries",
+      "src_app_fielddeskapp_clearsignaturecanvas",
+      "src_app_fielddeskapp_closedialog",
+      "src_app_fielddeskapp_closefile",
+      "src_app_fielddeskapp_constructor",
+      "src_app_fielddeskapp_deletecurrentpage",
+      "src_app_fielddeskapp_deletefield",
+      "src_app_fielddeskapp_fieldpositionsheet",
+      "src_app_fielddeskapp_handleexport",
+      "src_app_fielddeskapp_navigate",
+      "src_app_fielddeskapp_opendialog",
+      "src_app_fielddeskapp_placefield",
+      "src_app_fielddeskapp_preparesignaturecanvas",
+      "src_app_fielddeskapp_render",
+      "src_app_fielddeskapp_rendercanvases",
+      "src_app_fielddeskapp_renderlegal",
+      "src_app_fielddeskapp_rotatecurrentpage",
+      "src_app_fielddeskapp_routefromlocation",
+      "src_app_fielddeskapp_syncfieldgeometries",
+      "src_app_fielddeskapp_syncfieldgeometry",
+      "src_app_fielddeskapp_undodelete",
+      "src_app_fielddeskapp_updateselectedfield"
+    ],
+    "2": [
       "ref_dom",
       "ref_dom_iterable",
       "ref_es2022",
@@ -56,7 +83,7 @@
       "tsconfig_compileroptions_usedefineforclassfields",
       "tsconfig_include"
     ],
-    "2": [
+    "3": [
       "package",
       "package_dependencies",
       "package_dependencies_pdf_lib",
@@ -74,7 +101,7 @@
       "package_type",
       "package_version"
     ],
-    "3": [
+    "4": [
       "src_app_fielddeskapp_escape",
       "src_app_fielddeskapp_escapeattr",
       "src_app_fielddeskapp_renderapp",
@@ -90,7 +117,7 @@
       "src_app_fielddeskapp_toolbutton",
       "src_app_icon"
     ],
-    "4": [
+    "5": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -105,75 +132,39 @@
       "vite",
       "vitest"
     ],
-    "5": [
-      "src_app_fielddeskapp",
-      "src_app_fielddeskapp_clearfieldgeometries",
-      "src_app_fielddeskapp_closefile",
-      "src_app_fielddeskapp_constructor",
-      "src_app_fielddeskapp_fieldpositionsheet",
-      "src_app_fielddeskapp_navigate",
-      "src_app_fielddeskapp_renderlegal",
-      "src_app_fielddeskapp_routefromlocation",
-      "src_app_fielddeskapp_syncfieldgeometries",
-      "src_app_fielddeskapp_syncfieldgeometry",
-      "src_app_fielddeskapp_updateselectedfield"
-    ],
     "6": [
-      "src_app_fielddeskapp_bindeditor",
-      "src_app_fielddeskapp_bindglobal",
-      "src_app_fielddeskapp_bindlanding",
-      "src_app_fielddeskapp_bindplacedfield",
-      "src_app_fielddeskapp_deletecurrentpage",
-      "src_app_fielddeskapp_deletefield",
-      "src_app_fielddeskapp_placefield",
-      "src_app_fielddeskapp_render",
-      "src_app_fielddeskapp_rendercanvases",
-      "src_app_fielddeskapp_rotatecurrentpage",
-      "src_app_fielddeskapp_undodelete"
-    ],
-    "7": [
-      "src_app_fielddeskapp_binddialogs",
-      "src_app_fielddeskapp_clearsignaturecanvas",
-      "src_app_fielddeskapp_closedialog",
-      "src_app_fielddeskapp_handleexport",
-      "src_app_fielddeskapp_opendialog",
-      "src_app_fielddeskapp_preparesignaturecanvas"
-    ],
-    "8": [
       "public_sw",
       "public_sw_cachemoduletree",
       "public_sw_shell"
     ],
-    "9": [
+    "7": [
       "src_main",
       "src_main_root"
     ],
-    "10": [
+    "8": [
       "src_vite_env_d",
       "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url"
     ],
-    "11": [
+    "9": [
       "tests_app_spec",
       "tests_app_spec_fixturepdf"
     ],
-    "12": [
+    "10": [
       "playwright_config"
     ]
   },
   "cohesion": {
-    "0": 0.13911290322580644,
-    "1": 0.1,
-    "2": 0.125,
-    "3": 0.24175824175824176,
-    "4": 0.15384615384615385,
-    "5": 0.32727272727272727,
-    "6": 0.3090909090909091,
-    "7": 0.4,
-    "8": 0.6666666666666666,
+    "0": 0.1625615763546798,
+    "1": 0.18783068783068782,
+    "2": 0.1,
+    "3": 0.125,
+    "4": 0.24175824175824176,
+    "5": 0.15384615384615385,
+    "6": 0.6666666666666666,
+    "7": 1.0,
+    "8": 1.0,
     "9": 1.0,
-    "10": 1.0,
-    "11": 1.0,
-    "12": 1.0
+    "10": 1.0
   },
   "gods": [
     {
