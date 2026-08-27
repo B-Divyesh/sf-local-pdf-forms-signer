@@ -1,6 +1,9 @@
 {
   "communities": {
     "0": [
+      "pdf_lib",
+      "pdf_worker_min_mjs_url",
+      "pdfjs_dist",
       "src_app",
       "src_app_fielddeskapp_loadfile",
       "src_app_route",
@@ -32,34 +35,6 @@
       "src_types_tool"
     ],
     "1": [
-      "src_app_fielddeskapp",
-      "src_app_fielddeskapp_binddialogs",
-      "src_app_fielddeskapp_bindeditor",
-      "src_app_fielddeskapp_bindglobal",
-      "src_app_fielddeskapp_bindlanding",
-      "src_app_fielddeskapp_bindplacedfield",
-      "src_app_fielddeskapp_clearsignaturecanvas",
-      "src_app_fielddeskapp_closedialog",
-      "src_app_fielddeskapp_closefile",
-      "src_app_fielddeskapp_constructor",
-      "src_app_fielddeskapp_deletecurrentpage",
-      "src_app_fielddeskapp_deletefield",
-      "src_app_fielddeskapp_handleexport",
-      "src_app_fielddeskapp_navigate",
-      "src_app_fielddeskapp_opendialog",
-      "src_app_fielddeskapp_placefield",
-      "src_app_fielddeskapp_preparesignaturecanvas",
-      "src_app_fielddeskapp_render",
-      "src_app_fielddeskapp_renderapp",
-      "src_app_fielddeskapp_rendercanvases",
-      "src_app_fielddeskapp_renderlegal",
-      "src_app_fielddeskapp_rendersignaturedialog",
-      "src_app_fielddeskapp_rotatecurrentpage",
-      "src_app_fielddeskapp_routefromlocation",
-      "src_app_fielddeskapp_undodelete",
-      "src_app_fielddeskapp_updateselectedfield"
-    ],
-    "2": [
       "ref_dom",
       "ref_dom_iterable",
       "ref_es2022",
@@ -81,7 +56,7 @@
       "tsconfig_compileroptions_usedefineforclassfields",
       "tsconfig_include"
     ],
-    "3": [
+    "2": [
       "package",
       "package_dependencies",
       "package_dependencies_pdf_lib",
@@ -99,6 +74,22 @@
       "package_type",
       "package_version"
     ],
+    "3": [
+      "src_app_fielddeskapp_escape",
+      "src_app_fielddeskapp_escapeattr",
+      "src_app_fielddeskapp_renderapp",
+      "src_app_fielddeskapp_renderdocumentinspector",
+      "src_app_fielddeskapp_rendereditor",
+      "src_app_fielddeskapp_renderexistingfield",
+      "src_app_fielddeskapp_renderexportdialog",
+      "src_app_fielddeskapp_renderfieldinspector",
+      "src_app_fielddeskapp_renderlanding",
+      "src_app_fielddeskapp_renderoverlay",
+      "src_app_fielddeskapp_rendersignaturedialog",
+      "src_app_fielddeskapp_renderthumbnail",
+      "src_app_fielddeskapp_toolbutton",
+      "src_app_icon"
+    ],
     "4": [
       "axe_core_playwright",
       "package_devdependencies",
@@ -115,52 +106,74 @@
       "vitest"
     ],
     "5": [
-      "src_app_fielddeskapp_escape",
-      "src_app_fielddeskapp_escapeattr",
-      "src_app_fielddeskapp_renderdocumentinspector",
-      "src_app_fielddeskapp_rendereditor",
-      "src_app_fielddeskapp_renderexistingfield",
-      "src_app_fielddeskapp_renderexportdialog",
-      "src_app_fielddeskapp_renderfieldinspector",
-      "src_app_fielddeskapp_renderlanding",
-      "src_app_fielddeskapp_renderoverlay",
-      "src_app_fielddeskapp_renderthumbnail",
-      "src_app_fielddeskapp_toolbutton",
-      "src_app_icon"
+      "src_app_fielddeskapp",
+      "src_app_fielddeskapp_clearfieldgeometries",
+      "src_app_fielddeskapp_closefile",
+      "src_app_fielddeskapp_constructor",
+      "src_app_fielddeskapp_fieldpositionsheet",
+      "src_app_fielddeskapp_navigate",
+      "src_app_fielddeskapp_renderlegal",
+      "src_app_fielddeskapp_routefromlocation",
+      "src_app_fielddeskapp_syncfieldgeometries",
+      "src_app_fielddeskapp_syncfieldgeometry",
+      "src_app_fielddeskapp_updateselectedfield"
     ],
     "6": [
+      "src_app_fielddeskapp_bindeditor",
+      "src_app_fielddeskapp_bindglobal",
+      "src_app_fielddeskapp_bindlanding",
+      "src_app_fielddeskapp_bindplacedfield",
+      "src_app_fielddeskapp_deletecurrentpage",
+      "src_app_fielddeskapp_deletefield",
+      "src_app_fielddeskapp_placefield",
+      "src_app_fielddeskapp_render",
+      "src_app_fielddeskapp_rendercanvases",
+      "src_app_fielddeskapp_rotatecurrentpage",
+      "src_app_fielddeskapp_undodelete"
+    ],
+    "7": [
+      "src_app_fielddeskapp_binddialogs",
+      "src_app_fielddeskapp_clearsignaturecanvas",
+      "src_app_fielddeskapp_closedialog",
+      "src_app_fielddeskapp_handleexport",
+      "src_app_fielddeskapp_opendialog",
+      "src_app_fielddeskapp_preparesignaturecanvas"
+    ],
+    "8": [
       "public_sw",
       "public_sw_cachemoduletree",
       "public_sw_shell"
     ],
-    "7": [
+    "9": [
       "src_main",
       "src_main_root"
     ],
-    "8": [
+    "10": [
       "src_vite_env_d",
       "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url"
     ],
-    "9": [
+    "11": [
       "tests_app_spec",
       "tests_app_spec_fixturepdf"
     ],
-    "10": [
+    "12": [
       "playwright_config"
     ]
   },
   "cohesion": {
-    "0": 0.1625615763546798,
-    "1": 0.19384615384615383,
-    "2": 0.1,
-    "3": 0.125,
+    "0": 0.13911290322580644,
+    "1": 0.1,
+    "2": 0.125,
+    "3": 0.24175824175824176,
     "4": 0.15384615384615385,
-    "5": 0.2878787878787879,
-    "6": 0.6666666666666666,
-    "7": 1.0,
-    "8": 1.0,
+    "5": 0.32727272727272727,
+    "6": 0.3090909090909091,
+    "7": 0.4,
+    "8": 0.6666666666666666,
     "9": 1.0,
-    "10": 1.0
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0
   },
   "gods": [
     {
@@ -174,16 +187,6 @@
       "degree": 14
     },
     {
-      "id": "src_types_overlayfield",
-      "label": "OverlayField",
-      "degree": 8
-    },
-    {
-      "id": "src_types_pagemodel",
-      "label": "PageModel",
-      "degree": 7
-    },
-    {
       "id": "src_app_icon",
       "label": "icon()",
       "degree": 7
@@ -194,13 +197,13 @@
       "degree": 6
     },
     {
-      "id": "src_types_existingfield",
-      "label": "ExistingField",
+      "id": "src_types_overlayfield",
+      "label": "OverlayField",
       "degree": 5
     },
     {
-      "id": "src_types_tool",
-      "label": "Tool",
+      "id": "src_types_pagemodel",
+      "label": "PageModel",
       "degree": 5
     },
     {
@@ -212,54 +215,19 @@
       "id": "src_model_createpages",
       "label": "createPages()",
       "degree": 4
+    },
+    {
+      "id": "src_model_isprobablypdf",
+      "label": "isProbablyPdf()",
+      "degree": 4
+    },
+    {
+      "id": "src_model_moveitem",
+      "label": "moveItem()",
+      "degree": 4
     }
   ],
-  "surprises": [
-    {
-      "source": "FieldDeskApp",
-      "target": "ExistingField",
-      "source_files": [
-        "src/app.ts",
-        "src/types.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "FieldDeskApp",
-      "target": "OverlayField",
-      "source_files": [
-        "src/app.ts",
-        "src/types.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "FieldDeskApp",
-      "target": "PageModel",
-      "source_files": [
-        "src/app.ts",
-        "src/types.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "FieldDeskApp",
-      "target": "Tool",
-      "source_files": [
-        "src/app.ts",
-        "src/types.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "bridges separate communities"
-    }
-  ],
+  "surprises": [],
   "tokens": {
     "input": 0,
     "output": 0
