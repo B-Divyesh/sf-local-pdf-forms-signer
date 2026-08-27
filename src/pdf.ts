@@ -75,12 +75,12 @@ export async function exportPdf(
   flatten: boolean,
 ): Promise<Uint8Array> {
   const lib = await import('pdf-lib');
-  const source = await lib.PDFDocument.load(bytes.slice(), { ignoreEncryption: false });
-  const sourceForm = source.getForm();
+  const output = await lib.PDFDocument.load(bytes.slice(), { ignoreEncryption: false });
+  const form = output.getForm();
 
   for (const model of existingFields) {
     try {
-      const field = sourceForm.getField(model.name);
+      const field = form.getField(model.name);
       if (field instanceof lib.PDFTextField) field.setText(model.value);
       else if (field instanceof lib.PDFCheckBox) model.checked ? field.check() : field.uncheck();
       else if (field instanceof lib.PDFDropdown || field instanceof lib.PDFOptionList) {
@@ -90,25 +90,31 @@ export async function exportPdf(
       // A malformed field should not prevent export of the rest of the document.
     }
   }
-  try {
-    sourceForm.updateFieldAppearances();
-    if (flatten) sourceForm.flatten();
-  } catch {
-    // Some legacy forms cannot generate appearances; copied page content still exports.
+
+  // Keep the source document as the export document. `copyPages()` deliberately
+  // omits AcroForm data, which previously made an editable export lose every
+  // pre-existing field. Rebuilding its page tree with the existing page objects
+  // preserves their annotations and the document's AcroForm dictionary.
+  const sourcePages = output.getPages();
+  const orderedPages = pages.map((page) => ({
+    model: page,
+    page: sourcePages[page.sourceIndex],
+  })).filter((entry): entry is { model: PageModel; page: typeof sourcePages[number] } => Boolean(entry.page));
+  for (let index = output.getPageCount() - 1; index >= 0; index -= 1) output.removePage(index);
+  for (const { model, page } of orderedPages) {
+    page.setRotation(lib.degrees((page.getRotation().angle + model.rotation) % 360));
+    output.addPage(page);
   }
 
-  const output = await lib.PDFDocument.create();
+  try {
+    form.updateFieldAppearances();
+  } catch {
+    // Some legacy forms cannot generate appearances; their original field data
+    // is still retained in the editable output.
+  }
+
   output.setCreator('Field Desk — local-pdf-forms-signer');
   output.setProducer('pdf-lib (processed locally in browser)');
-  const copied = await output.copyPages(source, pages.map((page) => page.sourceIndex));
-  for (let index = 0; index < copied.length; index += 1) {
-    const copiedPage = copied[index];
-    const sourceAngle = copiedPage.getRotation().angle;
-    copiedPage.setRotation(lib.degrees((sourceAngle + pages[index].rotation) % 360));
-    output.addPage(copiedPage);
-  }
-
-  const form = output.getForm();
   const font = await output.embedFont(lib.StandardFonts.Helvetica);
   const italic = await output.embedFont(lib.StandardFonts.HelveticaOblique);
 

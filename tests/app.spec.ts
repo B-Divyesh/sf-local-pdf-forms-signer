@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
 async function fixturePdf(): Promise<Buffer> {
@@ -35,8 +36,9 @@ test('opens, fills, edits pages, places a field, and exports', async ({ page }, 
   page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   await page.goto('/');
   await page.locator('#pdf-file').setInputFiles({ name: 'intake.pdf', mimeType: 'application/pdf', buffer: await fixturePdf() });
-  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible();
+  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible({ timeout: 15_000 });
   await expect(page.locator('[data-document-filename]')).toHaveText('intake.pdf');
+  await expect(page.locator('[data-main-canvas][data-page-rendered="true"]')).toBeVisible({ timeout: 15_000 });
   await expect(page.getByLabel('full_name')).toBeVisible();
   await page.getByLabel('full_name').fill('Ada Lovelace');
   await page.getByRole('button', { name: 'Text field' }).click();
@@ -67,8 +69,9 @@ test('typed signature placement keeps strict CSP geometry free of inline styles'
   page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   await page.goto('/');
   await page.locator('#pdf-file').setInputFiles({ name: 'signature.pdf', mimeType: 'application/pdf', buffer: await fixturePdf() });
-  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible();
+  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible({ timeout: 15_000 });
   await expect(page.locator('[data-document-filename]')).toHaveText('signature.pdf');
+  await expect(page.locator('[data-main-canvas][data-page-rendered="true"]')).toBeVisible({ timeout: 15_000 });
   await page.getByRole('button', { name: 'Signature' }).click();
   await page.getByRole('tab', { name: 'Type' }).click();
   await page.getByLabel('Your name').fill('Ada Lovelace');
@@ -82,6 +85,23 @@ test('typed signature placement keeps strict CSP geometry free of inline styles'
   await page.getByLabel(/Signature field. Select to edit/).press('ArrowRight');
   await expect(page.locator('[data-field-id][style]')).toHaveCount(0);
   expect(consoleErrors).toEqual([]);
+});
+
+test('editable download retains the filled source AcroForm field', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'mobile', 'PDF structure is verified through the desktop download workflow.');
+  await page.goto('/');
+  await page.locator('#pdf-file').setInputFiles({ name: 'editable.pdf', mimeType: 'application/pdf', buffer: await fixturePdf() });
+  await expect(page.locator('[data-editor-ready="true"]')).toBeVisible({ timeout: 15_000 });
+  await page.getByLabel('full_name').fill('Ada Lovelace');
+  await page.getByRole('button', { name: 'Export PDF' }).click();
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download PDF' }).click();
+  const download = await downloadPromise;
+  const path = await download.path();
+  expect(path).not.toBeNull();
+  const exported = await PDFDocument.load(await readFile(path as string));
+  expect(exported.getForm().getFields().map((field) => field.getName())).toContain('full_name');
+  expect(exported.getForm().getTextField('full_name').getText()).toBe('Ada Lovelace');
 });
 
 test('mobile layout keeps primary workflow reachable', async ({ page }, testInfo) => {

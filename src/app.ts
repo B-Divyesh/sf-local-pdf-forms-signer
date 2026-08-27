@@ -96,6 +96,7 @@ export class FieldDeskApp {
     this.bindGlobal();
     if (this.bytes && this.route === 'app') {
       this.syncFieldGeometries();
+      this.markEditorReady();
       void this.renderCanvases();
     }
   }
@@ -264,10 +265,10 @@ export class FieldDeskApp {
         <div class="dialog-heading"><div><p class="eyebrow">Output control</p><h2 id="export-title">Export your PDF</h2></div><button type="button" class="icon-button" data-action="close-export" aria-label="Close export dialog">${icon('close')}</button></div>
         <label class="form-control" for="output-name"><span>File name</span><input id="output-name" value="${this.escapeAttr(safeOutputName(this.filename || 'document'))}" required /></label>
         <fieldset class="export-options"><legend>Field behavior</legend>
-          <label><input type="radio" name="flatten" value="false" checked/><span><strong>Keep new fields editable</strong><small>Recipients can change fields in compatible PDF readers.</small></span></label>
+          <label><input type="radio" name="flatten" value="false" checked/><span><strong>Keep fields editable</strong><small>Recipients can change original and new fields in compatible PDF readers.</small></span></label>
           <label><input type="radio" name="flatten" value="true"/><span><strong>Flatten completed fields</strong><small>Burns values and signatures into the pages for portability.</small></span></label>
         </fieldset>
-        <p class="dialog-note">Page rearranging can convert some legacy source fields to fixed appearances. Review the exported file before sending.</p>
+        <p class="dialog-note">Standard AcroForm fields remain editable after page changes. Legacy PDF readers can vary in how they show field appearances, so review the exported file before sending.</p>
         <div class="dialog-actions"><button type="button" class="secondary-button" data-action="close-export">Cancel</button><button type="submit" class="primary-button" ${this.exporting ? 'disabled' : ''}>${this.exporting ? 'Building PDF…' : `${icon('download')} Download PDF`}</button></div>
       </form>
     </dialog>`;
@@ -552,17 +553,24 @@ export class FieldDeskApp {
     if (page && main) {
       const scroll = main.closest<HTMLElement>('.canvas-scroll');
       try { await renderPage(main, page, Math.max(280, (scroll?.clientWidth ?? 800) - 64)); } catch { this.notice = 'This page could not be rendered, but it may still export.'; }
+      if (this.root.contains(main)) main.dataset.pageRendered = 'true';
     }
     const thumbs = [...this.root.querySelectorAll<HTMLCanvasElement>('[data-thumb]')];
     for (const canvas of thumbs) {
       const thumbPage = this.pages.find((item) => item.id === canvas.dataset.thumb);
       if (thumbPage) void renderPage(canvas, thumbPage, 96, true).catch(() => undefined);
     }
-    const editor = main?.closest<HTMLElement>('[data-editor-ready]');
-    if (editor && this.root.contains(main)) {
-      editor.dataset.editorReady = 'true';
-      editor.setAttribute('aria-busy', 'false');
-    }
+  }
+
+  // The editor can accept field edits before PDF.js has rasterized a canvas.
+  // Keeping this state independent of rendering avoids a slow worker or a
+  // thumbnail queue making the product appear unusable to keyboard users and
+  // automated consumers.
+  private markEditorReady(): void {
+    const editor = this.root.querySelector<HTMLElement>('[data-editor-ready]');
+    if (!editor) return;
+    editor.dataset.editorReady = 'true';
+    editor.setAttribute('aria-busy', 'false');
   }
 
   private fieldPositionSheet(): CSSStyleSheet | null {

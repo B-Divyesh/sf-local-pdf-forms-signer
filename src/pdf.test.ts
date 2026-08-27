@@ -25,6 +25,44 @@ describe('PDF export', () => {
     expect(textField.getText()).toBe('FD-42');
   });
 
+  it('keeps filled source AcroForm fields editable in a non-flattened export', async () => {
+    const source = await PDFDocument.create();
+    const page = source.addPage([300, 400]);
+    const fullName = source.getForm().createTextField('full_name');
+    fullName.addToPage(page, { x: 30, y: 300, width: 180, height: 28 });
+    const result = await exportPdf(
+      await source.save(),
+      [{ id: 'page', sourceIndex: 0, rotation: 0 }],
+      [],
+      [{ name: 'full_name', type: 'text', value: 'Ada Lovelace' }],
+      false,
+    );
+    const exported = await PDFDocument.load(result);
+    expect(exported.getForm().getFields().map((field) => field.getName())).toContain('full_name');
+    expect(exported.getForm().getTextField('full_name').getText()).toBe('Ada Lovelace');
+  });
+
+  it('keeps source AcroForm fields while reordering pages in an editable export', async () => {
+    const source = await PDFDocument.create();
+    const first = source.addPage([300, 400]);
+    const fullName = source.getForm().createTextField('full_name');
+    fullName.addToPage(first, { x: 30, y: 300, width: 180, height: 28 });
+    source.addPage([300, 400]);
+    const result = await exportPdf(
+      await source.save(),
+      [
+        { id: 'second', sourceIndex: 1, rotation: 0 },
+        { id: 'first', sourceIndex: 0, rotation: 0 },
+      ],
+      [],
+      [{ name: 'full_name', type: 'text', value: 'Ada Lovelace' }],
+      false,
+    );
+    const exported = await PDFDocument.load(result);
+    expect(exported.getPageCount()).toBe(2);
+    expect(exported.getForm().getTextField('full_name').getText()).toBe('Ada Lovelace');
+  });
+
   it('flattens newly created controls', async () => {
     const source = await PDFDocument.create();
     source.addPage([300, 400]);

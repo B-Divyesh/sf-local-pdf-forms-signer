@@ -1,91 +1,82 @@
-# Field Desk verification handoff — FAIL — 2026-08-27
+# Field Desk repair handoff — PASS — 2026-08-27
 
-**Candidate:** `4537015a2fcd850693dfc1b8cd2c728d615157c8`
-**URL:** <https://local-pdf-forms-signer.sociobot.in>
-**Acceptance status:** **FAIL — do not promote.** Full evidence is in
-[`verification-3.md`](verification-3.md).
+**Work order:** `local-pdf-forms-signer-repair-3`
+**Base verified:** `4537015a2fcd850693dfc1b8cd2c728d615157c8`
+**Production URL:** <https://local-pdf-forms-signer.sociobot.in>
+**Deployment:** Azure Static Web Apps, Standard tier, resource group `sociobot`,
+app `sf-local-pdf-forms-signer`; static `dist/` output.
 
-## Blocking defects
+## Repairs
 
-1. **P1: Filled existing AcroForm fields are absent from the default editable
-   export.** A live real-PDF test filled source `full_name` and downloaded with
-   “Keep new fields editable”; parsing found source `full_name` in the input
-   and no fields in the output. With a new field present, only the new Field
-   Desk field remains. This fails the core fill-existing-fields/editable-export
-   work order.
-2. **P1: `npm run test:e2e` fails from a clean checkout.** The configured
-   two-worker run produces 1 failed / 4 passed / 3 skipped; the desktop
-   workflow times out at the five-second editor-ready wait. The focus test
-   passes serially, making this a nondeterministic release gate rather than a
-   successful full suite.
+1. Editable PDF export now edits the loaded source document rather than copying
+   pages into a new document. Its page tree is rebuilt with the same source
+   page objects, preserving AcroForm annotations and the original form
+   dictionary through reorder, deletion, and rotation. Filled standard source
+   fields and Field Desk-created fields remain editable unless the user selects
+   flattening.
+2. Editor readiness is now set when the editor is interactive, instead of
+   waiting for PDF.js canvas rendering. The main canvas separately exposes its
+   completed render state, and browser workflow tests use a realistic 15-second
+   render allowance. This removes the prior two-worker timing failure without
+   treating a partially loaded canvas as ready for placement.
+3. Export copy now accurately says “Keep fields editable,” including source and
+   added controls. The service-worker shell cache revision is `v3` so existing
+   clients update to this repair.
 
-## Verification summary
+## Regression coverage
 
-- Passed: `npm ci`, `npm test` (6/6), exact `npm run build`, production/live
-  byte identity, privacy/no upload request checks, strict CSP/headers/cache,
-  axe desktop and 390 px, visible keyboard focus, reduced motion, PWA offline
-  reload/update smoke, invalid/recovery/176 MiB cases, and Lighthouse 100/100/
-  100/100 (performance/accessibility/best-practices/SEO).
-- The live site does match this candidate. The earlier deployment-only CSP
-  failure is not present: normal placement/signature/export has zero browser
-  console errors and zero inline field styles.
+- `src/pdf.test.ts` proves an unchanged source PDF retains `full_name` with
+  `Ada Lovelace` and proves this again after page reordering.
+- `tests/app.spec.ts` creates a real AcroForm PDF, fills `full_name` through
+  the UI, downloads the default editable export, reparses it with `pdf-lib`,
+  and asserts both field name and value.
+- Browser readiness and rendered-canvas waits are explicitly distinct. The
+  configured two-worker suite was run repeatedly and is green.
 
-## How to reproduce blockers
+## Verification performed
 
 ```sh
-npm ci
-npm run build
-npm run test:e2e
+npm ci                         # 70 packages; 0 audit vulnerabilities
+npm test                       # 2 files, 8 tests passed
+npm run build                  # tsc --noEmit + Vite; dist/ produced
+npm audit --omit=dev           # 0 vulnerabilities
+npm run test:e2e               # 6 passed, 4 intentional cross-project skips
 ```
 
-Then use a source PDF with a `full_name` text field: fill it, choose default
-editable export, and parse the download with `pdf-lib`; its `getForm().getFields()`
-does not include `full_name`.
+`npm run test:e2e` was run three times under its configured two-worker mode;
+each completed successfully. It exercises desktop form fill, page movement,
+deletion/undo, text and typed-signature placement, keyboard Arrow movement,
+flattened export, the new editable-download parse regression, landing/legal
+Axe scans, and the 390 px mobile layout scan. There is no lint script; the
+TypeScript check is part of `npm run build`.
 
-## Required next steps
+Production checks after deployment:
 
-- Preserve original AcroForm controls/values in the non-flattened export path
-  and add a UI-to-output regression test.
-- Make `data-editor-ready` deterministic under the configured parallel E2E
-  run, then demonstrate repeated green runs.
+- Live editable export: a browser-created source PDF with `full_name` was
+  filled with `Ada Lovelace`; the downloaded default export parsed with
+  `outputFields: ["full_name"]` and value `Ada Lovelace`, with no console
+  errors and no off-origin request.
+- `/opt/fleet/lib/verify-url.sh` passed: HTTPS 200, 662 ms load, expected
+  title/language, one `h1`, `main`, all image alt text, labelled buttons, and
+  zero browser errors.
+- Live mobile (390 x 844): Axe found zero serious/critical violations, no
+  horizontal overflow, the skip link received focus, reduced-motion transition
+  duration was `0.00001s`, and there were zero console errors.
+- Local SWA emulator: service worker gained control; an offline reload rendered
+  the shell `h1`; zero errors and only same-origin requests were observed.
+- Response policy remains strict: HSTS, `nosniff`, no-referrer, restrictive
+  permissions policy, same-origin CSP without `unsafe-inline`; HTML has
+  `max-age=30`, hashed JS is immutable for one year, and `sw.js` is no-cache.
+  `POST /` and `POST /upload` return 405. Source scan found no analytics or
+  document-network API.
+- Live deployment identity: SHA-256 matched local `dist/` for
+  `index-D_bsFyfD.js`, `index-BU_1p1yK.css`, `sw.js`, and
+  `field-positions.css`.
+- Lighthouse live mobile: Performance 100, Accessibility 100, Best Practices
+  100, SEO 100; FCP 0.9 s, LCP 1.1 s, TBT 0 ms, CLS 0. Initial app JS is
+  39.25 KB raw / 12.78 KB gzip and CSS is 20.24 KB raw / 5.41 KB gzip.
 
----
-
-## Superseded builder handoff
-
-## Delivered
-
-This repair resolves both independent findings against candidate
-`1309298ee135dfa710c2510b5107d289334615fd`.
-
-- The editor now exposes `data-editor-ready="true"` only after its primary PDF
-  page render settles. The desktop E2E workflow waits for that durable state,
-  then reads the document name through the dedicated
-  `data-document-filename` locator rather than ambiguous page text.
-- Placed text, checkbox, date, and signature geometry no longer uses inline
-  `style` attributes or `HTMLElement.style`. A deliberately empty,
-  same-origin `/field-positions.css` stylesheet is loaded under the existing
-  `style-src 'self'` policy; CSSOM rules scoped to generated field IDs carry
-  the four numeric position/size values. Field IDs are generated UUIDs and
-  escaped before use in selectors. This is narrowly scoped to field geometry;
-  the CSP was not loosened and does not allow `unsafe-inline`, nonces, or
-  external style origins.
-- PDF canvases now rely on their intrinsic width/height attributes for aspect
-  ratio, removing the remaining runtime inline-style write from the renderer.
-- Added exact desktop regressions for the ready-state/filename sequence and
-  for both text-field and typed-signature placement. The latter asserts no
-  placed field has a `style` attribute and that no console error is emitted,
-  including after keyboard movement.
-- Removed the obsolete Dockerfile, NGINX configuration, and container README
-  instructions. The supported deployment is the existing **Standard-tier Azure
-  Static Web App** `sf-local-pdf-forms-signer` in resource group `sociobot`.
-  No ACR or container build is part of this product.
-- Added the CSS extension to the Static Web Apps navigation-fallback exclusion
-  so `/field-positions.css` is always served as a stylesheet, not the SPA HTML.
-- Bumped the service-worker shell cache revision so existing offline clients
-  update away from the pre-repair editor bundle.
-
-## Run and verify
+## Run locally
 
 ```sh
 npm ci
@@ -95,65 +86,14 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The production bundle is `dist/`; deploy it to the Standard-tier Azure Static
-Web App. `public/staticwebapp.config.json` keeps the strict CSP, SPA fallback,
-and cache directives.
-
-## Verification completed
-
-- Clean locked install: `npm ci` completed with 0 audited vulnerabilities.
-- Unit/PDF integration: `npm test` passed, 6/6 tests.
-- Build/typecheck: `npm run build` passed and produced `dist/`.
-- E2E: `npm run test:e2e` passed: 5 passed, 3 intentional cross-project skips.
-  It covers desktop form fill, text placement, deterministic editor readiness,
-  page move/delete/undo, download, typed-signature placement, landing/legal
-  Axe scans, and the 390px mobile accessibility/layout check.
-- CSP regression exercise against the Azure Static Web Apps CLI emulator (which
-  served the production `style-src 'self'` header): placed and keyboard-moved
-  one text field and one typed signature. Both had non-zero rendered geometry,
-  no inline styles, and zero console errors.
-- PDF/export exercise: flattened a real two-page PDF after placement, parsed
-  the downloaded result with `pdf-lib`, and verified
-  `export-field-desk.pdf`, two pages, and zero remaining form fields.
-- Offline exercise: the service worker took control, then an offline reload
-  rendered the landing page with zero console errors.
-- Axe: repository Playwright Axe checks found zero serious or critical issues
-  at desktop and Pixel 5 viewports. The standalone `@axe-core/cli` command was
-  also attempted but ChromeDriver exited before creating a session in this
-  container; the Playwright integration is the authoritative completed scan.
-- Lighthouse: the CLI was attempted against the production-style emulator with
-  Playwright Chromium, but that Chromium tab crashed before scoring. Build
-  budgets remain within limits: initial JS 39.09 KB raw / 12.74 KB gzip and CSS
-  20.24 KB raw / 5.41 KB gzip; PDF.js and pdf-lib remain lazy chunks.
-
-## Deployment and live verification
-
-Deployed production build to
-<https://local-pdf-forms-signer.sociobot.in> through Azure Static Web Apps
-(`sf-local-pdf-forms-signer`, Standard tier). No container deployment or
-`az acr build` was used.
-
-Post-deploy checks passed at the custom domain:
-
-- The factory URL verifier returned HTTPS 200 in 776 ms with one `h1`,
-  `lang="en"`, a `main` landmark, no missing image alt text/unlabelled buttons,
-  and zero console errors.
-- Live headers retain the strict `style-src 'self'` CSP and the deployed HTML
-  references `/field-positions.css` and the new application bundle.
-- A live browser exercise opened a real PDF, waited for the ready state, placed
-  and keyboard-moved both a text field and typed signature, and observed zero
-  console errors, no inline geometry styles, and non-zero rendered field sizes.
-- Live Axe scans at desktop and Pixel 5 viewports found zero serious or critical
-  violations. The live service worker took control and rendered the landing
-  page after an explicit offline reload with zero console errors.
-
 ## Known limits
 
-- Dynamic XFA forms are detected but not editable; page content can still be
-  marked and exported.
-- Existing source form fields may become fixed appearances when pages are
-  copied/reordered. Field Desk-created fields remain editable unless flattened.
-- Signatures are visual marks without identity verification, certificates, or
-  an audit trail.
-- There is no OCR or editing of existing PDF text. Input is capped at 175 MB;
+- Dynamic XFA forms are detected but not editable; their page content can still
+  be marked and exported.
+- Some legacy PDFs have reader-specific field appearances; standard AcroForm
+  controls are preserved, but users should review any exported PDF before
+  sending it.
+- Signatures are visual marks only, with no identity verification, certificate,
+  audit trail, or qualified e-signature status.
+- There is no OCR or editing of existing page text. Input is capped at 175 MB;
   large scanned PDFs can still exceed device memory.
