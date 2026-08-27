@@ -38,7 +38,20 @@ npm run test:e2e
 
 ## Deploy
 
-Deploy the contents of `dist/` as an Azure Static Web App. `public/staticwebapp.config.json` supplies the SPA fallback, security headers, and `.mjs` MIME type and is copied into the build.
+The factory deployment target is a container. The included multi-stage `Dockerfile`
+builds `dist/` and serves it on port 8080 as an unprivileged user. It preserves
+the client-side routes and service worker, uses immutable caching for
+fingerprinted Vite assets, keeps HTML out of browser caches, and sends security
+headers.
+
+```sh
+docker build -t field-desk .
+docker run --rm -p 8080:8080 field-desk
+```
+
+Open <http://localhost:8080>; `/privacy` and `/terms` should resolve through the
+SPA fallback. The existing `public/staticwebapp.config.json` remains for static
+hosting compatibility.
 
 ## Project notes
 
