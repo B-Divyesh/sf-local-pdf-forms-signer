@@ -2,6 +2,7 @@
   "communities": {
     "0": [
       "src_app_fielddeskapp",
+      "src_app_fielddeskapp_applyroute",
       "src_app_fielddeskapp_binddialogs",
       "src_app_fielddeskapp_bindeditor",
       "src_app_fielddeskapp_bindglobal",
@@ -14,13 +15,16 @@
       "src_app_fielddeskapp_constructor",
       "src_app_fielddeskapp_deletecurrentpage",
       "src_app_fielddeskapp_deletefield",
+      "src_app_fielddeskapp_discardworkspace",
       "src_app_fielddeskapp_fieldpositionsheet",
       "src_app_fielddeskapp_focusrouteheading",
       "src_app_fielddeskapp_handleexport",
+      "src_app_fielddeskapp_loaddemo",
       "src_app_fielddeskapp_markeditorready",
       "src_app_fielddeskapp_navigate",
       "src_app_fielddeskapp_opendialog",
       "src_app_fielddeskapp_placefield",
+      "src_app_fielddeskapp_placefieldat",
       "src_app_fielddeskapp_preparesignaturecanvas",
       "src_app_fielddeskapp_render",
       "src_app_fielddeskapp_rendercanvases",
@@ -38,8 +42,8 @@
       "src_app_fielddeskapp_updateselectedfield"
     ],
     "1": [
+      "pdf_worker_min_mjs_url",
       "src_app",
-      "src_app_fielddeskapp_loaddemo",
       "src_app_fielddeskapp_loadfile",
       "src_app_route",
       "src_model",
@@ -61,8 +65,6 @@
       "src_pdf_pdfjspage",
       "src_pdf_renderpage",
       "src_pdf_test",
-      "src_sample",
-      "src_sample_createsamplepdf",
       "src_types",
       "src_types_existingfield",
       "src_types_exportoptions",
@@ -98,6 +100,8 @@
       "package_dependencies",
       "package_dependencies_pdf_lib",
       "package_dependencies_pdfjs_dist",
+      "package_json_pdf_lib",
+      "package_json_pdfjs_dist",
       "package_name",
       "package_private",
       "package_scripts",
@@ -108,9 +112,7 @@
       "package_scripts_test_claims",
       "package_scripts_test_e2e",
       "package_type",
-      "package_version",
-      "pdf_lib",
-      "pdfjs_dist"
+      "package_version"
     ],
     "4": [
       "axe_core_playwright",
@@ -143,46 +145,83 @@
       "src_app_icon"
     ],
     "6": [
+      "test",
       "tests_app_spec",
       "tests_app_spec_desktoponly",
+      "tests_app_spec_downloadpdf",
       "tests_app_spec_get",
-      "tests_app_spec_opendemo"
+      "tests_app_spec_makepdf",
+      "tests_app_spec_makexfapdf",
+      "tests_app_spec_opendemo",
+      "tests_app_spec_placeonpage"
     ],
     "7": [
-      "public_sw",
-      "public_sw_cachemoduletree",
-      "public_sw_shell"
+      "scripts_inject_precache",
+      "scripts_inject_precache_buildhash",
+      "scripts_inject_precache_builtfiles",
+      "scripts_inject_precache_files",
+      "scripts_inject_precache_manifest",
+      "scripts_inject_precache_manifestpath",
+      "scripts_inject_precache_output",
+      "scripts_inject_precache_serviceworkerpath"
     ],
     "8": [
+      "public_sw",
+      "public_sw_buildcache",
+      "public_sw_built_files",
+      "public_sw_fetchfresh",
+      "public_sw_public_files"
+    ],
+    "9": [
+      "scripts_capture_evidence",
+      "scripts_capture_evidence_errors",
+      "scripts_capture_evidence_output"
+    ],
+    "10": [
       "src_main",
       "src_main_root"
     ],
-    "9": [
+    "11": [
+      "src_sample",
+      "src_sample_createsamplepdf"
+    ],
+    "12": [
       "src_vite_env_d",
       "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url"
     ],
-    "10": [
+    "13": [
+      "pdf_lib_pdf_lib"
+    ],
+    "14": [
+      "pdfjs_dist_pdfjs_dist"
+    ],
+    "15": [
       "playwright_config"
     ]
   },
   "cohesion": {
-    "0": 0.14789915966386555,
-    "1": 0.14717741935483872,
+    "0": 0.1349527665317139,
+    "1": 0.15632183908045977,
     "2": 0.1,
     "3": 0.11764705882352941,
     "4": 0.15384615384615385,
     "5": 0.2692307692307692,
-    "6": 0.5,
-    "7": 0.6666666666666666,
-    "8": 1.0,
-    "9": 1.0,
-    "10": 1.0
+    "6": 0.2222222222222222,
+    "7": 0.25,
+    "8": 0.5,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0
   },
   "gods": [
     {
       "id": "src_app_fielddeskapp",
       "label": "FieldDeskApp",
-      "degree": 50
+      "degree": 53
     },
     {
       "id": "tsconfig_compileroptions",
@@ -190,13 +229,13 @@
       "degree": 14
     },
     {
-      "id": "src_app_icon",
-      "label": "icon()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_app_icon",
+      "label": "icon()",
       "degree": 7
     },
     {
@@ -220,8 +259,8 @@
       "degree": 5
     },
     {
-      "id": "src_pdf_closerenderer",
-      "label": "closeRenderer()",
+      "id": "src_pdf_inspectform",
+      "label": "inspectForm()",
       "degree": 5
     },
     {

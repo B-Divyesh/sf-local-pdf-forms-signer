@@ -13,7 +13,7 @@
       "file_type": "code",
       "norm_label": "fielddeskapp",
       "source_file": "src/app.ts",
-      "source_location": "L23"
+      "source_location": "L22"
     },
     {
       "id": "src_app_route",
@@ -25,7 +25,7 @@
       "file_type": "code",
       "norm_label": "route",
       "source_file": "src/app.ts",
-      "source_location": "L21"
+      "source_location": "L20"
     },
     {
       "id": "src_pdf_pdfjsdocument",
@@ -124,6 +124,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_fielddeskapp_applyroute",
+      "label": ".applyRoute()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": ".applyroute()",
+      "source_file": "src/app.ts",
+      "source_location": "L75"
+    },
+    {
       "id": "src_app_fielddeskapp_binddialogs",
       "label": ".bindDialogs()",
       "_callable": true,
@@ -132,7 +143,7 @@
       "file_type": "code",
       "norm_label": ".binddialogs()",
       "source_file": "src/app.ts",
-      "source_location": "L706"
+      "source_location": "L728"
     },
     {
       "id": "src_app_fielddeskapp_bindeditor",
@@ -154,7 +165,7 @@
       "file_type": "code",
       "norm_label": ".bindglobal()",
       "source_file": "src/app.ts",
-      "source_location": "L342"
+      "source_location": "L343"
     },
     {
       "id": "src_app_fielddeskapp_bindlanding",
@@ -165,7 +176,7 @@
       "file_type": "code",
       "norm_label": ".bindlanding()",
       "source_file": "src/app.ts",
-      "source_location": "L395"
+      "source_location": "L387"
     },
     {
       "id": "src_app_fielddeskapp_bindplacedfield",
@@ -176,7 +187,7 @@
       "file_type": "code",
       "norm_label": ".bindplacedfield()",
       "source_file": "src/app.ts",
-      "source_location": "L526"
+      "source_location": "L537"
     },
     {
       "id": "src_app_fielddeskapp_clearfieldgeometries",
@@ -187,7 +198,7 @@
       "file_type": "code",
       "norm_label": ".clearfieldgeometries()",
       "source_file": "src/app.ts",
-      "source_location": "L700"
+      "source_location": "L722"
     },
     {
       "id": "src_app_fielddeskapp_clearsignaturecanvas",
@@ -198,7 +209,7 @@
       "file_type": "code",
       "norm_label": ".clearsignaturecanvas()",
       "source_file": "src/app.ts",
-      "source_location": "L782"
+      "source_location": "L804"
     },
     {
       "id": "src_app_fielddeskapp_closedialog",
@@ -209,7 +220,7 @@
       "file_type": "code",
       "norm_label": ".closedialog()",
       "source_file": "src/app.ts",
-      "source_location": "L748"
+      "source_location": "L770"
     },
     {
       "id": "src_app_fielddeskapp_closefile",
@@ -220,7 +231,7 @@
       "file_type": "code",
       "norm_label": ".closefile()",
       "source_file": "src/app.ts",
-      "source_location": "L629"
+      "source_location": "L640"
     },
     {
       "id": "src_app_fielddeskapp_constructor",
@@ -242,7 +253,7 @@
       "file_type": "code",
       "norm_label": ".deletecurrentpage()",
       "source_file": "src/app.ts",
-      "source_location": "L598"
+      "source_location": "L609"
     },
     {
       "id": "src_app_fielddeskapp_deletefield",
@@ -253,7 +264,18 @@
       "file_type": "code",
       "norm_label": ".deletefield()",
       "source_file": "src/app.ts",
-      "source_location": "L622"
+      "source_location": "L633"
+    },
+    {
+      "id": "src_app_fielddeskapp_discardworkspace",
+      "label": ".discardWorkspace()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": ".discardworkspace()",
+      "source_file": "src/app.ts",
+      "source_location": "L646"
     },
     {
       "id": "src_app_fielddeskapp_fieldpositionsheet",
@@ -264,7 +286,7 @@
       "file_type": "code",
       "norm_label": ".fieldpositionsheet()",
       "source_file": "src/app.ts",
-      "source_location": "L668"
+      "source_location": "L690"
     },
     {
       "id": "src_app_fielddeskapp_focusrouteheading",
@@ -275,7 +297,7 @@
       "file_type": "code",
       "norm_label": ".focusrouteheading()",
       "source_file": "src/app.ts",
-      "source_location": "L330"
+      "source_location": "L331"
     },
     {
       "id": "src_app_fielddeskapp_handleexport",
@@ -286,7 +308,18 @@
       "file_type": "code",
       "norm_label": ".handleexport()",
       "source_file": "src/app.ts",
-      "source_location": "L787"
+      "source_location": "L809"
+    },
+    {
+      "id": "src_app_fielddeskapp_loaddemo",
+      "label": ".loadDemo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": ".loaddemo()",
+      "source_file": "src/app.ts",
+      "source_location": "L357"
     },
     {
       "id": "src_app_fielddeskapp_markeditorready",
@@ -297,7 +330,7 @@
       "file_type": "code",
       "norm_label": ".markeditorready()",
       "source_file": "src/app.ts",
-      "source_location": "L661"
+      "source_location": "L683"
     },
     {
       "id": "src_app_fielddeskapp_navigate",
@@ -308,7 +341,7 @@
       "file_type": "code",
       "norm_label": ".navigate()",
       "source_file": "src/app.ts",
-      "source_location": "L74"
+      "source_location": "L69"
     },
     {
       "id": "src_app_fielddeskapp_opendialog",
@@ -319,7 +352,7 @@
       "file_type": "code",
       "norm_label": ".opendialog()",
       "source_file": "src/app.ts",
-      "source_location": "L741"
+      "source_location": "L763"
     },
     {
       "id": "src_app_fielddeskapp_placefield",
@@ -330,7 +363,18 @@
       "file_type": "code",
       "norm_label": ".placefield()",
       "source_file": "src/app.ts",
-      "source_location": "L510"
+      "source_location": "L516"
+    },
+    {
+      "id": "src_app_fielddeskapp_placefieldat",
+      "label": ".placeFieldAt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": ".placefieldat()",
+      "source_file": "src/app.ts",
+      "source_location": "L522"
     },
     {
       "id": "src_app_fielddeskapp_preparesignaturecanvas",
@@ -341,7 +385,7 @@
       "file_type": "code",
       "norm_label": ".preparesignaturecanvas()",
       "source_file": "src/app.ts",
-      "source_location": "L752"
+      "source_location": "L774"
     },
     {
       "id": "src_app_fielddeskapp_render",
@@ -352,7 +396,7 @@
       "file_type": "code",
       "norm_label": ".render()",
       "source_file": "src/app.ts",
-      "source_location": "L83"
+      "source_location": "L84"
     },
     {
       "id": "src_app_fielddeskapp_rendercanvases",
@@ -363,7 +407,7 @@
       "file_type": "code",
       "norm_label": ".rendercanvases()",
       "source_file": "src/app.ts",
-      "source_location": "L642"
+      "source_location": "L664"
     },
     {
       "id": "src_app_fielddeskapp_renderdemobanner",
@@ -374,7 +418,7 @@
       "file_type": "code",
       "norm_label": ".renderdemobanner()",
       "source_file": "src/app.ts",
-      "source_location": "L121"
+      "source_location": "L122"
     },
     {
       "id": "src_app_fielddeskapp_renderlegal",
@@ -385,7 +429,7 @@
       "file_type": "code",
       "norm_label": ".renderlegal()",
       "source_file": "src/app.ts",
-      "source_location": "L294"
+      "source_location": "L295"
     },
     {
       "id": "src_app_fielddeskapp_rendernotfound",
@@ -396,7 +440,7 @@
       "file_type": "code",
       "norm_label": ".rendernotfound()",
       "source_file": "src/app.ts",
-      "source_location": "L308"
+      "source_location": "L309"
     },
     {
       "id": "src_app_fielddeskapp_rendersignaturedialog",
@@ -407,7 +451,7 @@
       "file_type": "code",
       "norm_label": ".rendersignaturedialog()",
       "source_file": "src/app.ts",
-      "source_location": "L266"
+      "source_location": "L267"
     },
     {
       "id": "src_app_fielddeskapp_resetdemo",
@@ -429,7 +473,7 @@
       "file_type": "code",
       "norm_label": ".rotatecurrentpage()",
       "source_file": "src/app.ts",
-      "source_location": "L590"
+      "source_location": "L601"
     },
     {
       "id": "src_app_fielddeskapp_routefromlocation",
@@ -440,7 +484,7 @@
       "file_type": "code",
       "norm_label": ".routefromlocation()",
       "source_file": "src/app.ts",
-      "source_location": "L66"
+      "source_location": "L61"
     },
     {
       "id": "src_app_fielddeskapp_syncfieldgeometries",
@@ -451,7 +495,7 @@
       "file_type": "code",
       "norm_label": ".syncfieldgeometries()",
       "source_file": "src/app.ts",
-      "source_location": "L678"
+      "source_location": "L700"
     },
     {
       "id": "src_app_fielddeskapp_syncfieldgeometry",
@@ -462,7 +506,7 @@
       "file_type": "code",
       "norm_label": ".syncfieldgeometry()",
       "source_file": "src/app.ts",
-      "source_location": "L682"
+      "source_location": "L704"
     },
     {
       "id": "src_app_fielddeskapp_undodelete",
@@ -473,7 +517,7 @@
       "file_type": "code",
       "norm_label": ".undodelete()",
       "source_file": "src/app.ts",
-      "source_location": "L612"
+      "source_location": "L623"
     },
     {
       "id": "src_app_fielddeskapp_updatemetadata",
@@ -484,7 +528,7 @@
       "file_type": "code",
       "norm_label": ".updatemetadata()",
       "source_file": "src/app.ts",
-      "source_location": "L312"
+      "source_location": "L313"
     },
     {
       "id": "src_app_fielddeskapp_updateselectedfield",
@@ -495,18 +539,7 @@
       "file_type": "code",
       "norm_label": ".updateselectedfield()",
       "source_file": "src/app.ts",
-      "source_location": "L495"
-    },
-    {
-      "id": "src_app_fielddeskapp_loaddemo",
-      "label": ".loadDemo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": ".loaddemo()",
-      "source_file": "src/app.ts",
-      "source_location": "L360"
+      "source_location": "L501"
     },
     {
       "id": "src_app_fielddeskapp_loadfile",
@@ -517,7 +550,7 @@
       "file_type": "code",
       "norm_label": ".loadfile()",
       "source_file": "src/app.ts",
-      "source_location": "L418"
+      "source_location": "L411"
     },
     {
       "id": "src_model_clamp",
@@ -616,7 +649,7 @@
       "file_type": "code",
       "norm_label": "exportpdf()",
       "source_file": "src/pdf.ts",
-      "source_location": "L70"
+      "source_location": "L72"
     },
     {
       "id": "src_pdf_inspectform",
@@ -656,7 +689,7 @@
       "label": "createSamplePdf()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 11,
       "file_type": "code",
       "norm_label": "createsamplepdf()",
       "source_file": "src/sample.ts",
@@ -671,7 +704,7 @@
       "file_type": "code",
       "norm_label": ".escape()",
       "source_file": "src/app.ts",
-      "source_location": "L816"
+      "source_location": "L838"
     },
     {
       "id": "src_app_fielddeskapp_escapeattr",
@@ -682,7 +715,7 @@
       "file_type": "code",
       "norm_label": ".escapeattr()",
       "source_file": "src/app.ts",
-      "source_location": "L820"
+      "source_location": "L842"
     },
     {
       "id": "src_app_fielddeskapp_renderapp",
@@ -693,7 +726,7 @@
       "file_type": "code",
       "norm_label": ".renderapp()",
       "source_file": "src/app.ts",
-      "source_location": "L116"
+      "source_location": "L117"
     },
     {
       "id": "src_app_fielddeskapp_renderdocumentinspector",
@@ -704,7 +737,7 @@
       "file_type": "code",
       "norm_label": ".renderdocumentinspector()",
       "source_file": "src/app.ts",
-      "source_location": "L229"
+      "source_location": "L230"
     },
     {
       "id": "src_app_fielddeskapp_rendereditor",
@@ -715,7 +748,7 @@
       "file_type": "code",
       "norm_label": ".rendereditor()",
       "source_file": "src/app.ts",
-      "source_location": "L168"
+      "source_location": "L169"
     },
     {
       "id": "src_app_fielddeskapp_renderexistingfield",
@@ -726,7 +759,7 @@
       "file_type": "code",
       "norm_label": ".renderexistingfield()",
       "source_file": "src/app.ts",
-      "source_location": "L241"
+      "source_location": "L242"
     },
     {
       "id": "src_app_fielddeskapp_renderexportdialog",
@@ -737,7 +770,7 @@
       "file_type": "code",
       "norm_label": ".renderexportdialog()",
       "source_file": "src/app.ts",
-      "source_location": "L279"
+      "source_location": "L280"
     },
     {
       "id": "src_app_fielddeskapp_renderfieldinspector",
@@ -748,7 +781,7 @@
       "file_type": "code",
       "norm_label": ".renderfieldinspector()",
       "source_file": "src/app.ts",
-      "source_location": "L250"
+      "source_location": "L251"
     },
     {
       "id": "src_app_fielddeskapp_renderlanding",
@@ -759,7 +792,7 @@
       "file_type": "code",
       "norm_label": ".renderlanding()",
       "source_file": "src/app.ts",
-      "source_location": "L125"
+      "source_location": "L126"
     },
     {
       "id": "src_app_fielddeskapp_renderoverlay",
@@ -770,7 +803,7 @@
       "file_type": "code",
       "norm_label": ".renderoverlay()",
       "source_file": "src/app.ts",
-      "source_location": "L224"
+      "source_location": "L225"
     },
     {
       "id": "src_app_fielddeskapp_renderthumbnail",
@@ -781,7 +814,7 @@
       "file_type": "code",
       "norm_label": ".renderthumbnail()",
       "source_file": "src/app.ts",
-      "source_location": "L211"
+      "source_location": "L212"
     },
     {
       "id": "src_app_fielddeskapp_toolbutton",
@@ -792,7 +825,7 @@
       "file_type": "code",
       "norm_label": ".toolbutton()",
       "source_file": "src/app.ts",
-      "source_location": "L207"
+      "source_location": "L208"
     },
     {
       "id": "src_app_icon",
@@ -803,7 +836,7 @@
       "file_type": "code",
       "norm_label": "icon()",
       "source_file": "src/app.ts",
-      "source_location": "L6"
+      "source_location": "L5"
     },
     {
       "id": "tests_app_spec_desktoponly",
@@ -817,6 +850,17 @@
       "source_location": "L13"
     },
     {
+      "id": "tests_app_spec_downloadpdf",
+      "label": "downloadPdf()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "downloadpdf()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L34"
+    },
+    {
       "id": "tests_app_spec_get",
       "label": "get()",
       "_callable": true,
@@ -825,7 +869,29 @@
       "file_type": "code",
       "norm_label": "get()",
       "source_file": "tests/app.spec.ts",
-      "source_location": "L96"
+      "source_location": "L207"
+    },
+    {
+      "id": "tests_app_spec_makepdf",
+      "label": "makePdf()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "makepdf()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "tests_app_spec_makexfapdf",
+      "label": "makeXfaPdf()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "makexfapdf()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L25"
     },
     {
       "id": "tests_app_spec_opendemo",
@@ -839,15 +905,47 @@
       "source_location": "L6"
     },
     {
-      "id": "public_sw_cachemoduletree",
-      "label": "cacheModuleTree()",
+      "id": "tests_app_spec_placeonpage",
+      "label": "placeOnPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
-      "norm_label": "cachemoduletree()",
+      "norm_label": "placeonpage()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L44"
+    },
+    {
+      "id": "public_sw_buildcache",
+      "label": "buildCache()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "buildcache()",
+      "source_file": "public/sw.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "public_sw_fetchfresh",
+      "label": "fetchFresh()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "fetchfresh()",
       "source_file": "public/sw.js",
       "source_location": "L9"
+    },
+    {
+      "id": "pdf_worker_min_mjs_url",
+      "label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
+      "_origin": "ast",
+      "community": 1,
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
+      "source_file": "pdfjs-dist/build/pdf.worker.min.mjs?url"
     },
     {
       "id": "src_app",
@@ -910,16 +1008,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_sample",
-      "label": "sample.ts",
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "sample.ts",
-      "source_file": "src/sample.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_types",
       "label": "types.ts",
       "_origin": "ast",
@@ -930,10 +1018,80 @@
       "source_location": "L1"
     },
     {
+      "id": "src_main",
+      "label": "main.ts",
+      "_origin": "ast",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "main.ts",
+      "source_file": "src/main.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_main_root",
+      "label": "root",
+      "_origin": "ast",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "root",
+      "source_file": "src/main.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_sample",
+      "label": "sample.ts",
+      "_origin": "ast",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "sample.ts",
+      "source_file": "src/sample.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_vite_env_d",
+      "label": "vite-env.d.ts",
+      "_origin": "ast",
+      "community": 12,
+      "file_type": "code",
+      "norm_label": "vite-env.d.ts",
+      "source_file": "src/vite-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url",
+      "label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
+      "_origin": "ast",
+      "community": 12,
+      "file_type": "code",
+      "norm_label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
+      "source_file": "src/vite-env.d.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "pdf_lib_pdf_lib",
+      "label": "pdf-lib",
+      "_origin": "ast",
+      "community": 13,
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "pdf-lib",
+      "source_file": "pdf-lib"
+    },
+    {
+      "id": "pdfjs_dist_pdfjs_dist",
+      "label": "pdfjs-dist",
+      "_origin": "ast",
+      "community": 14,
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "pdfjs-dist",
+      "source_file": "pdfjs-dist"
+    },
+    {
       "id": "playwright_config",
       "label": "playwright.config.ts",
       "_origin": "ast",
-      "community": 10,
+      "community": 15,
       "file_type": "code",
       "norm_label": "playwright.config.ts",
       "source_file": "playwright.config.ts",
@@ -1290,7 +1448,7 @@
       "source_location": "L4"
     },
     {
-      "id": "pdf_lib",
+      "id": "package_json_pdf_lib",
       "label": "pdf-lib",
       "_origin": "ast",
       "community": 3,
@@ -1300,7 +1458,7 @@
       "source_location": "L15"
     },
     {
-      "id": "pdfjs_dist",
+      "id": "package_json_pdfjs_dist",
       "label": "pdfjs-dist",
       "_origin": "ast",
       "community": 3,
@@ -1440,6 +1598,16 @@
       "source_location": "L24"
     },
     {
+      "id": "test",
+      "label": "@playwright/test",
+      "_origin": "ast",
+      "community": 6,
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "@playwright/test",
+      "source_file": "@playwright/test"
+    },
+    {
       "id": "tests_app_spec",
       "label": "app.spec.ts",
       "_origin": "ast",
@@ -1450,67 +1618,195 @@
       "source_location": "L1"
     },
     {
+      "id": "scripts_inject_precache",
+      "label": "inject-precache.mjs",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "inject-precache.mjs",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_inject_precache_buildhash",
+      "label": "buildHash",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "buildhash",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L16"
+    },
+    {
+      "id": "scripts_inject_precache_builtfiles",
+      "label": "builtFiles",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "builtfiles",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L15"
+    },
+    {
+      "id": "scripts_inject_precache_files",
+      "label": "files",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "files",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L7"
+    },
+    {
+      "id": "scripts_inject_precache_manifest",
+      "label": "manifest",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "manifest",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L6"
+    },
+    {
+      "id": "scripts_inject_precache_manifestpath",
+      "label": "manifestPath",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "manifestpath",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L4"
+    },
+    {
+      "id": "scripts_inject_precache_output",
+      "label": "output",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "output",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L21"
+    },
+    {
+      "id": "scripts_inject_precache_serviceworkerpath",
+      "label": "serviceWorkerPath",
+      "_origin": "ast",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "serviceworkerpath",
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L5"
+    },
+    {
       "id": "public_sw",
       "label": "sw.js",
       "_origin": "ast",
-      "community": 7,
+      "community": 8,
       "file_type": "code",
       "norm_label": "sw.js",
       "source_file": "public/sw.js",
       "source_location": "L1"
     },
     {
-      "id": "public_sw_shell",
-      "label": "SHELL",
+      "id": "public_sw_built_files",
+      "label": "BUILT_FILES",
       "_origin": "ast",
-      "community": 7,
+      "community": 8,
       "file_type": "code",
-      "norm_label": "shell",
+      "norm_label": "built_files",
       "source_file": "public/sw.js",
-      "source_location": "L4"
+      "source_location": "L7"
     },
     {
-      "id": "src_main",
-      "label": "main.ts",
+      "id": "public_sw_public_files",
+      "label": "PUBLIC_FILES",
       "_origin": "ast",
       "community": 8,
       "file_type": "code",
-      "norm_label": "main.ts",
-      "source_file": "src/main.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_main_root",
-      "label": "root",
-      "_origin": "ast",
-      "community": 8,
-      "file_type": "code",
-      "norm_label": "root",
-      "source_file": "src/main.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_vite_env_d",
-      "label": "vite-env.d.ts",
-      "_origin": "ast",
-      "community": 9,
-      "file_type": "code",
-      "norm_label": "vite-env.d.ts",
-      "source_file": "src/vite-env.d.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url",
-      "label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
-      "_origin": "ast",
-      "community": 9,
-      "file_type": "code",
-      "norm_label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
-      "source_file": "src/vite-env.d.ts",
+      "norm_label": "public_files",
+      "source_file": "public/sw.js",
       "source_location": "L3"
+    },
+    {
+      "id": "scripts_capture_evidence",
+      "label": "capture-evidence.mjs",
+      "_origin": "ast",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "capture-evidence.mjs",
+      "source_file": "scripts/capture-evidence.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_capture_evidence_errors",
+      "label": "errors",
+      "_origin": "ast",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "errors",
+      "source_file": "scripts/capture-evidence.mjs",
+      "source_location": "L12"
+    },
+    {
+      "id": "scripts_capture_evidence_output",
+      "label": "output",
+      "_origin": "ast",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "output",
+      "source_file": "scripts/capture-evidence.mjs",
+      "source_location": "L6"
     }
   ],
   "links": [
+    {
+      "source": "public_sw_buildcache",
+      "target": "public_sw_fetchfresh",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "public/sw.js",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_applyroute",
+      "target": "src_app_fielddeskapp_discardworkspace",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_applyroute",
+      "target": "src_app_fielddeskapp_render",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_applyroute",
+      "target": "src_app_fielddeskapp_focusrouteheading",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L81",
+      "weight": 1.0
+    },
     {
       "source": "src_app_fielddeskapp_binddialogs",
       "target": "src_app_fielddeskapp_closedialog",
@@ -1520,7 +1816,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L707",
+      "source_location": "L729",
       "weight": 1.0
     },
     {
@@ -1532,7 +1828,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L709",
+      "source_location": "L731",
       "weight": 1.0
     },
     {
@@ -1544,7 +1840,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L715",
+      "source_location": "L737",
       "weight": 1.0
     },
     {
@@ -1556,7 +1852,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L736",
+      "source_location": "L758",
       "weight": 1.0
     },
     {
@@ -1568,7 +1864,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L738",
+      "source_location": "L760",
       "weight": 1.0
     },
     {
@@ -1681,6 +1977,18 @@
     },
     {
       "source": "src_app_fielddeskapp_bindeditor",
+      "target": "src_app_fielddeskapp_placefieldat",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L495",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_bindeditor",
       "target": "src_app_fielddeskapp_bindplacedfield",
       "relation": "calls",
       "_origin": "ast",
@@ -1688,7 +1996,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L492",
+      "source_location": "L498",
       "weight": 1.0
     },
     {
@@ -1700,7 +2008,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L345",
+      "source_location": "L346",
       "weight": 1.0
     },
     {
@@ -1712,7 +2020,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L347",
+      "source_location": "L348",
       "weight": 1.0
     },
     {
@@ -1724,19 +2032,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L348",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_bindglobal",
-      "target": "src_app_fielddeskapp_closefile",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L351",
+      "source_location": "L349",
       "weight": 1.0
     },
     {
@@ -1748,7 +2044,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L353",
+      "source_location": "L350",
       "weight": 1.0
     },
     {
@@ -1760,7 +2056,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L355",
+      "source_location": "L352",
       "weight": 1.0
     },
     {
@@ -1772,7 +2068,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L356",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -1784,7 +2080,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L357",
+      "source_location": "L354",
       "weight": 1.0
     },
     {
@@ -1796,7 +2092,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L399",
+      "source_location": "L392",
       "weight": 1.0
     },
     {
@@ -1808,7 +2104,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L531",
+      "source_location": "L542",
       "weight": 1.0
     },
     {
@@ -1820,7 +2116,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L553",
+      "source_location": "L564",
       "weight": 1.0
     },
     {
@@ -1832,31 +2128,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L701",
+      "source_location": "L723",
       "weight": 1.0
     },
     {
       "source": "src_app_fielddeskapp_closefile",
-      "target": "src_pdf_closerenderer",
+      "target": "src_app_fielddeskapp_discardworkspace",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L630",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_closefile",
-      "target": "src_app_fielddeskapp_clearfieldgeometries",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L636",
+      "source_location": "L641",
       "weight": 1.0
     },
     {
@@ -1868,7 +2152,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L639",
+      "source_location": "L643",
       "weight": 1.0
     },
     {
@@ -1885,6 +2169,18 @@
     },
     {
       "source": "src_app_fielddeskapp_constructor",
+      "target": "src_app_fielddeskapp_applyroute",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_constructor",
       "target": "src_app_fielddeskapp_routefromlocation",
       "relation": "calls",
       "_origin": "ast",
@@ -1892,7 +2188,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L56",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -1904,19 +2200,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L58",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_constructor",
-      "target": "src_app_fielddeskapp_focusrouteheading",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L59",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -1928,7 +2212,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L609",
+      "source_location": "L620",
       "weight": 1.0
     },
     {
@@ -1940,7 +2224,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L626",
+      "source_location": "L637",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_discardworkspace",
+      "target": "src_pdf_closerenderer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L648",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_discardworkspace",
+      "target": "src_app_fielddeskapp_clearfieldgeometries",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L659",
       "weight": 1.0
     },
     {
@@ -1952,7 +2260,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L821",
+      "source_location": "L843",
       "weight": 1.0
     },
     {
@@ -1964,7 +2272,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L793",
+      "source_location": "L815",
       "weight": 1.0
     },
     {
@@ -1976,7 +2284,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L798",
+      "source_location": "L820",
       "weight": 1.0
     },
     {
@@ -1988,7 +2296,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L806",
+      "source_location": "L828",
       "weight": 1.0
     },
     {
@@ -2000,19 +2308,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L812",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_loaddemo",
-      "target": "src_sample_createsamplepdf",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L364",
+      "source_location": "L834",
       "weight": 1.0
     },
     {
@@ -2024,7 +2320,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L365",
+      "source_location": "L363",
       "weight": 1.0
     },
     {
@@ -2036,7 +2332,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L365",
+      "source_location": "L363",
       "weight": 1.0
     },
     {
@@ -2048,12 +2344,24 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L368",
+      "source_location": "L367",
       "weight": 1.0
     },
     {
       "source": "src_app_fielddeskapp_loaddemo",
       "target": "src_app_fielddeskapp_render",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L377",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_loaddemo",
+      "target": "src_app_fielddeskapp_focusrouteheading",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2072,7 +2380,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L420",
+      "source_location": "L414",
       "weight": 1.0
     },
     {
@@ -2084,7 +2392,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L422",
+      "source_location": "L416",
       "weight": 1.0
     },
     {
@@ -2096,7 +2404,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L434",
+      "source_location": "L428",
       "weight": 1.0
     },
     {
@@ -2108,7 +2416,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L434",
+      "source_location": "L428",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_loadfile",
+      "target": "src_pdf_closerenderer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L431",
       "weight": 1.0
     },
     {
@@ -2124,15 +2444,15 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_fielddeskapp_loadfile",
-      "target": "src_pdf_closerenderer",
+      "source": "src_app_fielddeskapp_navigate",
+      "target": "src_app_fielddeskapp_applyroute",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L445",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -2144,31 +2464,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L76",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_navigate",
-      "target": "src_app_fielddeskapp_render",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L78",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_navigate",
-      "target": "src_app_fielddeskapp_focusrouteheading",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L79",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -2180,11 +2476,23 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L745",
+      "source_location": "L767",
       "weight": 1.0
     },
     {
       "source": "src_app_fielddeskapp_placefield",
+      "target": "src_app_fielddeskapp_placefieldat",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L519",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_placefieldat",
       "target": "src_model_newfield",
       "relation": "calls",
       "_origin": "ast",
@@ -2192,11 +2500,11 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L513",
+      "source_location": "L524",
       "weight": 1.0
     },
     {
-      "source": "src_app_fielddeskapp_placefield",
+      "source": "src_app_fielddeskapp_placefieldat",
       "target": "src_app_fielddeskapp_render",
       "relation": "calls",
       "_origin": "ast",
@@ -2204,24 +2512,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L523",
+      "source_location": "L534",
       "weight": 1.0
     },
     {
       "source": "src_app_fielddeskapp_render",
       "target": "src_app_fielddeskapp_escape",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L104",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_render",
-      "target": "src_app_fielddeskapp_rendersignaturedialog",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2233,7 +2529,7 @@
     },
     {
       "source": "src_app_fielddeskapp_render",
-      "target": "src_app_fielddeskapp_renderexportdialog",
+      "target": "src_app_fielddeskapp_rendersignaturedialog",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2245,6 +2541,18 @@
     },
     {
       "source": "src_app_fielddeskapp_render",
+      "target": "src_app_fielddeskapp_renderexportdialog",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app.ts",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_render",
       "target": "src_app_fielddeskapp_bindglobal",
       "relation": "calls",
       "_origin": "ast",
@@ -2252,7 +2560,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L108",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
@@ -2264,7 +2572,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L110",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -2276,7 +2584,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L111",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -2288,7 +2596,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L112",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -2300,7 +2608,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L84",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -2312,7 +2620,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L93",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -2324,7 +2632,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L97",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -2336,7 +2644,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -2348,7 +2656,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -2360,7 +2668,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -2372,7 +2680,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L117",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -2384,7 +2692,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L118",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -2396,7 +2704,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L647",
+      "source_location": "L669",
       "weight": 1.0
     },
     {
@@ -2408,7 +2716,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L236",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -2420,7 +2728,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L173",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -2432,7 +2740,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L175",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -2444,7 +2752,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L182",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -2456,7 +2764,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L186",
+      "source_location": "L187",
       "weight": 1.0
     },
     {
@@ -2468,7 +2776,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L196",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -2480,7 +2788,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L201",
+      "source_location": "L202",
       "weight": 1.0
     },
     {
@@ -2492,7 +2800,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L201",
+      "source_location": "L202",
       "weight": 1.0
     },
     {
@@ -2504,7 +2812,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L243",
+      "source_location": "L244",
       "weight": 1.0
     },
     {
@@ -2516,7 +2824,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L246",
+      "source_location": "L247",
       "weight": 1.0
     },
     {
@@ -2528,7 +2836,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L282",
+      "source_location": "L283",
       "weight": 1.0
     },
     {
@@ -2540,7 +2848,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L283",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -2552,7 +2860,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L283",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -2564,7 +2872,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L251",
+      "source_location": "L252",
       "weight": 1.0
     },
     {
@@ -2576,7 +2884,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L253",
+      "source_location": "L254",
       "weight": 1.0
     },
     {
@@ -2588,7 +2896,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L134",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -2600,7 +2908,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L139",
+      "source_location": "L140",
       "weight": 1.0
     },
     {
@@ -2612,7 +2920,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L226",
+      "source_location": "L227",
       "weight": 1.0
     },
     {
@@ -2624,12 +2932,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L269",
+      "source_location": "L270",
       "weight": 1.0
     },
     {
       "source": "src_app_fielddeskapp_resetdemo",
-      "target": "src_pdf_closerenderer",
+      "target": "src_app_fielddeskapp_discardworkspace",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2641,18 +2949,6 @@
     },
     {
       "source": "src_app_fielddeskapp_resetdemo",
-      "target": "src_app_fielddeskapp_clearfieldgeometries",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app.ts",
-      "source_location": "L390",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp_resetdemo",
       "target": "src_app_fielddeskapp_loaddemo",
       "relation": "calls",
       "_origin": "ast",
@@ -2660,7 +2956,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L392",
+      "source_location": "L384",
       "weight": 1.0
     },
     {
@@ -2672,7 +2968,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L593",
+      "source_location": "L604",
       "weight": 1.0
     },
     {
@@ -2684,7 +2980,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L595",
+      "source_location": "L606",
       "weight": 1.0
     },
     {
@@ -2696,7 +2992,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L679",
+      "source_location": "L701",
       "weight": 1.0
     },
     {
@@ -2708,7 +3004,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L683",
+      "source_location": "L705",
       "weight": 1.0
     },
     {
@@ -2720,7 +3016,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L208",
+      "source_location": "L209",
       "weight": 1.0
     },
     {
@@ -2732,7 +3028,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L619",
+      "source_location": "L630",
       "weight": 1.0
     },
     {
@@ -2744,7 +3040,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app.ts",
-      "source_location": "L504",
+      "source_location": "L510",
       "weight": 1.0
     },
     {
@@ -2757,6 +3053,19 @@
       "context": "call",
       "source_file": "src/model.ts",
       "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp_loaddemo",
+      "target": "src_sample",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "deferred": true,
+      "source_file": "src/app.ts",
+      "source_location": "L361",
       "weight": 1.0
     },
     {
@@ -2809,7 +3118,7 @@
     },
     {
       "source": "package_dependencies_pdf_lib",
-      "target": "pdf_lib",
+      "target": "package_json_pdf_lib",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2821,7 +3130,7 @@
     },
     {
       "source": "package_dependencies_pdfjs_dist",
-      "target": "pdfjs_dist",
+      "target": "package_json_pdfjs_dist",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3037,7 +3346,7 @@
     },
     {
       "source": "src_app",
-      "target": "src_sample_createsamplepdf",
+      "target": "src_types_existingfield",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3049,18 +3358,6 @@
     },
     {
       "source": "src_app",
-      "target": "src_types_existingfield",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app.ts",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app",
       "target": "src_types_overlayfield",
       "relation": "imports",
       "_origin": "ast",
@@ -3068,7 +3365,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -3080,7 +3377,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -3092,7 +3389,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -3265,6 +3562,18 @@
     },
     {
       "source": "src_pdf_test",
+      "target": "src_pdf_inspectform",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pdf.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pdf_test",
       "target": "src_types_overlayfield",
       "relation": "imports",
       "_origin": "ast",
@@ -3313,18 +3622,6 @@
     },
     {
       "source": "src_app",
-      "target": "src_sample",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app.ts",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app",
       "target": "src_types",
       "relation": "imports_from",
       "_origin": "ast",
@@ -3332,7 +3629,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -3640,24 +3937,145 @@
     },
     {
       "source": "public_sw",
-      "target": "public_sw_shell",
+      "target": "public_sw_buildcache",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/sw.js",
-      "source_location": "L4",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
       "source": "public_sw",
-      "target": "public_sw_cachemoduletree",
+      "target": "public_sw_public_files",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/sw.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "public_sw",
+      "target": "public_sw_built_files",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/sw.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "public_sw",
+      "target": "public_sw_fetchfresh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "public/sw.js",
       "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_capture_evidence",
+      "target": "scripts_capture_evidence_errors",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/capture-evidence.mjs",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_capture_evidence",
+      "target": "scripts_capture_evidence_output",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/capture-evidence.mjs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_builtfiles",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_buildhash",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_output",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_manifestpath",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_serviceworkerpath",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_manifest",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_inject_precache",
+      "target": "scripts_inject_precache_files",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/inject-precache.mjs",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -3668,7 +4086,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -3679,7 +4097,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -3690,7 +4108,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -3855,7 +4273,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pdf.ts",
-      "source_location": "L70",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -3970,13 +4388,13 @@
     },
     {
       "source": "tests_app_spec",
-      "target": "tests_app_spec_opendemo",
+      "target": "tests_app_spec_makepdf",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/app.spec.ts",
-      "source_location": "L6",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -3987,7 +4405,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/app.spec.ts",
-      "source_location": "L96",
+      "source_location": "L207",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_makexfapdf",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_downloadpdf",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_placeonpage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_opendemo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -4156,6 +4618,33 @@
       "weight": 1.0
     },
     {
+      "source": "src_app",
+      "target": "src_sample",
+      "relation": "dynamic_import",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts"
+    },
+    {
+      "source": "src_pdf",
+      "target": "pdf_worker_min_mjs_url",
+      "relation": "dynamic_import",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pdf.ts"
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "test",
+      "relation": "dynamic_import",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts"
+    },
+    {
       "source": "src_app_fielddeskapp",
       "target": "src_app_fielddeskapp_renderapp",
       "relation": "method",
@@ -4163,7 +4652,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -4174,7 +4663,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L121",
+      "source_location": "L122",
       "weight": 1.0
     },
     {
@@ -4185,7 +4674,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L125",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -4196,7 +4685,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L168",
+      "source_location": "L169",
       "weight": 1.0
     },
     {
@@ -4207,7 +4696,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L207",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
@@ -4218,7 +4707,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L211",
+      "source_location": "L212",
       "weight": 1.0
     },
     {
@@ -4229,7 +4718,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L224",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -4240,7 +4729,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L229",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -4251,7 +4740,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L241",
+      "source_location": "L242",
       "weight": 1.0
     },
     {
@@ -4262,7 +4751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L250",
+      "source_location": "L251",
       "weight": 1.0
     },
     {
@@ -4273,7 +4762,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L266",
+      "source_location": "L267",
       "weight": 1.0
     },
     {
@@ -4284,7 +4773,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L279",
+      "source_location": "L280",
       "weight": 1.0
     },
     {
@@ -4295,7 +4784,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L294",
+      "source_location": "L295",
       "weight": 1.0
     },
     {
@@ -4306,7 +4795,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L308",
+      "source_location": "L309",
       "weight": 1.0
     },
     {
@@ -4317,7 +4806,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L312",
+      "source_location": "L313",
       "weight": 1.0
     },
     {
@@ -4328,7 +4817,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L330",
+      "source_location": "L331",
       "weight": 1.0
     },
     {
@@ -4339,7 +4828,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L342",
+      "source_location": "L343",
       "weight": 1.0
     },
     {
@@ -4350,7 +4839,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L360",
+      "source_location": "L357",
       "weight": 1.0
     },
     {
@@ -4372,7 +4861,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L395",
+      "source_location": "L387",
       "weight": 1.0
     },
     {
@@ -4383,7 +4872,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L418",
+      "source_location": "L411",
       "weight": 1.0
     },
     {
@@ -4416,7 +4905,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L495",
+      "source_location": "L501",
       "weight": 1.0
     },
     {
@@ -4427,7 +4916,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L510",
+      "source_location": "L516",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_placefieldat",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L522",
       "weight": 1.0
     },
     {
@@ -4438,7 +4938,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L526",
+      "source_location": "L537",
       "weight": 1.0
     },
     {
@@ -4449,7 +4949,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L590",
+      "source_location": "L601",
       "weight": 1.0
     },
     {
@@ -4460,51 +4960,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L598",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_undodelete",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L612",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_deletefield",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L622",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_closefile",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L629",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_rendercanvases",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L642",
+      "source_location": "L609",
       "weight": 1.0
     },
     {
@@ -4515,7 +4971,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L66",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_undodelete",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L623",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_deletefield",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L633",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_closefile",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L640",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_discardworkspace",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L646",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_rendercanvases",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L664",
       "weight": 1.0
     },
     {
@@ -4526,62 +5037,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L661",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_fieldpositionsheet",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L668",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_syncfieldgeometries",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L678",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_syncfieldgeometry",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L682",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_clearfieldgeometries",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L700",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_binddialogs",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L706",
+      "source_location": "L683",
       "weight": 1.0
     },
     {
@@ -4592,7 +5048,73 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L74",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_fieldpositionsheet",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L690",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_syncfieldgeometries",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L700",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_syncfieldgeometry",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L704",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_clearfieldgeometries",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L722",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_binddialogs",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L728",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_applyroute",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L75",
       "weight": 1.0
     },
     {
@@ -4603,7 +5125,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L741",
+      "source_location": "L763",
       "weight": 1.0
     },
     {
@@ -4614,7 +5136,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L748",
+      "source_location": "L770",
       "weight": 1.0
     },
     {
@@ -4625,7 +5147,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L752",
+      "source_location": "L774",
       "weight": 1.0
     },
     {
@@ -4636,7 +5158,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L782",
+      "source_location": "L804",
       "weight": 1.0
     },
     {
@@ -4647,7 +5169,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L787",
+      "source_location": "L809",
       "weight": 1.0
     },
     {
@@ -4658,18 +5180,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L816",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_fielddeskapp",
-      "target": "src_app_fielddeskapp_escapeattr",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app.ts",
-      "source_location": "L820",
+      "source_location": "L838",
       "weight": 1.0
     },
     {
@@ -4680,10 +5191,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts",
-      "source_location": "L83",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_fielddeskapp",
+      "target": "src_app_fielddeskapp_escapeattr",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app.ts",
+      "source_location": "L842",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ed2db3536b3cc39fcf186d05ee0379453e14a14f"
+  "built_at_commit": "a5e4d6149ec534d5dd40004ea8f284ad467bc226"
 }
