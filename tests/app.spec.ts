@@ -137,6 +137,17 @@ test('@claim:demo-isolation sample reset and exit never reuse real or demo data'
     });
   });
   await openDemo(page, '/?demo=1');
+  expect(await page.evaluate(async () => ({
+    local: Object.keys(localStorage),
+    session: Object.keys(sessionStorage),
+    cookie: document.cookie,
+    databases: (await indexedDB.databases()).map((database) => database.name).filter(Boolean),
+  }))).toEqual({
+    local: ['real:sentinel'],
+    session: ['real:session-sentinel'],
+    cookie: 'real-cookie-sentinel=keep',
+    databases: ['real-sentinel'],
+  });
   await page.getByLabel('client_name').fill('Changed in demo');
   await page.getByRole('button', { name: 'Reset demo' }).click();
   await expect(page.getByLabel('client_name')).toHaveValue('Maya Chen');

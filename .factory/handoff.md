@@ -1,42 +1,57 @@
-# Field Desk adversarial review 3 handoff
+# Field Desk perfection loop 3 handoff
 
 ## Outcome
 
-Review 3 is complete with a **FAIL** verdict. No product code was changed.
+The released candidate `a5e4d6149ec534d5dd40004ea8f284ad467bc226` was repaired from review base `964dbd1edc48b13e4f015718bbdd5bf1ee88076b`.
 
-The live product passed cold mobile/desktop comprehension, the one-click demo,
-demo isolation, all 16 registered claim tests, routing, accessibility, build,
-and full browser suites. Two unlisted live claims remain:
+Repair implementation: `c269e6bdeda5d305de5991e34be3ca5f1c7b75d4` (`fix: verify private offline cache claims`). It is pushed to `main` and deployed to https://local-pdf-forms-signer.sociobot.in.
 
-1. The signature dialog says there is no audit trail. This is the unresolved
-   remainder of review 2 finding R2-M1 and is blocking.
-2. The Privacy page says the offline cache contains only public app files, but
-   that separate promise is not stated in `.factory/claims.json`.
+The two review-3 findings are closed without weakening the product:
 
-Full quotes, fixes, copy counts, prior-finding status, and evidence are in
-`.factory/review-3.md`.
+- The signature dialog now makes only the registered visual-signature claim.
+- The offline-cache statement is now part of `offline-reload`, whose browser test opens a real PDF, compares Cache Storage exactly with the generated service-worker manifest, then reloads the sample offline.
 
-## Verification
+The service worker no longer adds runtime responses to its shell cache. Cache Storage is therefore limited to the public, installation-time manifest and cannot retain an opened PDF.
 
-The exact candidate `a5e4d6149ec534d5dd40004ea8f284ad467bc226`
-was cloned to `/tmp/local-pdf-review3-7I0HrX`.
+## How to run and verify
 
 ```sh
 npm ci
 npm test
 npm run build
 npm run test:e2e
-PLAYWRIGHT_BASE_URL=https://local-pdf-forms-signer.sociobot.in npm run test:e2e
-npm audit --omit=dev
 ```
 
-Results: 9 unit/integration tests passed; build passed; local and live browser
-suites each reported 22 passed and 18 intentional skips; all 16 manifest claim
-commands passed separately; dependency audit reported zero vulnerabilities.
-The factory URL verifier also passed.
+Run every manifest claim command independently:
 
-## Next step
+```sh
+node -e 'for (const c of require("./.factory/claims.json")) console.log(c.test)'
+```
 
-Apply the two claim-copy fixes in review 3, rerun all 16 manifest commands and
-the live suite, and request another adversarial review. The unrelated modified
-`graphify-out` files present before this review were not touched or committed.
+The one-click isolated sample is https://local-pdf-forms-signer.sociobot.in/demo (also `/?demo=1`). It shows the persistent demo banner, Reset demo, and Start for real controls.
+
+## Exact verification evidence
+
+- Clean clone: `/tmp/field-desk-polish3-FLMG5l` at `c269e6bdeda5d305de5991e34be3ca5f1c7b75d4`.
+- `npm ci`: passed; 70 packages installed; zero vulnerabilities.
+- `npm test`: 9 passed.
+- `npm run build`: passed; `dist/index.html` present. Initial entry JS is 44.18 KB raw / 13.82 KB gzip; CSS is 21.70 KB raw / 5.67 KB gzip. PDF engines remain lazy-loaded.
+- All 16 individual commands in `.factory/claims.json`: passed from the clean clone, including the updated `@claim:offline-reload` cache-manifest assertion.
+- Clean-clone `npm run test:e2e`: 22 passed; 18 intentional desktop/mobile project skips. The route and mobile checks include Axe scans with no serious or critical findings.
+- `npm audit --omit=dev`: passed; zero vulnerabilities.
+- Local factory URL verification: title, `lang`, one `h1`, `main`, image alt text, button names, and console errors all passed. Report: `.factory/evidence/polish-3/local/verify-url/verify.json`.
+- Live `PLAYWRIGHT_BASE_URL=https://local-pdf-forms-signer.sociobot.in npm run test:e2e`: 22 passed; 18 intentional skips. This cold run exercises the deployed demo, cache, routing, metadata, focus, 404, mobile, keyboard, privacy, and Axe checks.
+- Live factory URL verification: HTTPS 200, title/lang/main/alt/button checks, and no console errors. Report: `.factory/evidence/polish-3/live/verify-url/verify.json`.
+- Live mobile Lighthouse 12.8.2: performance 100, accessibility 100, best practices 100, SEO 100; LCP 1.1 s, CLS 0, TBT 0 ms. Report: `.factory/evidence/polish-3/live/lighthouse.json`.
+- Deployment: `/opt/fleet/lib/deploy-static.sh local-pdf-forms-signer dist`; Azure deployment ID `cc7d3c8f-4438-4390-9ba9-6af35fa48811`; custom-domain HTTPS check returned 200. A direct live `HEAD /not-a-real-route` returned 404.
+
+## Evidence images
+
+- Local first screen: `.factory/evidence/polish-3/local/first-screen-mobile.png`
+- Local demo and offline demo: `.factory/evidence/polish-3/local/demo-mobile.png`, `.factory/evidence/polish-3/local/demo-offline-mobile.png`
+- Live signature dialog and Privacy route: `.factory/evidence/polish-3/live/signature-dialog-mobile.png`, `.factory/evidence/polish-3/live/privacy-mobile.png`
+- Live not-found view: `.factory/evidence/polish-3/live/not-found-mobile.png`
+
+## Known gaps and next steps
+
+None. Every finding in reviews 1–3 is resolved and rechecked on the deployed site. The pre-existing modified `graphify-out` files were not changed or committed by this repair.
