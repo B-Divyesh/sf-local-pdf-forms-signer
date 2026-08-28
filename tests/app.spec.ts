@@ -72,6 +72,14 @@ test('@claim:offline-reload demo reopens offline after the first visit', async (
   desktopOnly(info);
   await openDemo(page);
   await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(async () => {
+    const cacheName = (await caches.keys()).find((key) => key.startsWith('field-desk-shell-'));
+    if (!cacheName) return false;
+    const cache = await caches.open(cacheName);
+    const assets = [...document.querySelectorAll('script[src], link[rel="stylesheet"][href]')]
+      .map((element) => new URL(element.getAttribute('src') || element.getAttribute('href') || '', location.href).href);
+    return (await Promise.all(assets.map((asset) => cache.match(asset).then(Boolean)))).every(Boolean);
+  })).toBe(true);
   await page.reload();
   await expect(page.locator('[data-editor-ready="true"]')).toBeVisible({ timeout: 15_000 });
   await page.context().setOffline(true);
