@@ -843,7 +843,7 @@
       "label": "desktopOnly()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "desktoponly()",
       "source_file": "tests/app.spec.ts",
@@ -854,7 +854,7 @@
       "label": "downloadPdf()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "downloadpdf()",
       "source_file": "tests/app.spec.ts",
@@ -865,18 +865,18 @@
       "label": "get()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "get()",
       "source_file": "tests/app.spec.ts",
-      "source_location": "L207"
+      "source_location": "L254"
     },
     {
       "id": "tests_app_spec_makepdf",
       "label": "makePdf()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "makepdf()",
       "source_file": "tests/app.spec.ts",
@@ -887,7 +887,7 @@
       "label": "makeXfaPdf()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "makexfapdf()",
       "source_file": "tests/app.spec.ts",
@@ -898,7 +898,7 @@
       "label": "openDemo()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "opendemo()",
       "source_file": "tests/app.spec.ts",
@@ -909,7 +909,7 @@
       "label": "placeOnPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
       "file_type": "code",
       "norm_label": "placeonpage()",
       "source_file": "tests/app.spec.ts",
@@ -946,26 +946,6 @@
       "norm_label": "app.ts",
       "source_file": "src/app.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_main",
-      "label": "main.ts",
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "main.ts",
-      "source_file": "src/main.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_main_root",
-      "label": "root",
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "root",
-      "source_file": "src/main.ts",
-      "source_location": "L4"
     },
     {
       "id": "src_model",
@@ -1038,10 +1018,30 @@
       "source_location": "L1"
     },
     {
+      "id": "src_main",
+      "label": "main.ts",
+      "_origin": "ast",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "main.ts",
+      "source_file": "src/main.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_main_root",
+      "label": "root",
+      "_origin": "ast",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "root",
+      "source_file": "src/main.ts",
+      "source_location": "L4"
+    },
+    {
       "id": "src_vite_env_d",
       "label": "vite-env.d.ts",
       "_origin": "ast",
-      "community": 10,
+      "community": 11,
       "file_type": "code",
       "norm_label": "vite-env.d.ts",
       "source_file": "src/vite-env.d.ts",
@@ -1051,7 +1051,7 @@
       "id": "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url",
       "label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
       "_origin": "ast",
-      "community": 10,
+      "community": 11,
       "file_type": "code",
       "norm_label": "pdfjs-dist/build/pdf.worker.min.mjs?url",
       "source_file": "src/vite-env.d.ts",
@@ -1061,7 +1061,7 @@
       "id": "playwright_config",
       "label": "playwright.config.ts",
       "_origin": "ast",
-      "community": 11,
+      "community": 12,
       "file_type": "code",
       "norm_label": "playwright.config.ts",
       "source_file": "playwright.config.ts",
@@ -1418,7 +1418,7 @@
       "source_location": "L4"
     },
     {
-      "id": "package_json_pdf_lib",
+      "id": "pdf_lib",
       "label": "pdf-lib",
       "_origin": "ast",
       "community": 3,
@@ -1428,7 +1428,7 @@
       "source_location": "L15"
     },
     {
-      "id": "package_json_pdfjs_dist",
+      "id": "pdfjs_dist",
       "label": "pdfjs-dist",
       "_origin": "ast",
       "community": 3,
@@ -1568,10 +1568,30 @@
       "source_location": "L24"
     },
     {
+      "id": "test",
+      "label": "@playwright/test",
+      "_origin": "ast",
+      "community": 6,
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "@playwright/test",
+      "source_file": "@playwright/test"
+    },
+    {
+      "id": "tests_app_spec",
+      "label": "app.spec.ts",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "app.spec.ts",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "scripts_inject_precache",
       "label": "inject-precache.mjs",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "inject-precache.mjs",
       "source_file": "scripts/inject-precache.mjs",
@@ -1581,7 +1601,7 @@
       "id": "scripts_inject_precache_buildhash",
       "label": "buildHash",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "buildhash",
       "source_file": "scripts/inject-precache.mjs",
@@ -1591,7 +1611,7 @@
       "id": "scripts_inject_precache_builtfiles",
       "label": "builtFiles",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "builtfiles",
       "source_file": "scripts/inject-precache.mjs",
@@ -1601,7 +1621,7 @@
       "id": "scripts_inject_precache_files",
       "label": "files",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "files",
       "source_file": "scripts/inject-precache.mjs",
@@ -1611,7 +1631,7 @@
       "id": "scripts_inject_precache_manifest",
       "label": "manifest",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "manifest",
       "source_file": "scripts/inject-precache.mjs",
@@ -1621,7 +1641,7 @@
       "id": "scripts_inject_precache_manifestpath",
       "label": "manifestPath",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "manifestpath",
       "source_file": "scripts/inject-precache.mjs",
@@ -1631,7 +1651,7 @@
       "id": "scripts_inject_precache_output",
       "label": "output",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "output",
       "source_file": "scripts/inject-precache.mjs",
@@ -1641,21 +1661,11 @@
       "id": "scripts_inject_precache_serviceworkerpath",
       "label": "serviceWorkerPath",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "serviceworkerpath",
       "source_file": "scripts/inject-precache.mjs",
       "source_location": "L5"
-    },
-    {
-      "id": "tests_app_spec",
-      "label": "app.spec.ts",
-      "_origin": "ast",
-      "community": 7,
-      "file_type": "code",
-      "norm_label": "app.spec.ts",
-      "source_file": "tests/app.spec.ts",
-      "source_location": "L1"
     },
     {
       "id": "public_sw",
@@ -3078,7 +3088,7 @@
     },
     {
       "source": "package_dependencies_pdf_lib",
-      "target": "package_json_pdf_lib",
+      "target": "pdf_lib",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3090,7 +3100,7 @@
     },
     {
       "source": "package_dependencies_pdfjs_dist",
-      "target": "package_json_pdfjs_dist",
+      "target": "pdfjs_dist",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4359,17 +4369,6 @@
     },
     {
       "source": "tests_app_spec",
-      "target": "tests_app_spec_get",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/app.spec.ts",
-      "source_location": "L207",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_app_spec",
       "target": "tests_app_spec_makexfapdf",
       "relation": "contains",
       "_origin": "ast",
@@ -4377,6 +4376,17 @@
       "confidence_score": 1.0,
       "source_file": "tests/app.spec.ts",
       "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_get",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L254",
       "weight": 1.0
     },
     {
@@ -4585,6 +4595,15 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app.ts"
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "test",
+      "relation": "dynamic_import",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts"
     },
     {
       "source": "src_app_fielddeskapp",
@@ -5149,5 +5168,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "964dbd1edc48b13e4f015718bbdd5bf1ee88076b"
+  "built_at_commit": "f6f9fe3096e4bfc473ac5cfe6029d77ffb09dffa"
 }
