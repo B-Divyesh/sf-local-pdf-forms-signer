@@ -27,6 +27,7 @@
       "src_app_fielddeskapp_renderdemobanner",
       "src_app_fielddeskapp_renderlegal",
       "src_app_fielddeskapp_rendernotfound",
+      "src_app_fielddeskapp_rendersignaturedialog",
       "src_app_fielddeskapp_resetdemo",
       "src_app_fielddeskapp_rotatecurrentpage",
       "src_app_fielddeskapp_routefromlocation",
@@ -112,22 +113,6 @@
       "pdfjs_dist"
     ],
     "4": [
-      "src_app_fielddeskapp_escape",
-      "src_app_fielddeskapp_escapeattr",
-      "src_app_fielddeskapp_renderapp",
-      "src_app_fielddeskapp_renderdocumentinspector",
-      "src_app_fielddeskapp_rendereditor",
-      "src_app_fielddeskapp_renderexistingfield",
-      "src_app_fielddeskapp_renderexportdialog",
-      "src_app_fielddeskapp_renderfieldinspector",
-      "src_app_fielddeskapp_renderlanding",
-      "src_app_fielddeskapp_renderoverlay",
-      "src_app_fielddeskapp_rendersignaturedialog",
-      "src_app_fielddeskapp_renderthumbnail",
-      "src_app_fielddeskapp_toolbutton",
-      "src_app_icon"
-    ],
-    "5": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -142,8 +127,22 @@
       "vite",
       "vitest"
     ],
+    "5": [
+      "src_app_fielddeskapp_escape",
+      "src_app_fielddeskapp_escapeattr",
+      "src_app_fielddeskapp_renderapp",
+      "src_app_fielddeskapp_renderdocumentinspector",
+      "src_app_fielddeskapp_rendereditor",
+      "src_app_fielddeskapp_renderexistingfield",
+      "src_app_fielddeskapp_renderexportdialog",
+      "src_app_fielddeskapp_renderfieldinspector",
+      "src_app_fielddeskapp_renderlanding",
+      "src_app_fielddeskapp_renderoverlay",
+      "src_app_fielddeskapp_renderthumbnail",
+      "src_app_fielddeskapp_toolbutton",
+      "src_app_icon"
+    ],
     "6": [
-      "test",
       "tests_app_spec",
       "tests_app_spec_desktoponly",
       "tests_app_spec_get",
@@ -167,13 +166,13 @@
     ]
   },
   "cohesion": {
-    "0": 0.1532976827094474,
+    "0": 0.14789915966386555,
     "1": 0.14717741935483872,
     "2": 0.1,
     "3": 0.11764705882352941,
-    "4": 0.24175824175824176,
-    "5": 0.15384615384615385,
-    "6": 0.4,
+    "4": 0.15384615384615385,
+    "5": 0.2692307692307692,
+    "6": 0.5,
     "7": 0.6666666666666666,
     "8": 1.0,
     "9": 1.0,
@@ -191,13 +190,13 @@
       "degree": 14
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_app_icon",
+      "label": "icon()",
       "degree": 7
     },
     {
-      "id": "src_app_icon",
-      "label": "icon()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
