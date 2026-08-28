@@ -70,6 +70,8 @@ One original generated hero illustration shows a private paper workflow as a tac
 
 Generated with the factory Azure image deployment (`factory-image`) on 2026-08-27. The generated output is original to this product. Prompt sidecar lives beside the source asset in `assets/src/`.
 
+The Open Graph card at `public/social-card.svg` and the Apple touch icon are hand-authored geometric compositions derived from the same charcoal console, cream paper, orange control, and teal lamp system. They contain no required reading text and need no external asset or font license.
+
 ## Accessibility and responsive intent
 
 The landing page has one `h1`; the editor uses status headings below it. Focus rings use a 3 px orange outline with a 3 px offset. At 390 px, secondary explanatory copy shortens, the large hero art is dropped after document load, and actions stack without hiding beneath safe areas. Zoom to 200% reflows rather than clipping.

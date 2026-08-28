@@ -1,8 +1,8 @@
 // Bump the shell revision so clients that cached the pre-repair editor receive
 // the strict-CSP-compatible bundle on their next service-worker update.
-const CACHE = 'field-desk-shell-v3';
+const CACHE = 'field-desk-shell-v4';
 const SHELL = [
-  '/', '/privacy', '/terms', '/favicon.svg',
+  '/', '/demo', '/privacy', '/terms', '/favicon.svg', '/apple-touch-icon.svg', '/social-card.svg',
   '/assets/field-desk-hero.avif', '/assets/field-desk-hero.webp', '/assets/field-desk-hero.jpg',
 ];
 

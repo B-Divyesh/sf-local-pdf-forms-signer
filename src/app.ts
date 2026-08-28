@@ -1,5 +1,6 @@
 import { createPages, isProbablyPdf, moveItem, newField, rotatePage, safeOutputName } from './model';
 import { closeRenderer, exportPdf, inspectForm, openRenderer, renderPage } from './pdf';
+import { createSamplePdf } from './sample';
 import type { ExistingField, OverlayField, PageModel, Tool } from './types';
 
 const icon = (name: 'lock' | 'file' | 'text' | 'check' | 'date' | 'sign' | 'pages' | 'download' | 'close') => {
@@ -17,7 +18,7 @@ const icon = (name: 'lock' | 'file' | 'text' | 'check' | 'date' | 'sign' | 'page
   return `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`;
 };
 
-type Route = 'app' | 'privacy' | 'terms';
+type Route = 'app' | 'demo' | 'privacy' | 'terms' | 'not-found';
 
 export class FieldDeskApp {
   private root: HTMLElement;
@@ -38,6 +39,7 @@ export class FieldDeskApp {
   private deletedPage: { page: PageModel; index: number; fields: OverlayField[] } | null = null;
   private signatureDraft: { mode: 'draw' | 'type'; data: string; value: string } | null = null;
   private dragDepth = 0;
+  private demoMode = false;
   // Geometry is written to a same-origin stylesheet via CSSOM.  Keeping it out
   // of style attributes lets the production CSP retain `style-src 'self'`.
   private geometrySheet: CSSStyleSheet | null = null;
@@ -45,13 +47,16 @@ export class FieldDeskApp {
 
   constructor(root: HTMLElement) {
     this.root = root;
+    this.demoMode = this.route === 'demo';
     document.querySelector<HTMLLinkElement>('#field-positions')?.addEventListener('load', () => {
       this.geometrySheet = null;
       this.syncFieldGeometries();
     });
     window.addEventListener('popstate', () => {
       this.route = this.routeFromLocation();
+      this.demoMode = this.route === 'demo';
       this.render();
+      this.focusRouteHeading();
     });
     window.addEventListener('online', () => this.render());
     window.addEventListener('offline', () => this.render());
@@ -61,40 +66,47 @@ export class FieldDeskApp {
   private routeFromLocation(): Route {
     if (location.pathname === '/privacy') return 'privacy';
     if (location.pathname === '/terms') return 'terms';
-    return 'app';
+    if (location.pathname === '/demo' || (location.pathname === '/' && new URLSearchParams(location.search).get('demo') === '1')) return 'demo';
+    if (location.pathname === '/') return 'app';
+    return 'not-found';
   }
 
   private navigate(path: string): void {
     history.pushState({}, '', path);
     this.route = this.routeFromLocation();
+    this.demoMode = this.route === 'demo';
     this.render();
+    this.focusRouteHeading();
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
   private render(): void {
+    this.updateMetadata();
     this.root.innerHTML = `
       <header class="site-header">
         <a class="wordmark" href="/" data-nav="/" aria-label="Field Desk home">
           <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i></span>
           <span>Field Desk</span>
         </a>
-        <div class="privacy-indicator" title="No upload endpoint. Processing happens in this tab.">
+        <nav class="site-nav" aria-label="Main navigation"><a href="/demo" data-nav="/demo">Try sample PDF</a><a href="/privacy" data-nav="/privacy">Privacy</a><a href="/terms" data-nav="/terms">Terms</a></nav>
+        <div class="privacy-indicator" title="PDF work stays on this device.">
           <span class="status-lamp" aria-hidden="true"></span>${icon('lock')}<span>Stays on this device</span>
         </div>
       </header>
       ${navigator.onLine ? '' : '<div class="offline-bar" role="status">Offline mode — the editor still works with files on this device.</div>'}
-      ${this.route === 'app' ? this.renderApp() : this.renderLegal()}
+      ${this.demoMode ? this.renderDemoBanner() : ''}
+      ${this.route === 'app' || this.route === 'demo' ? this.renderApp() : this.route === 'not-found' ? this.renderNotFound() : this.renderLegal()}
       <footer class="site-footer">
-        <span>Field Desk · no uploads, accounts, or tracking</span>
+        <span>Field Desk · private PDF editing on this device</span>
         <nav aria-label="Legal"><a href="/privacy" data-nav="/privacy">Privacy</a><a href="/terms" data-nav="/terms">Terms</a></nav>
-        <span class="asset-note">Original AI-assisted illustration</span>
+        <span class="asset-note">Built by Param Factory · v1.0.1</span>
       </footer>
-      <div class="toast-region" aria-live="polite" aria-atomic="true">${this.notice ? `<div class="toast">${this.escape(this.notice)}${this.deletedPage ? '<button type="button" data-action="undo-delete">Undo</button>' : ''}</div>` : ''}</div>
+      <div class="route-announcer" aria-live="polite" aria-atomic="true"></div><div class="toast-region" aria-live="polite" aria-atomic="true">${this.notice ? `<div class="toast">${this.escape(this.notice)}${this.deletedPage ? '<button type="button" data-action="undo-delete">Undo</button>' : ''}</div>` : ''}</div>
       ${this.renderSignatureDialog()}
       ${this.renderExportDialog()}
     `;
     this.bindGlobal();
-    if (this.bytes && this.route === 'app') {
+    if (this.bytes && (this.route === 'app' || this.route === 'demo')) {
       this.syncFieldGeometries();
       this.markEditorReady();
       void this.renderCanvases();
@@ -106,21 +118,27 @@ export class FieldDeskApp {
     return this.renderEditor();
   }
 
+  private renderDemoBanner(): string {
+    return `<aside class="demo-banner" aria-label="Demo controls"><strong>Demo — sample data, nothing is saved</strong><span>Try the completed two-page intake form.</span><button type="button" data-action="reset-demo">Reset demo</button><a href="/" data-action="start-real" data-nav="/">Start for real</a></aside>`;
+  }
+
   private renderLanding(): string {
     return `<main id="main" class="landing">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span>Local instrument 01</span><span>PDF workshop</span></p>
-          <h1 id="hero-title">Paperwork,<br><em>under your control.</em></h1>
-          <p class="lede">Fill forms. Add fields. Sign. Reorder pages. Your PDF never leaves this browser tab.</p>
+          <p class="eyebrow"><span>Private PDF editor</span><span>Local tool 01</span></p>
+          <h1 id="hero-title">Fill and sign PDFs<br><em>on your device.</em></h1>
+          <p class="lede">For people and small offices handling sensitive forms, add fields, sign, and arrange pages without uploading a PDF.</p>
           <div class="file-loader ${this.dragDepth ? 'is-dragging' : ''}" data-dropzone>
             <input id="pdf-file" class="sr-only" type="file" accept="application/pdf,.pdf" />
-            <label for="pdf-file" class="primary-button">${icon('file')} Open a PDF</label>
-            <span>or drop it here</span>
+            <a href="/demo" data-nav="/demo" class="primary-button">${icon('file')} Try it with sample data</a>
+            <label for="pdf-file" class="secondary-button">Open your PDF</label>
+            <span>Sample opens a completed form you can edit.</span>
           </div>
           ${this.loading ? '<div class="loading-line" role="status"><span></span>Reading your PDF locally…</div>' : ''}
           ${this.error ? `<div class="error-panel" role="alert"><strong>Couldn’t open that file.</strong><span>${this.escape(this.error)}</span></div>` : ''}
-          <p class="file-note">PDF files only · up to 175 MB · large scans depend on device memory</p>
+          <ul class="hero-facts" aria-label="Field Desk facts"><li>No PDF uploads</li><li>Sample edits reset</li><li>No account</li></ul>
+          <p class="file-note">PDF files only. Files over 175 MB are rejected.</p>
         </div>
         <figure class="hero-visual">
           <picture>
@@ -128,22 +146,21 @@ export class FieldDeskApp {
             <source type="image/webp" srcset="/assets/field-desk-hero.webp" />
             <img src="/assets/field-desk-hero.jpg" width="768" height="512" alt="Illustration of a paper form passing through a compact charcoal document console with orange controls" fetchpriority="high" decoding="async" />
           </picture>
-          <figcaption><span>01</span> One private workbench for the whole document.</figcaption>
+          <figcaption><span>01</span> Fill, sign, and arrange one PDF here.</figcaption>
         </figure>
       </section>
       <section class="capabilities" aria-labelledby="capabilities-title">
-        <div><p class="section-index">Four controls. One file.</p><h2 id="capabilities-title">The missing middle between Preview and Acrobat.</h2></div>
+        <div><p class="section-index">How to fill and export a PDF</p><h2 id="capabilities-title">Fill, sign, arrange, and export one PDF.</h2></div>
         <ol>
-          <li><span>01</span>${icon('text')}<h3>Prepare & fill</h3><p>Complete existing form fields or place new text, checkbox, and date fields.</p></li>
-          <li><span>02</span>${icon('sign')}<h3>Mark & sign</h3><p>Draw with a pointer or type a signature. It is a mark, not a qualified e-signature.</p></li>
-          <li><span>03</span>${icon('pages')}<h3>Arrange pages</h3><p>Move, rotate, or remove pages. Undo a deletion before export.</p></li>
-          <li><span>04</span>${icon('download')}<h3>Export locally</h3><p>Keep fields editable or flatten them into a clean, portable result.</p></li>
+          <li><span>01</span>${icon('file')}<h3>Open a sample form</h3><p>Start with a completed two-page intake form, or open your own PDF.</p></li>
+          <li><span>02</span>${icon('text')}<h3>Edit fields and pages</h3><p>Fill standard fields, add new fields, sign, move, rotate, or remove pages.</p></li>
+          <li><span>03</span>${icon('download')}<h3>Download the finished PDF</h3><p>Keep fields editable or make them permanent before downloading.</p></li>
         </ol>
       </section>
       <section class="trust-strip" aria-label="Privacy details">
         <div class="big-lamp"><span></span></div>
-        <div><p class="eyebrow">Privacy circuit</p><h2>No upload can happen.</h2><p>There is no server endpoint, account, cloud bucket, analytics script, or hidden transfer. After first load, the app works offline.</p></div>
-        <dl><div><dt>File bytes sent</dt><dd>0</dd></div><div><dt>Retention</dt><dd>None</dd></div><div><dt>Account</dt><dd>Never</dd></div></dl>
+        <div><p class="eyebrow">Private document work</p><h2>Your PDF work stays on this device.</h2><p>After the first visit, Field Desk can reopen offline. Opened PDFs are cleared when you reload or close the tab.</p></div>
+        <dl><div><dt>PDF upload</dt><dd>None</dd></div><div><dt>Saved document</dt><dd>None</dd></div><div><dt>Account</dt><dd>None</dd></div></dl>
       </section>
     </main>`;
   }
@@ -173,7 +190,7 @@ export class FieldDeskApp {
             ${this.toolButton('signature', 'Signature', 'sign')}
           </div>
           <div class="page-meta"><span>Page ${pagePosition + 1} of ${this.pages.length}</span><span>${this.tool === 'select' ? 'Select a field to edit it' : `Click the page to place a ${this.tool}`}</span></div>
-          <div class="canvas-scroll">
+          <div class="canvas-scroll" tabindex="0" aria-label="Scrollable PDF page canvas. Use arrow keys to scroll.">
             <div class="page-stage" data-page-stage data-page-id="${selectedPage.id}">
               <canvas class="pdf-canvas" data-main-canvas aria-label="PDF page ${pagePosition + 1}"></canvas>
               <div class="field-layer">${this.fields.filter((field) => field.pageId === selectedPage.id).map((field) => this.renderOverlay(field)).join('')}</div>
@@ -288,16 +305,91 @@ export class FieldDeskApp {
     </main>`;
   }
 
+  private renderNotFound(): string {
+    return `<main id="main" class="legal-page not-found-page"><p class="eyebrow">Field Desk routing record</p><h1>Page not found</h1><p class="legal-lede">That address does not point to a Field Desk page.</p><a href="/" data-nav="/" class="primary-button">Return to Field Desk</a></main>`;
+  }
+
+  private updateMetadata(): void {
+    const details: Record<Route, { title: string; description: string; path: string }> = {
+      app: { title: 'Field Desk — fill and sign PDFs locally', description: 'Fill, sign, add fields, and arrange PDFs on your device without uploading a file.', path: '/' },
+      demo: { title: 'Demo — Field Desk', description: 'Edit a completed sample PDF in a private, resettable Field Desk demo.', path: '/demo' },
+      privacy: { title: 'Privacy — Field Desk', description: 'Read how Field Desk keeps PDF work on your device.', path: '/privacy' },
+      terms: { title: 'Terms — Field Desk', description: 'Read Field Desk terms and signature limitations.', path: '/terms' },
+      'not-found': { title: 'Page not found — Field Desk', description: 'Return to the Field Desk PDF editor.', path: location.pathname },
+    };
+    const detail = details[this.route];
+    document.title = detail.title;
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', detail.description);
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    canonical?.setAttribute('href', `https://local-pdf-forms-signer.sociobot.in${detail.path}`);
+    document.querySelectorAll<HTMLMetaElement>('meta[property="og:title"], meta[name="twitter:title"]').forEach((meta) => meta.content = detail.title);
+    document.querySelectorAll<HTMLMetaElement>('meta[property="og:description"], meta[name="twitter:description"]').forEach((meta) => meta.content = detail.description);
+    document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', `https://local-pdf-forms-signer.sociobot.in${detail.path}`);
+  }
+
+  private focusRouteHeading(): void {
+    requestAnimationFrame(() => {
+      const heading = this.root.querySelector<HTMLElement>('main h1');
+      const announcer = this.root.querySelector<HTMLElement>('.route-announcer');
+      if (heading) {
+        heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+        if (announcer) announcer.textContent = heading.textContent?.trim() || 'Page loaded';
+      }
+    });
+  }
+
   private bindGlobal(): void {
     this.root.querySelectorAll<HTMLElement>('[data-nav]').forEach((link) => link.addEventListener('click', (event) => {
       event.preventDefault();
       this.navigate(link.getAttribute('href') || '/');
     }));
     this.root.querySelector('[data-action="undo-delete"]')?.addEventListener('click', () => this.undoDelete());
-    if (this.route !== 'app') return;
+    this.root.querySelector('[data-action="reset-demo"]')?.addEventListener('click', () => void this.resetDemo());
+    this.root.querySelector('[data-action="start-real"]')?.addEventListener('click', () => {
+      localStorage.removeItem('demo:field-desk-session');
+      void this.closeFile();
+    });
+    if (this.route === 'demo' && !this.bytes) { void this.loadDemo(); return; }
+    if (this.route !== 'app' && this.route !== 'demo') return;
     if (!this.bytes) this.bindLanding();
     else this.bindEditor();
     this.bindDialogs();
+  }
+
+  private async loadDemo(): Promise<void> {
+    this.loading = true;
+    localStorage.setItem('demo:field-desk-session', 'active');
+    try {
+      const bytes = await createSamplePdf();
+      const [{ pageCount }, formInfo] = await Promise.all([openRenderer(bytes), inspectForm(bytes)]);
+      this.bytes = bytes;
+      this.filename = 'harbor-intake-sample.pdf';
+      this.pages = createPages(pageCount);
+      this.selectedPageId = this.pages[0]?.id ?? '';
+      this.existingFields = formInfo.fields;
+      this.hasXfa = formInfo.hasXfa;
+      this.fields = [];
+      this.notice = 'Sample form opened. Edit any field or page.';
+    } catch {
+      this.error = 'The sample PDF could not open. Reset the demo and try again.';
+    } finally {
+      this.loading = false;
+      this.render();
+    }
+  }
+
+  private async resetDemo(): Promise<void> {
+    await closeRenderer();
+    this.bytes = null;
+    this.pages = [];
+    this.fields = [];
+    this.existingFields = [];
+    this.filename = '';
+    this.selectedFieldId = '';
+    this.clearFieldGeometries();
+    localStorage.removeItem('demo:field-desk-session');
+    await this.loadDemo();
   }
 
   private bindLanding(): void {

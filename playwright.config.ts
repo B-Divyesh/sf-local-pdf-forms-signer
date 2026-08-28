@@ -8,7 +8,7 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   webServer: {
-    command: 'npm run dev -- --port 4173',
+    command: 'npm run build && npm run preview -- --port 4173',
     port: 4173,
     reuseExistingServer: true,
   },

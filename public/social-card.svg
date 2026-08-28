@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Field Desk paper document console illustration">
+  <rect width="1200" height="630" fill="#f3eddc"/>
+  <path d="M80 0v630M112 0v630" stroke="#b9b09c" stroke-width="2" opacity=".6"/>
+  <rect x="583" y="118" width="472" height="370" rx="8" fill="#202a2a"/>
+  <rect x="621" y="160" width="396" height="288" fill="#fffaf0" stroke="#17201f" stroke-width="8"/>
+  <path d="M655 205h180M655 242h286M655 310h100M655 347h242" stroke="#5d625b" stroke-width="13"/>
+  <rect x="655" y="273" width="220" height="24" fill="none" stroke="#b84427" stroke-width="8"/>
+  <circle cx="948" cy="424" r="28" fill="#23756f" stroke="#fffaf0" stroke-width="8"/>
+  <rect x="508" y="234" width="155" height="210" fill="#fffaf0" stroke="#17201f" stroke-width="8" transform="rotate(-8 508 234)"/>
+  <path d="M533 278h95M528 315h104M523 352h62" stroke="#5d625b" stroke-width="11"/>
+  <path d="M140 180h290M140 212h210M140 244h250M140 276h170" stroke="#17201f" stroke-width="18"/>
+  <path d="M140 330h198" stroke="#94361f" stroke-width="14"/>
+  <circle cx="188" cy="404" r="28" fill="#23756f" stroke="#17201f" stroke-width="8"/>
+  <rect x="238" y="374" width="185" height="54" fill="none" stroke="#b84427" stroke-width="10"/>
+</svg>

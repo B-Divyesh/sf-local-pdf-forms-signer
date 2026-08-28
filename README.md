@@ -1,52 +1,55 @@
 # Field Desk
 
-Field Desk is a browser-local PDF form builder, filler, signer, and page editor for individuals and small offices that cannot upload sensitive paperwork to a converter. It combines the common jobs that usually require several tools:
+Fill and sign PDFs on your device. Field Desk is for people and small offices handling sensitive forms.
 
-- fill existing AcroForm text, checkbox, dropdown, and radio fields;
-- place movable/resizable text, checkbox, date, and signature fields;
-- draw or type a signature;
-- reorder, rotate, remove, and restore pages; and
-- export new fields as editable controls or flatten them for portability.
+Open a PDF, fill standard form fields, add text, checkbox, date, and signature fields, arrange pages, then download the result. Start the resettable sample at `/demo` or `/?demo=1`.
 
-Live: <https://local-pdf-forms-signer.sociobot.in>
+## Verifiable behavior
 
-## Privacy model
+The visitor-facing claims and their executable browser tests are listed in [`.factory/claims.json`](.factory/claims.json).
 
-PDF bytes never leave the browser tab. There is no backend, upload endpoint, account, analytics script, cookie, or third-party runtime dependency. A small service worker caches only the public app and its PDF libraries for offline use; it does not store opened documents.
+- PDF work stays on this device.
+- The sample demo saves nothing and resets.
+- Field Desk works offline after the first visit.
+- Files over 175 MB are rejected.
+- Standard PDF fields can be filled and downloaded.
+- New fields and visual signature marks can be added.
+- Pages can move, rotate, and be restored after removal.
+- Downloads can keep fields editable or make them permanent.
+- Opened documents do not remain after a reload.
+- No account is required.
 
-Drawn and typed signatures are visual marks, not certificate-backed or qualified electronic signatures. Field Desk deliberately does not provide OCR, edit existing page text, support dynamic XFA fields, or create a legal signing audit trail. Very large scanned PDFs are limited by browser memory.
+A visual signature mark is not a verified digital signature. Field Desk cannot read scanned text, edit existing page text, handle dynamic XFA forms, or create a signing record.
 
 ## Develop and verify
 
 Requires Node.js 20+.
 
 ```sh
-npm install
+npm ci
 npm run dev
 npm test
 npm run build
-```
-
-The production build command is exactly `npm run build`; output is written to `dist/` with `dist/index.html` at its root.
-
-Browser tests include desktop and 390px-class mobile accessibility scans plus an end-to-end PDF export:
-
-```sh
-npx playwright install chromium
 npm run test:e2e
 ```
 
+Run every registered claim test from a clean state:
+
+```sh
+node -e "for (const c of require('./.factory/claims.json')) console.log(c.test)"
+```
+
+The production build is `npm run build`. It writes `dist/index.html` for Azure Static Web Apps.
+
 ## Deploy
 
-Deploy the contents of `dist/` to a **Standard-tier Azure Static Web App**. The
-included `public/staticwebapp.config.json` supplies the SPA fallback, strict
-security headers, and `.mjs` MIME type. This product is static and has no
-container or registry deployment path.
+Deploy `dist/` to Azure Static Web Apps. The included `public/staticwebapp.config.json` supplies the SPA fallback and security headers. This static product has no backend.
 
 ## Project notes
 
-- The researched product scope is in [`.factory/brief.json`](.factory/brief.json).
-- The mid-century instrument-panel visual system and asset provenance are in [`.factory/design.md`](.factory/design.md).
-- Release verification and known limitations are in [`.factory/handoff.md`](.factory/handoff.md).
+- [Product scope](.factory/brief.json)
+- [Visual system and asset provenance](.factory/design.md)
+- [Demo details](.factory/demo.md)
+- [Release handoff](.factory/handoff.md)
 
-Licensed under the MIT License. See [`LICENSE`](LICENSE).
+Licensed under the MIT License. See [LICENSE](LICENSE).
