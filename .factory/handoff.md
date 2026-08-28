@@ -14,7 +14,7 @@ Repaired every blocking item from `review-1.md` on the static Vite + TypeScript 
 
 ## Verification evidence
 
-The clean clone at `/tmp/tmp.iGnAfUxwa8` was taken from pushed commit `02337347ab36f57408f6dfaadaacfc93b01d4697` and verified with:
+The clean clone at `/tmp/tmp.qffvzjNI5x` was taken from pushed commit `22c1272128779ae2ad6ef07fa7d62e49766b40e7` and verified with:
 
 ```sh
 npm test                 # 8 passed
@@ -30,7 +30,7 @@ Build output: initial JavaScript is 195.69 KB gzip, CSS 5.66 KB gzip. This meets
 
 ## Deployment
 
-No repository-local Azure deploy credential or work-order deployment command is present. Commit `02337347ab36f57408f6dfaadaacfc93b01d4697` is pushed to `main`; deploy its `dist/` through the factory's configured Azure Static Web Apps work order.
+No repository-local Azure deploy credential or work-order deployment command is present. Repair commit `02337347ab36f57408f6dfaadaacfc93b01d4697` and offline hardening commit `22c1272128779ae2ad6ef07fa7d62e49766b40e7` are pushed to `main`; deploy their `dist/` through the factory's configured Azure Static Web Apps work order.
 
 ## Known gaps
 
