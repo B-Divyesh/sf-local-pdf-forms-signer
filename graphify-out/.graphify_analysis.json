@@ -1,7 +1,44 @@
 {
   "communities": {
     "0": [
+      "src_app_fielddeskapp",
+      "src_app_fielddeskapp_binddialogs",
+      "src_app_fielddeskapp_bindeditor",
+      "src_app_fielddeskapp_bindglobal",
+      "src_app_fielddeskapp_bindlanding",
+      "src_app_fielddeskapp_bindplacedfield",
+      "src_app_fielddeskapp_clearfieldgeometries",
+      "src_app_fielddeskapp_clearsignaturecanvas",
+      "src_app_fielddeskapp_closedialog",
+      "src_app_fielddeskapp_closefile",
+      "src_app_fielddeskapp_constructor",
+      "src_app_fielddeskapp_deletecurrentpage",
+      "src_app_fielddeskapp_deletefield",
+      "src_app_fielddeskapp_fieldpositionsheet",
+      "src_app_fielddeskapp_focusrouteheading",
+      "src_app_fielddeskapp_handleexport",
+      "src_app_fielddeskapp_markeditorready",
+      "src_app_fielddeskapp_navigate",
+      "src_app_fielddeskapp_opendialog",
+      "src_app_fielddeskapp_placefield",
+      "src_app_fielddeskapp_preparesignaturecanvas",
+      "src_app_fielddeskapp_render",
+      "src_app_fielddeskapp_rendercanvases",
+      "src_app_fielddeskapp_renderdemobanner",
+      "src_app_fielddeskapp_renderlegal",
+      "src_app_fielddeskapp_rendernotfound",
+      "src_app_fielddeskapp_resetdemo",
+      "src_app_fielddeskapp_rotatecurrentpage",
+      "src_app_fielddeskapp_routefromlocation",
+      "src_app_fielddeskapp_syncfieldgeometries",
+      "src_app_fielddeskapp_syncfieldgeometry",
+      "src_app_fielddeskapp_undodelete",
+      "src_app_fielddeskapp_updatemetadata",
+      "src_app_fielddeskapp_updateselectedfield"
+    ],
+    "1": [
       "src_app",
+      "src_app_fielddeskapp_loaddemo",
       "src_app_fielddeskapp_loadfile",
       "src_app_route",
       "src_model",
@@ -23,6 +60,8 @@
       "src_pdf_pdfjspage",
       "src_pdf_renderpage",
       "src_pdf_test",
+      "src_sample",
+      "src_sample_createsamplepdf",
       "src_types",
       "src_types_existingfield",
       "src_types_exportoptions",
@@ -30,37 +69,6 @@
       "src_types_overlayfield",
       "src_types_pagemodel",
       "src_types_tool"
-    ],
-    "1": [
-      "src_app_fielddeskapp",
-      "src_app_fielddeskapp_binddialogs",
-      "src_app_fielddeskapp_bindeditor",
-      "src_app_fielddeskapp_bindglobal",
-      "src_app_fielddeskapp_bindlanding",
-      "src_app_fielddeskapp_bindplacedfield",
-      "src_app_fielddeskapp_clearfieldgeometries",
-      "src_app_fielddeskapp_clearsignaturecanvas",
-      "src_app_fielddeskapp_closedialog",
-      "src_app_fielddeskapp_closefile",
-      "src_app_fielddeskapp_constructor",
-      "src_app_fielddeskapp_deletecurrentpage",
-      "src_app_fielddeskapp_deletefield",
-      "src_app_fielddeskapp_fieldpositionsheet",
-      "src_app_fielddeskapp_handleexport",
-      "src_app_fielddeskapp_markeditorready",
-      "src_app_fielddeskapp_navigate",
-      "src_app_fielddeskapp_opendialog",
-      "src_app_fielddeskapp_placefield",
-      "src_app_fielddeskapp_preparesignaturecanvas",
-      "src_app_fielddeskapp_render",
-      "src_app_fielddeskapp_rendercanvases",
-      "src_app_fielddeskapp_renderlegal",
-      "src_app_fielddeskapp_rotatecurrentpage",
-      "src_app_fielddeskapp_routefromlocation",
-      "src_app_fielddeskapp_syncfieldgeometries",
-      "src_app_fielddeskapp_syncfieldgeometry",
-      "src_app_fielddeskapp_undodelete",
-      "src_app_fielddeskapp_updateselectedfield"
     ],
     "2": [
       "ref_dom",
@@ -89,8 +97,6 @@
       "package_dependencies",
       "package_dependencies_pdf_lib",
       "package_dependencies_pdfjs_dist",
-      "package_json_pdf_lib",
-      "package_json_pdfjs_dist",
       "package_name",
       "package_private",
       "package_scripts",
@@ -98,9 +104,12 @@
       "package_scripts_dev",
       "package_scripts_preview",
       "package_scripts_test",
+      "package_scripts_test_claims",
       "package_scripts_test_e2e",
       "package_type",
-      "package_version"
+      "package_version",
+      "pdf_lib",
+      "pdfjs_dist"
     ],
     "4": [
       "src_app_fielddeskapp_escape",
@@ -134,35 +143,38 @@
       "vitest"
     ],
     "6": [
+      "test",
+      "tests_app_spec",
+      "tests_app_spec_desktoponly",
+      "tests_app_spec_get",
+      "tests_app_spec_opendemo"
+    ],
+    "7": [
       "public_sw",
       "public_sw_cachemoduletree",
       "public_sw_shell"
     ],
-    "7": [
+    "8": [
       "src_main",
       "src_main_root"
     ],
-    "8": [
+    "9": [
       "src_vite_env_d",
       "src_vite_env_d_pdfjs_dist_build_pdf_worker_min_mjs_url"
-    ],
-    "9": [
-      "tests_app_spec",
-      "tests_app_spec_fixturepdf"
     ],
     "10": [
       "playwright_config"
     ]
   },
   "cohesion": {
-    "0": 0.1625615763546798,
-    "1": 0.17980295566502463,
+    "0": 0.1532976827094474,
+    "1": 0.14717741935483872,
     "2": 0.1,
-    "3": 0.125,
+    "3": 0.11764705882352941,
     "4": 0.24175824175824176,
     "5": 0.15384615384615385,
-    "6": 0.6666666666666666,
-    "7": 1.0,
+    "6": 0.4,
+    "7": 0.6666666666666666,
     "8": 1.0,
     "9": 1.0,
     "10": 1.0
@@ -171,7 +183,7 @@
     {
       "id": "src_app_fielddeskapp",
       "label": "FieldDeskApp",
-      "degree": 44
+      "degree": 50
     },
     {
       "id": "tsconfig_compileroptions",
@@ -179,14 +191,14 @@
       "degree": 14
     },
     {
-      "id": "src_app_icon",
-      "label": "icon()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 6
+      "id": "src_app_icon",
+      "label": "icon()",
+      "degree": 7
     },
     {
       "id": "src_types_overlayfield",
@@ -199,23 +211,23 @@
       "degree": 5
     },
     {
+      "id": "src_model_createpages",
+      "label": "createPages()",
+      "degree": 5
+    },
+    {
       "id": "src_model_safeoutputname",
       "label": "safeOutputName()",
       "degree": 5
     },
     {
-      "id": "src_model_createpages",
-      "label": "createPages()",
-      "degree": 4
+      "id": "src_pdf_closerenderer",
+      "label": "closeRenderer()",
+      "degree": 5
     },
     {
       "id": "src_model_isprobablypdf",
       "label": "isProbablyPdf()",
-      "degree": 4
-    },
-    {
-      "id": "src_model_moveitem",
-      "label": "moveItem()",
       "degree": 4
     }
   ],
