@@ -19,14 +19,12 @@ await page.getByRole('link', { name: 'Try it with sample data' }).click();
 await page.locator('[data-editor-ready="true"]').waitFor();
 await page.screenshot({ path: new URL('demo-mobile.png', output).pathname, fullPage: false });
 
-if (label === 'local') {
-  await page.waitForFunction(() => document.documentElement.dataset.offlineReady === 'true');
-  await context.setOffline(true);
-  await page.reload();
-  await page.locator('[data-editor-ready="true"]').waitFor();
-  await page.screenshot({ path: new URL('demo-offline-mobile.png', output).pathname, fullPage: false });
-  await context.setOffline(false);
-}
+await page.waitForFunction(() => document.documentElement.dataset.offlineReady === 'true');
+await context.setOffline(true);
+await page.reload();
+await page.locator('[data-editor-ready="true"]').waitFor();
+await page.screenshot({ path: new URL('demo-offline-mobile.png', output).pathname, fullPage: false });
+await context.setOffline(false);
 
 await page.goto(`${baseUrl}/not-a-real-route`, { waitUntil: 'networkidle' });
 await page.screenshot({ path: new URL('not-found-mobile.png', output).pathname, fullPage: false });

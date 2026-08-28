@@ -42,7 +42,7 @@ All functional distinctions also use text, shape, or iconography. Core text and 
 
 ## Interaction grammar
 
-- A teal lamp plus the words “Stays on this device” communicates the privacy state.
+- A teal lamp and explicit “on this device” facts communicate the privacy state.
 - Primary actions are orange slab buttons with a 2 px down/left pressed motion.
 - Tool selection resembles a latched mechanical switch. The selected tool is always named in the inspector and announced to assistive technology.
 - Page thumbnails are sortable with buttons and keyboard commands, not drag alone.
