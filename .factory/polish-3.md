@@ -29,7 +29,7 @@ This map includes every finding in `review-1.md`, `review-2.md`, and `review-3.m
 
 ## Delivery verification
 
-- Clean clone `/tmp/field-desk-polish3-FLMG5l`: `npm ci`, `npm test` (9 passed), `npm run build`, all 16 individual claim commands, `npm run test:e2e` (22 passed, 18 intentional skips), and `npm audit --omit=dev` (0 vulnerabilities) passed.
+- Implementation clean clone `/tmp/field-desk-polish3-FLMG5l` at `c269e6b`: `npm ci`, `npm test` (9 passed), `npm run build`, `npm run test:e2e` (22 passed, 18 intentional skips), and `npm audit --omit=dev` (0 vulnerabilities) passed. Final-claims clean clone `/tmp/field-desk-polish3-final-MkJUeo` at `3ee4f96`: `npm ci`, `npm test`, `npm run build`, and all 16 individual claim commands passed.
 - Live: `PLAYWRIGHT_BASE_URL=https://local-pdf-forms-signer.sociobot.in npm run test:e2e` passed with 22 passed and 18 intentional skips. The run includes route metadata/focus/404, all claim flows, mobile layout, keyboard, and Axe serious/critical scans.
 - Live URL verifier passed with no console errors. Live mobile Lighthouse: 100 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.1 s, CLS 0, TBT 0 ms.
 - Azure Static Web Apps deployment `cc7d3c8f-4438-4390-9ba9-6af35fa48811` completed successfully. Cold custom-domain routes `/`, `/demo`, `/?demo=1`, `/privacy`, `/terms`, and static metadata assets returned 200; an unknown route returned 404.

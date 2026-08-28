@@ -32,12 +32,9 @@ The one-click isolated sample is https://local-pdf-forms-signer.sociobot.in/demo
 
 ## Exact verification evidence
 
-- Clean clone: `/tmp/field-desk-polish3-FLMG5l` at `c269e6bdeda5d305de5991e34be3ca5f1c7b75d4`.
-- `npm ci`: passed; 70 packages installed; zero vulnerabilities.
-- `npm test`: 9 passed.
-- `npm run build`: passed; `dist/index.html` present. Initial entry JS is 44.18 KB raw / 13.82 KB gzip; CSS is 21.70 KB raw / 5.67 KB gzip. PDF engines remain lazy-loaded.
-- All 16 individual commands in `.factory/claims.json`: passed from the clean clone, including the updated `@claim:offline-reload` cache-manifest assertion.
-- Clean-clone `npm run test:e2e`: 22 passed; 18 intentional desktop/mobile project skips. The route and mobile checks include Axe scans with no serious or critical findings.
+- Implementation clean clone: `/tmp/field-desk-polish3-FLMG5l` at `c269e6bdeda5d305de5991e34be3ca5f1c7b75d4`; `npm ci`, `npm test`, `npm run build`, and `npm run test:e2e` passed (22 passed; 18 intentional desktop/mobile project skips). The route and mobile checks include Axe scans with no serious or critical findings.
+- Final-claims clean clone: `/tmp/field-desk-polish3-final-MkJUeo` at `3ee4f96bf8f2d303391130fd0de4369ff883facf`; `npm ci`, `npm test` (9 passed), `npm run build`, and all 16 individual manifest claim commands passed. This includes the final browser-storage assertion in `@claim:demo-isolation` and the cache-manifest assertion in `@claim:offline-reload`.
+- The production build writes `dist/index.html`. Initial entry JS is 44.18 KB raw / 13.82 KB gzip; CSS is 21.70 KB raw / 5.67 KB gzip. PDF engines remain lazy-loaded.
 - `npm audit --omit=dev`: passed; zero vulnerabilities.
 - Local factory URL verification: title, `lang`, one `h1`, `main`, image alt text, button names, and console errors all passed. Report: `.factory/evidence/polish-3/local/verify-url/verify.json`.
 - Live `PLAYWRIGHT_BASE_URL=https://local-pdf-forms-signer.sociobot.in npm run test:e2e`: 22 passed; 18 intentional skips. This cold run exercises the deployed demo, cache, routing, metadata, focus, 404, mobile, keyboard, privacy, and Axe checks.
