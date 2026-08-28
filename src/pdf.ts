@@ -47,8 +47,10 @@ export async function renderPage(canvas: HTMLCanvasElement, page: PageModel, max
 export async function inspectForm(bytes: Uint8Array): Promise<{ fields: ExistingField[]; hasXfa: boolean }> {
   const lib = await import('pdf-lib');
   const doc = await lib.PDFDocument.load(bytes.slice(), { ignoreEncryption: false });
+  const acroForm = doc.catalog.lookupMaybe(lib.PDFName.of('AcroForm'), lib.PDFDict);
+  const hasXfa = acroForm?.has(lib.PDFName.of('XFA')) ?? false;
+  if (hasXfa) return { fields: [], hasXfa: true };
   const form = doc.getForm();
-  const hasXfa = form.hasXFA();
   const fields = form.getFields().map((field): ExistingField => {
     if (field instanceof lib.PDFTextField) {
       return { name: field.getName(), type: 'text', value: field.getText() ?? '' };

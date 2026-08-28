@@ -2,6 +2,8 @@
 
 Open `/demo` or `/?demo=1` for the one-click sample.
 
-The sample is a two-page Harbor Street Studio client intake. It includes completed standard fields, a checked approval box, a typed visual signature, and a second page for page controls.
+The sample is a two-page Harbor Street Studio client intake. It includes completed standard fields, a checked approval box, a visual signature, and a landscape notes page for page controls.
 
-Demo state exists only in the running tab. The only demo storage key is `demo:field-desk-session`; it marks the isolated sample session and contains no document or edits. **Reset demo** clears that key, discards the in-memory PDF and builds a new sample. **Start for real** clears the demo key and discards the sample before returning home. Real document data is never read or written in demo mode.
+Demo state exists only in memory in the running tab. It does not use localStorage, sessionStorage, IndexedDB, cookies, or a backend. **Reset demo** discards the in-memory PDF and builds a new sample. **Start for real**, legal navigation, and browser history all discard the sample before leaving demo mode. Entering demo mode also discards any real PDF already open, so the demo banner can never cover real data.
+
+After the first online visit finishes caching, `/demo` and `/?demo=1` reopen offline. The cache contains only the public app shell, bundled PDF libraries, worker, and artwork. It never contains a PDF opened by the visitor.

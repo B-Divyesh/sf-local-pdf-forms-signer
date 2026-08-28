@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { PDFDocument, StandardFonts } from 'pdf-lib';
-import { exportPdf } from './pdf';
+import { describe, expect, it, vi } from 'vitest';
+import { PDFDict, PDFDocument, PDFName, PDFString, StandardFonts } from 'pdf-lib';
+import { exportPdf, inspectForm } from './pdf';
 import type { OverlayField, PageModel } from './types';
 
 describe('PDF export', () => {
@@ -75,5 +75,18 @@ describe('PDF export', () => {
     );
     const exported = await PDFDocument.load(result);
     expect(exported.getForm().getFields()).toHaveLength(0);
+  });
+
+  it('detects XFA before pdf-lib removes it', async () => {
+    const source = await PDFDocument.create();
+    source.addPage([300, 400]);
+    source.getForm().createTextField('standard_field');
+    const acroForm = source.catalog.lookup(PDFName.of('AcroForm'), PDFDict);
+    acroForm.set(PDFName.of('XFA'), PDFString.of('<xdp:xdp/>'));
+    const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const result = await inspectForm(await source.save({ updateFieldAppearances: false }));
+    expect(result).toEqual({ fields: [], hasXfa: true });
+    expect(warning).not.toHaveBeenCalled();
+    warning.mockRestore();
   });
 });

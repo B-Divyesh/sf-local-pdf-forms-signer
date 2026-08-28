@@ -1,44 +1,60 @@
-// Bump the shell revision so clients that cached the pre-repair editor receive
-// the strict-CSP-compatible bundle on their next service-worker update.
-const CACHE = 'field-desk-shell-v5';
-const SHELL = [
-  '/', '/demo', '/privacy', '/terms', '/favicon.svg', '/apple-touch-icon.svg', '/social-card.svg',
+const CACHE = 'field-desk-shell-__BUILD_HASH__';
+const STAGING = 'field-desk-staging-__BUILD_HASH__';
+const PUBLIC_FILES = [
+  '/', '/field-positions.css', '/favicon.svg', '/apple-touch-icon.svg', '/social-card.svg',
   '/assets/field-desk-hero.avif', '/assets/field-desk-hero.webp', '/assets/field-desk-hero.jpg',
 ];
+const BUILT_FILES = /* __BUILT_FILES__ */ [];
 
-async function cacheModuleTree(cache, url, seen = new Set()) {
-  const absolute = new URL(url, self.location.origin).href;
-  if (seen.has(absolute)) return;
-  seen.add(absolute);
-  const response = await fetch(absolute);
-  if (!response.ok) return;
-  await cache.put(absolute, response.clone());
-  const type = response.headers.get('content-type') || '';
-  if (!type.includes('javascript') && !absolute.endsWith('.js') && !absolute.endsWith('.mjs')) return;
-  const source = await response.text();
-  const imports = [...source.matchAll(/["']((?:\.\/|\/assets\/)[a-zA-Z0-9_.-]+\.(?:js|mjs))["']/g)].map((match) => new URL(match[1], absolute).href);
-  await Promise.all(imports.map((entry) => cacheModuleTree(cache, entry, seen)));
+async function fetchFresh(path) {
+  const response = await fetch(new Request(path, { cache: 'reload' }));
+  if (!response.ok) throw new Error(`Could not cache ${path}: ${response.status}`);
+  return response;
+}
+
+async function buildCache() {
+  await caches.delete(STAGING);
+  const freshStaging = await caches.open(STAGING);
+  for (const path of [...PUBLIC_FILES, ...BUILT_FILES]) {
+    await freshStaging.put(new Request(path), await fetchFresh(path));
+  }
+  const complete = await caches.open(CACHE);
+  for (const request of await complete.keys()) await complete.delete(request);
+  for (const request of await freshStaging.keys()) {
+    const response = await freshStaging.match(request);
+    if (response) await complete.put(request, response);
+  }
+  await caches.delete(STAGING);
 }
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then(async (cache) => {
-    await cache.addAll(SHELL);
-    const html = await (await fetch('/')).text();
-    const assets = [...html.matchAll(/(?:src|href)="([^"]+\.(?:js|css))"/g)].map((match) => match[1]);
-    await Promise.all(assets.map((asset) => cacheModuleTree(cache, asset)));
-  }));
-  self.skipWaiting();
+  event.waitUntil(buildCache().then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))));
-  self.clients.claim();
+  event.waitUntil(caches.keys()
+    .then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
+    .then(() => self.clients.claim()));
 });
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
-    if (response.ok) caches.open(CACHE).then((cache) => cache.put(event.request, response.clone()));
+  if (event.request.mode === 'navigate') {
+    event.respondWith(caches.open(CACHE).then(async (cache) => {
+      const shell = await cache.match('/', { ignoreVary: true });
+      if (shell) return shell;
+      return fetch(event.request);
+    }));
+    return;
+  }
+  event.respondWith(caches.open(CACHE).then(async (cache) => {
+    // Vite preview and some static hosts add `Vary: Origin` to assets. The
+    // install request and a later module request can carry different Origin
+    // headers even though they identify the same immutable file.
+    const cached = await cache.match(event.request, { ignoreVary: true });
+    if (cached) return cached;
+    const response = await fetch(event.request);
+    if (response.ok) await cache.put(event.request, response.clone());
     return response;
-  }).catch(() => caches.match('/'))));
+  }));
 });
