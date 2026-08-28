@@ -3,7 +3,7 @@ import { mkdir } from 'node:fs/promises';
 
 const baseUrl = process.argv[2] || 'http://127.0.0.1:4173';
 const label = process.argv[3] || 'local';
-const output = new URL(`../.factory/evidence/polish-2/${label}/`, import.meta.url);
+const output = new URL(`../.factory/evidence/polish-3/${label}/`, import.meta.url);
 await mkdir(output, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
@@ -18,6 +18,9 @@ await page.screenshot({ path: new URL('first-screen-mobile.png', output).pathnam
 await page.getByRole('link', { name: 'Try it with sample data' }).click();
 await page.locator('[data-editor-ready="true"]').waitFor();
 await page.screenshot({ path: new URL('demo-mobile.png', output).pathname, fullPage: false });
+await page.getByRole('button', { name: 'Signature' }).click();
+await page.screenshot({ path: new URL('signature-dialog-mobile.png', output).pathname, fullPage: false });
+await page.getByRole('button', { name: 'Close signature dialog' }).click();
 
 await page.waitForFunction(() => document.documentElement.dataset.offlineReady === 'true');
 await context.setOffline(true);
@@ -25,6 +28,9 @@ await page.reload();
 await page.locator('[data-editor-ready="true"]').waitFor();
 await page.screenshot({ path: new URL('demo-offline-mobile.png', output).pathname, fullPage: false });
 await context.setOffline(false);
+
+await page.goto(`${baseUrl}/privacy`, { waitUntil: 'networkidle' });
+await page.screenshot({ path: new URL('privacy-mobile.png', output).pathname, fullPage: false });
 
 await page.goto(`${baseUrl}/not-a-real-route`, { waitUntil: 'networkidle' });
 await page.screenshot({ path: new URL('not-found-mobile.png', output).pathname, fullPage: false });

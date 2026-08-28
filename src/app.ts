@@ -100,7 +100,7 @@ export class FieldDeskApp {
       <footer class="site-footer">
         <span>Field Desk · PDF editing that stays on this device</span>
         <nav aria-label="Legal"><a href="/privacy" data-nav="/privacy">Privacy</a><a href="/terms" data-nav="/terms">Terms</a></nav>
-        <span class="asset-note">Built by Param Factory · v1.0.2</span>
+        <span class="asset-note">Built by Param Factory · v1.0.3</span>
       </footer>
       <div class="route-announcer" aria-live="polite" aria-atomic="true"></div><div class="toast-region" aria-live="polite" aria-atomic="true">${this.notice ? `<div class="toast">${this.escape(this.notice)}${this.deletedPage ? '<button type="button" data-action="undo-delete">Undo</button>' : ''}</div>` : ''}</div>
       ${this.renderSignatureDialog()}
@@ -268,7 +268,7 @@ export class FieldDeskApp {
     return `<dialog id="signature-dialog" class="panel-dialog" aria-labelledby="signature-title">
       <form method="dialog" class="dialog-card" data-signature-form>
         <div class="dialog-heading"><div><p class="eyebrow">Signature instrument</p><h2 id="signature-title">Create your signature</h2></div><button type="button" class="icon-button" data-action="close-signature" aria-label="Close signature dialog">${icon('close')}</button></div>
-        <p class="dialog-note">This adds a visual mark only. It is not a qualified electronic signature or an audit trail.</p>
+        <p class="dialog-note">This adds a visual signature mark, not a verified digital signature.</p>
         <div class="signature-tabs" role="tablist" aria-label="Signature method"><button type="button" role="tab" aria-selected="true" data-signature-tab="draw">Draw</button><button type="button" role="tab" aria-selected="false" data-signature-tab="type">Type</button></div>
         <div class="signature-pane" data-signature-pane="draw"><canvas id="signature-pad" width="720" height="220" aria-label="Signature drawing pad. Draw with a pointer."></canvas><button type="button" class="text-button" data-action="clear-signature">Clear drawing</button></div>
         <div class="signature-pane" data-signature-pane="type" hidden><label class="form-control" for="typed-signature"><span>Your name</span><input id="typed-signature" autocomplete="name" /></label><div class="typed-preview" aria-hidden="true" data-typed-preview>Signature</div></div>
@@ -297,7 +297,7 @@ export class FieldDeskApp {
     return `<main id="main" class="legal-page"><p class="eyebrow">Field Desk record 0${privacy ? '2' : '3'}</p><h1>${privacy ? 'Privacy, plainly.' : 'Terms of use.'}</h1>
       <p class="legal-lede">${privacy ? 'Field Desk keeps PDF work in your browser.' : 'Use Field Desk for documents you are allowed to edit and sign.'}</p>
       ${privacy ? `<section><h2>PDF privacy and storage</h2><p>Your PDF work stays on this device. Field Desk keeps an open PDF in this tab’s memory.</p><p>Opened PDFs are cleared when you reload or close the tab.</p></section>
-      <section><h2>Offline use</h2><p>After the first visit, Field Desk and the sample PDF can reopen offline. The offline cache contains only public app files.</p></section>
+      <section><h2>Offline use</h2><p>After the first visit, Field Desk and the sample PDF can reopen offline. The offline cache stores only public app files, never opened PDFs.</p></section>
       <section><h2>Accounts and cost</h2><p>Field Desk is free to use. No account is required.</p></section>`
       : `<section><h2>Local utility, no warranty</h2><p>Field Desk is provided “as is” under the MIT License. You are responsible for reviewing the exported PDF and keeping a backup of the original.</p></section>
       <section><h2>Signatures</h2><p>A signature added here is a visual mark, not a verified digital signature. Review whether that mark fits your situation before sending.</p></section>

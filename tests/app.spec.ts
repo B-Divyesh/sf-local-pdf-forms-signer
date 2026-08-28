@@ -126,6 +126,16 @@ test('@claim:demo-isolation sample reset and exit never reuse real or demo data'
     localStorage.setItem('real:sentinel', 'keep');
     sessionStorage.setItem('real:session-sentinel', 'keep');
   });
+  await page.goto('/');
+  await page.evaluate(async () => {
+    document.cookie = 'real-cookie-sentinel=keep; Path=/; SameSite=Lax';
+    await new Promise<void>((resolve, reject) => {
+      const request = indexedDB.open('real-sentinel');
+      request.onupgradeneeded = () => request.result.createObjectStore('records');
+      request.onsuccess = () => { request.result.close(); resolve(); };
+      request.onerror = () => reject(request.error);
+    });
+  });
   await openDemo(page, '/?demo=1');
   await page.getByLabel('client_name').fill('Changed in demo');
   await page.getByRole('button', { name: 'Reset demo' }).click();
@@ -137,6 +147,10 @@ test('@claim:demo-isolation sample reset and exit never reuse real or demo data'
   expect(await page.evaluate(() => sessionStorage.getItem('real:session-sentinel'))).toBe('keep');
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['real:sentinel']);
   expect(await page.evaluate(() => Object.keys(sessionStorage))).toEqual(['real:session-sentinel']);
+  expect(await page.evaluate(async () => ({
+    cookie: document.cookie,
+    databases: (await indexedDB.databases()).map((database) => database.name).filter(Boolean),
+  }))).toEqual({ cookie: 'real-cookie-sentinel=keep', databases: ['real-sentinel'] });
 
   await page.locator('#pdf-file').setInputFiles({ name: 'private.pdf', mimeType: 'application/pdf', buffer: await makePdf('Private source') });
   await expect(page.locator('[data-document-filename]')).toHaveText('private.pdf');
@@ -165,30 +179,52 @@ test('@claim:local-only editing and export send no PDF or off-site request', asy
   expect(requests.some((request) => /\/api\/|upload|analytics/i.test(new URL(request.url()).pathname))).toBe(false);
 });
 
-test('@claim:offline-reload sample PDF reopens offline after one visit', async ({ page }, info) => {
+test('@claim:offline-reload public cache reopens the sample offline and never stores an opened PDF', async ({ page }, info) => {
   desktopOnly(info);
   await openDemo(page);
   await expect.poll(() => page.getAttribute('html', 'data-offline-ready'), { timeout: 15_000 }).toBe('true');
+  await page.getByRole('link', { name: 'Start for real' }).click();
+  await page.locator('#pdf-file').setInputFiles({
+    name: 'private-cache-sentinel.pdf',
+    mimeType: 'application/pdf',
+    buffer: await makePdf('Private cache sentinel'),
+  });
+  await expect(page.locator('[data-document-filename]')).toHaveText('private-cache-sentinel.pdf');
+  await downloadPdf(page);
   const offlineState = await page.evaluate(async () => {
     const cacheName = (await caches.keys()).find((name) => name.startsWith('field-desk-shell-'));
     const script = document.querySelector<HTMLScriptElement>('script[src]')?.src || '';
     const cache = cacheName ? await caches.open(cacheName) : null;
     const response = cache ? await cache.match(script, { ignoreVary: true }) : undefined;
-    return { cacheName, controlled: Boolean(navigator.serviceWorker.controller), script, cached: Boolean(response), type: response?.headers.get('content-type') };
+    const workerSource = await (await fetch('/sw.js', { cache: 'no-store' })).text();
+    const publicSource = workerSource.match(/const PUBLIC_FILES = \[([\s\S]*?)\];/)?.[1] || '';
+    const publicFiles = [...publicSource.matchAll(/'([^']+)'/g)].map((match) => match[1]);
+    const builtSource = workerSource.match(/const BUILT_FILES = (\[[^;]*\]);/)?.[1] || '[]';
+    const builtFiles = JSON.parse(builtSource) as string[];
+    const cachedUrls = cache ? (await cache.keys()).map((request) => request.url) : [];
+    const expectedUrls = [...new Set([...publicFiles, ...builtFiles])]
+      .map((path) => new URL(path, location.origin).href)
+      .sort();
+    return {
+      cacheName,
+      cacheNames: await caches.keys(),
+      controlled: Boolean(navigator.serviceWorker.controller),
+      script,
+      cached: Boolean(response),
+      type: response?.headers.get('content-type'),
+      cachedUrls: cachedUrls.sort(),
+      expectedUrls,
+    };
   });
   expect(offlineState).toMatchObject({ controlled: true, cached: true, type: 'text/javascript' });
+  expect(offlineState.cacheNames).toEqual([offlineState.cacheName]);
+  expect(offlineState.cachedUrls).toEqual(offlineState.expectedUrls);
+  expect(offlineState.cachedUrls.some((url) => url.includes('private-cache-sentinel.pdf'))).toBe(false);
+  await openDemo(page);
   await page.context().setOffline(true);
   await page.reload();
   await expect(page.locator('[data-editor-ready="true"]')).toBeVisible({ timeout: 15_000 });
   await expect(page.getByText('You are offline.')).toBeVisible();
-  const cachedUrls = await page.evaluate(async () => {
-    const names = (await caches.keys()).filter((name) => name.startsWith('field-desk-shell-'));
-    const cache = await caches.open(names[0]);
-    return (await cache.keys()).map((request) => request.url);
-  });
-  expect(cachedUrls.length).toBeGreaterThan(8);
-  const appOrigin = new URL(page.url()).origin;
-  expect(cachedUrls.every((url) => new URL(url).origin === appOrigin)).toBe(true);
   await page.context().setOffline(false);
 });
 
@@ -246,6 +282,7 @@ test('@claim:signature-mark typed and drawn signatures export as visual, non-dig
   desktopOnly(info);
   await openDemo(page);
   await page.getByRole('button', { name: 'Signature' }).click();
+  await expect(page.getByText('This adds a visual signature mark, not a verified digital signature.')).toBeVisible();
   await page.getByRole('tab', { name: 'Type' }).click();
   await page.getByLabel('Your name').fill('Ada Lovelace');
   await page.getByRole('button', { name: 'Use signature' }).click();

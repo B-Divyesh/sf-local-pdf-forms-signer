@@ -53,8 +53,9 @@ self.addEventListener('fetch', (event) => {
     // headers even though they identify the same immutable file.
     const cached = await cache.match(event.request, { ignoreVary: true });
     if (cached) return cached;
-    const response = await fetch(event.request);
-    if (response.ok) await cache.put(event.request, response.clone());
-    return response;
+    // The shell cache is an exact, install-time manifest. Do not add runtime
+    // requests: that makes its contents auditable and guarantees that a
+    // visitor's opened PDF can never be retained in Cache Storage.
+    return fetch(event.request);
   }));
 });

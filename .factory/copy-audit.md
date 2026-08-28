@@ -1,4 +1,4 @@
-# Copy audit — perfection loop 2
+# Copy audit — perfection loop 3
 
 Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No audited unit exceeds 22 words. No banned plain-words term appears.
 
@@ -36,7 +36,7 @@ Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No a
 | After the first visit, Field Desk can reopen offline. | 9 | Pass; `offline-reload` claim |
 | Opened PDFs are cleared when you reload or close the tab. | 11 | Pass; `no-document-persistence` claim |
 | Field Desk · PDF editing that stays on this device | 9 | Pass; `local-only` claim |
-| Built by Param Factory · v1.0.2 | 6 | Pass |
+| Built by Param Factory · v1.0.3 | 6 | Pass |
 
 ## Demo, Privacy, and Terms
 
@@ -48,7 +48,7 @@ Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No a
 | Start for real | 3 | Pass |
 | Field Desk keeps PDF work in your browser. | 8 | Pass; `local-only` claim |
 | Field Desk keeps an open PDF in this tab’s memory. | 10 | Pass; `no-document-persistence` claim |
-| The offline cache contains only public app files. | 8 | Pass; verified by `offline-reload` cache inspection |
+| The offline cache stores only public app files, never opened PDFs. | 10 | Pass; `offline-reload` compares every cache entry with the generated manifest after demo and real-file workflows |
 | Field Desk is free to use. | 6 | Pass; `free-use` claim |
 | No account is required. | 4 | Pass; `no-account` claim |
 | A signature added here is a visual mark, not a verified digital signature. | 13 | Pass; `signature-mark` claim |
@@ -61,6 +61,22 @@ Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No a
 All product assertions in the “Tested behavior” and limitation sections map one-to-one to `.factory/claims.json`. The longest prose sentence is 20 words: “Open a PDF and fill its standard fields. Add text, checkboxes, dates, or signature marks. Arrange pages, then download the result.” These are three separate sentences of 9, 8, and 6 words.
 
 Developer-only build and deployment instructions describe repository mechanics rather than visitor-facing product behavior. No sentence exceeds 22 words.
+
+## Demo guide and editor dialog
+
+| Copy unit | Words | Result |
+| --- | ---: | --- |
+| Demo state exists only in memory in the running tab. | 10 | Pass; `demo-isolation` claim |
+| It does not use localStorage, sessionStorage, IndexedDB, or cookies. | 9 | Pass; `demo-isolation` claim test |
+| The cache contains only the public app shell, bundled PDF libraries, worker, and artwork. | 15 | Pass; `offline-reload` compares the exact cache manifest |
+| It never contains a PDF opened by the visitor. | 9 | Pass; `offline-reload` compares the exact cache manifest |
+| This adds a visual signature mark, not a verified digital signature. | 10 | Pass; `signature-mark` claim |
+
+## Catalog
+
+| Copy unit | Words | Result |
+| --- | ---: | --- |
+| Fill, sign, and arrange PDFs on your device without uploading files. | 10 | Pass; verb-first, 65 characters, maps to `standard-form-export`, `signature-mark`, `page-actions`, and `local-only` |
 
 ## Terminology
 
