@@ -19,6 +19,7 @@ Single-mode, explicitly painted like vintage equipment; a second theme would wea
 | Muted ink | `#5d625b` | secondary copy (passes 4.5:1 on paper) |
 | Safety orange | `#b84427` | primary actions and field handles; darkened to pass AA with warm white |
 | Orange dark | `#94361f` | hover/active and readable links |
+| Focus orange | `#c94f2d` | keyboard focus; at least 3:1 against paper, warm white, and charcoal |
 | Signal teal | `#23756f` | local/offline-safe state and confirmations |
 | Ochre | `#9b6917` | warnings |
 | Fault red | `#a53232` | destructive action and errors |
@@ -36,7 +37,7 @@ All functional distinctions also use text, shape, or iconography. Core text and 
 ## Spacing and shape
 
 - 4 px base; principal rhythm 8 / 12 / 16 / 24 / 32 / 48 / 72.
-- Work controls have 44 px minimum targets and 8 px separation.
+- Work controls and navigation links have 44 px minimum targets and 8 px separation.
 - Corners are mostly 2–8 px, like punched sheet metal and stationery—not pill-heavy software.
 - Shadows are hard, short offsets that suggest stacked paper; no diffuse glass effects.
 
@@ -48,6 +49,7 @@ All functional distinctions also use text, shape, or iconography. Core text and 
 - Page thumbnails are sortable with buttons and keyboard commands, not drag alone.
 - Destructive page deletion is immediately reversible through an Undo action.
 - On mobile, the page rail becomes a horizontal strip, inspector becomes a bottom sheet-like panel, and the canvas remains the dominant surface.
+- Signature method tabs use one Tab stop. Arrow keys, Home, and End move and select the active method.
 
 ## Motion
 
@@ -74,4 +76,4 @@ The Open Graph card at `public/social-card.svg` and the Apple touch icon are han
 
 ## Accessibility and responsive intent
 
-The landing page has one `h1`; the editor uses status headings below it. Focus rings use a 3 px orange outline with a 3 px offset. At 390 px, secondary explanatory copy shortens, the large hero art is dropped after document load, and actions stack without hiding beneath safe areas. Zoom to 200% reflows rather than clipping.
+The landing page has one `h1`; the editor uses status headings below it. Focus rings use the 3 px focus-orange outline with a 3 px offset. It exceeds 3:1 against both paper and charcoal controls. At 390 px, secondary explanatory copy shortens, the large hero art is dropped after document load, and actions stack without hiding beneath safe areas. Zoom to 200% reflows rather than clipping.

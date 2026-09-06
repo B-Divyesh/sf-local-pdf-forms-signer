@@ -1,4 +1,4 @@
-# Copy audit — perfection loop 3
+# Copy audit — repair 4
 
 Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No audited unit exceeds 22 words. No banned plain-words term appears.
 
@@ -36,7 +36,7 @@ Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No a
 | After the first visit, Field Desk can reopen offline. | 9 | Pass; `offline-reload` claim |
 | Opened PDFs are cleared when you reload or close the tab. | 11 | Pass; `no-document-persistence` claim |
 | Field Desk · PDF editing that stays on this device | 9 | Pass; `local-only` claim |
-| Built by Param Factory · v1.0.3 | 6 | Pass |
+| Built by Param Factory · v1.0.4 | 6 | Pass |
 
 ## Demo, Privacy, and Terms
 
@@ -55,6 +55,8 @@ Counts treat hyphenated terms, numbers, and slash-joined terms as one word. No a
 | Field Desk does not read scanned text. | 7 | Pass; `no-ocr` claim |
 | It does not edit text already printed on a page. | 10 | Pass; `no-page-text-edit` claim |
 | Field Desk rejects dynamic XFA forms because it cannot edit their fields. | 12 | Pass; `reject-xfa` claim |
+
+Task and legal screens now start with direct headings. The headings are “Create your signature,” “Export your PDF,” “Privacy, plainly,” “Terms of use,” and “Page not found.” The former record, routing, instrument, and output labels were removed because they did not help visitors complete a task.
 
 ## README
 

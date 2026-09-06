@@ -14,6 +14,20 @@ function desktopOnly(testInfo: import('@playwright/test').TestInfo) {
   test.skip(testInfo.project.name === 'mobile', 'Claim workflow is covered on desktop; mobile has dedicated checks.');
 }
 
+function contrastRatio(first: string, second: string) {
+  const luminance = (color: string) => {
+    const channels = color.match(/[\d.]+/g)?.slice(0, 3).map(Number);
+    if (!channels || channels.length !== 3) throw new Error(`Could not read color: ${color}`);
+    const [red, green, blue] = channels.map((value) => {
+      const channel = value / 255;
+      return channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4;
+    });
+    return .2126 * red + .7152 * green + .0722 * blue;
+  };
+  const [lighter, darker] = [luminance(first), luminance(second)].sort((a, b) => b - a);
+  return (lighter + .05) / (darker + .05);
+}
+
 async function makePdf(text = 'Static page text') {
   const pdf = await PDFDocument.create();
   const page = pdf.addPage([612, 792]);
@@ -96,6 +110,98 @@ test('public routes and legal links are accessible', async ({ page }) => {
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact || ''))).toEqual([]);
   }
+});
+
+test('phone navigation links provide 44 by 44 CSS pixel targets', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'Phone-only target-size check.');
+  await page.goto('/');
+  const targets = await page.locator('.site-header a, .site-footer a').evaluateAll((links) => links.map((link) => {
+    const box = link.getBoundingClientRect();
+    return { name: link.getAttribute('aria-label') || link.textContent?.trim() || 'link', width: box.width, height: box.height };
+  }));
+  expect(targets.length).toBeGreaterThan(0);
+  for (const target of targets) {
+    expect(target.width, `${target.name} target width`).toBeGreaterThanOrEqual(44);
+    expect(target.height, `${target.name} target height`).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test('keyboard focus remains visible against charcoal controls', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'Phone dark-surface focus check.');
+  await page.goto('/');
+  const privacy = page.getByRole('link', { name: 'Privacy' }).first();
+  await privacy.focus();
+  const headerFocus = await privacy.evaluate((element) => {
+    const focus = getComputedStyle(element);
+    const surface = getComputedStyle(element.closest('.site-header') as HTMLElement);
+    return { color: focus.outlineColor, width: parseFloat(focus.outlineWidth), style: focus.outlineStyle, surface: surface.backgroundColor };
+  });
+  expect(headerFocus.style).not.toBe('none');
+  expect(headerFocus.width).toBeGreaterThanOrEqual(3);
+  expect(contrastRatio(headerFocus.color, headerFocus.surface)).toBeGreaterThanOrEqual(3);
+
+  await openDemo(page);
+  const tool = page.getByRole('button', { name: 'Signature' });
+  await tool.focus();
+  const toolbarFocus = await tool.evaluate((element) => {
+    const focus = getComputedStyle(element);
+    const surface = getComputedStyle(element.closest('.tool-rack') as HTMLElement);
+    return { color: focus.outlineColor, width: parseFloat(focus.outlineWidth), style: focus.outlineStyle, surface: surface.backgroundColor };
+  });
+  expect(toolbarFocus.style).not.toBe('none');
+  expect(toolbarFocus.width).toBeGreaterThanOrEqual(3);
+  expect(contrastRatio(toolbarFocus.color, toolbarFocus.surface)).toBeGreaterThanOrEqual(3);
+});
+
+test('signature method tabs use arrow keys and one Tab stop', async ({ page }, info) => {
+  desktopOnly(info);
+  await openDemo(page);
+  await page.getByRole('button', { name: 'Signature' }).click();
+  const draw = page.getByRole('tab', { name: 'Draw' });
+  const type = page.getByRole('tab', { name: 'Type' });
+  const drawPanel = page.getByRole('tabpanel', { name: 'Draw' });
+  const typePanel = page.getByRole('tabpanel', { name: 'Type' });
+
+  await expect(draw).toHaveAttribute('aria-selected', 'true');
+  await expect(draw).toHaveAttribute('tabindex', '0');
+  await expect(type).toHaveAttribute('tabindex', '-1');
+  await expect(drawPanel).toBeVisible();
+  await draw.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(type).toBeFocused();
+  await expect(type).toHaveAttribute('aria-selected', 'true');
+  await expect(type).toHaveAttribute('tabindex', '0');
+  await expect(draw).toHaveAttribute('tabindex', '-1');
+  await expect(typePanel).toBeVisible();
+  await page.keyboard.press('ArrowLeft');
+  await expect(draw).toBeFocused();
+  await page.keyboard.press('End');
+  await expect(type).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(draw).toBeFocused();
+  await type.focus();
+  await page.keyboard.press('Enter');
+  await expect(type).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('Tab');
+  await expect(page.getByLabel('Your name')).toBeFocused();
+});
+
+test('task and legal screens lead with direct headings', async ({ page }, info) => {
+  desktopOnly(info);
+  for (const route of ['/privacy', '/terms', '/not-a-real-route']) {
+    await page.goto(route);
+    await expect(page.locator('main > h1')).toBeVisible();
+    await expect(page.locator('main > .eyebrow')).toHaveCount(0);
+  }
+
+  await openDemo(page);
+  await page.getByRole('button', { name: 'Signature' }).click();
+  await expect(page.locator('#signature-dialog .dialog-heading h2')).toBeVisible();
+  await expect(page.locator('#signature-dialog .dialog-heading .eyebrow')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('button', { name: 'Export PDF' }).click();
+  await expect(page.locator('#export-dialog .dialog-heading h2')).toBeVisible();
+  await expect(page.locator('#export-dialog .dialog-heading .eyebrow')).toHaveCount(0);
 });
 
 test('keyboard users can enter, place, move, and remove a field', async ({ page }, info) => {

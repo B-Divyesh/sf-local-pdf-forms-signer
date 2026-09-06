@@ -100,7 +100,7 @@ export class FieldDeskApp {
       <footer class="site-footer">
         <span>Field Desk · PDF editing that stays on this device</span>
         <nav aria-label="Legal"><a href="/privacy" data-nav="/privacy">Privacy</a><a href="/terms" data-nav="/terms">Terms</a></nav>
-        <span class="asset-note">Built by Param Factory · v1.0.3</span>
+        <span class="asset-note">Built by Param Factory · v1.0.4</span>
       </footer>
       <div class="route-announcer" aria-live="polite" aria-atomic="true"></div><div class="toast-region" aria-live="polite" aria-atomic="true">${this.notice ? `<div class="toast">${this.escape(this.notice)}${this.deletedPage ? '<button type="button" data-action="undo-delete">Undo</button>' : ''}</div>` : ''}</div>
       ${this.renderSignatureDialog()}
@@ -267,11 +267,11 @@ export class FieldDeskApp {
   private renderSignatureDialog(): string {
     return `<dialog id="signature-dialog" class="panel-dialog" aria-labelledby="signature-title">
       <form method="dialog" class="dialog-card" data-signature-form>
-        <div class="dialog-heading"><div><p class="eyebrow">Signature instrument</p><h2 id="signature-title">Create your signature</h2></div><button type="button" class="icon-button" data-action="close-signature" aria-label="Close signature dialog">${icon('close')}</button></div>
+        <div class="dialog-heading"><div><h2 id="signature-title">Create your signature</h2></div><button type="button" class="icon-button" data-action="close-signature" aria-label="Close signature dialog">${icon('close')}</button></div>
         <p class="dialog-note">This adds a visual signature mark, not a verified digital signature.</p>
-        <div class="signature-tabs" role="tablist" aria-label="Signature method"><button type="button" role="tab" aria-selected="true" data-signature-tab="draw">Draw</button><button type="button" role="tab" aria-selected="false" data-signature-tab="type">Type</button></div>
-        <div class="signature-pane" data-signature-pane="draw"><canvas id="signature-pad" width="720" height="220" aria-label="Signature drawing pad. Draw with a pointer."></canvas><button type="button" class="text-button" data-action="clear-signature">Clear drawing</button></div>
-        <div class="signature-pane" data-signature-pane="type" hidden><label class="form-control" for="typed-signature"><span>Your name</span><input id="typed-signature" autocomplete="name" /></label><div class="typed-preview" aria-hidden="true" data-typed-preview>Signature</div></div>
+        <div class="signature-tabs" role="tablist" aria-label="Signature method"><button id="signature-tab-draw" type="button" role="tab" aria-controls="signature-pane-draw" aria-selected="true" tabindex="0" data-signature-tab="draw">Draw</button><button id="signature-tab-type" type="button" role="tab" aria-controls="signature-pane-type" aria-selected="false" tabindex="-1" data-signature-tab="type">Type</button></div>
+        <div id="signature-pane-draw" class="signature-pane" role="tabpanel" aria-labelledby="signature-tab-draw" data-signature-pane="draw"><canvas id="signature-pad" width="720" height="220" aria-label="Signature drawing pad. Draw with a pointer."></canvas><button type="button" class="text-button" data-action="clear-signature">Clear drawing</button></div>
+        <div id="signature-pane-type" class="signature-pane" role="tabpanel" aria-labelledby="signature-tab-type" data-signature-pane="type" hidden><label class="form-control" for="typed-signature"><span>Your name</span><input id="typed-signature" autocomplete="name" /></label><div class="typed-preview" aria-hidden="true" data-typed-preview>Signature</div></div>
         <div class="dialog-actions"><button type="button" class="secondary-button" data-action="close-signature">Cancel</button><button type="submit" class="primary-button">Use signature</button></div>
       </form>
     </dialog>`;
@@ -280,7 +280,7 @@ export class FieldDeskApp {
   private renderExportDialog(): string {
     return `<dialog id="export-dialog" class="panel-dialog" aria-labelledby="export-title">
       <form method="dialog" class="dialog-card" data-export-form>
-        <div class="dialog-heading"><div><p class="eyebrow">Output control</p><h2 id="export-title">Export your PDF</h2></div><button type="button" class="icon-button" data-action="close-export" aria-label="Close export dialog">${icon('close')}</button></div>
+        <div class="dialog-heading"><div><h2 id="export-title">Export your PDF</h2></div><button type="button" class="icon-button" data-action="close-export" aria-label="Close export dialog">${icon('close')}</button></div>
         <label class="form-control" for="output-name"><span>File name</span><input id="output-name" value="${this.escapeAttr(safeOutputName(this.filename || 'document'))}" required /></label>
         <fieldset class="export-options"><legend>Field behavior</legend>
           <label><input type="radio" name="flatten" value="false" checked/><span><strong>Keep fields editable</strong><small>Recipients can change original and new fields in compatible PDF readers.</small></span></label>
@@ -294,7 +294,7 @@ export class FieldDeskApp {
 
   private renderLegal(): string {
     const privacy = this.route === 'privacy';
-    return `<main id="main" class="legal-page"><p class="eyebrow">Field Desk record 0${privacy ? '2' : '3'}</p><h1>${privacy ? 'Privacy, plainly.' : 'Terms of use.'}</h1>
+    return `<main id="main" class="legal-page"><h1>${privacy ? 'Privacy, plainly.' : 'Terms of use.'}</h1>
       <p class="legal-lede">${privacy ? 'Field Desk keeps PDF work in your browser.' : 'Use Field Desk for documents you are allowed to edit and sign.'}</p>
       ${privacy ? `<section><h2>PDF privacy and storage</h2><p>Your PDF work stays on this device. Field Desk keeps an open PDF in this tab’s memory.</p><p>Opened PDFs are cleared when you reload or close the tab.</p></section>
       <section><h2>Offline use</h2><p>After the first visit, Field Desk and the sample PDF can reopen offline. The offline cache stores only public app files, never opened PDFs.</p></section>
@@ -307,7 +307,7 @@ export class FieldDeskApp {
   }
 
   private renderNotFound(): string {
-    return `<main id="main" class="legal-page not-found-page"><p class="eyebrow">Field Desk routing record</p><h1>Page not found</h1><p class="legal-lede">That address does not point to a Field Desk page.</p><a href="/" data-nav="/" class="primary-button">Return to Field Desk</a></main>`;
+    return `<main id="main" class="legal-page not-found-page"><h1>Page not found</h1><p class="legal-lede">That address does not point to a Field Desk page.</p><a href="/" data-nav="/" class="primary-button">Return to Field Desk</a></main>`;
   }
 
   private updateMetadata(): void {
@@ -731,11 +731,30 @@ export class FieldDeskApp {
     this.root.querySelector('[data-action="clear-signature"]')?.addEventListener('click', () => this.clearSignatureCanvas());
     const typed = this.root.querySelector<HTMLInputElement>('#typed-signature');
     typed?.addEventListener('input', () => { const preview = this.root.querySelector('[data-typed-preview]'); if (preview) preview.textContent = typed.value || 'Signature'; });
-    this.root.querySelectorAll<HTMLButtonElement>('[data-signature-tab]').forEach((tab) => tab.addEventListener('click', () => {
-      this.root.querySelectorAll<HTMLButtonElement>('[data-signature-tab]').forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+    const tabs = [...this.root.querySelectorAll<HTMLButtonElement>('[data-signature-tab]')];
+    const activateTab = (tab: HTMLButtonElement, moveFocus = false) => {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
       this.root.querySelectorAll<HTMLElement>('[data-signature-pane]').forEach((pane) => { pane.hidden = pane.dataset.signaturePane !== tab.dataset.signatureTab; });
-      if (tab.dataset.signatureTab === 'draw') this.prepareSignatureCanvas(); else typed?.focus();
-    }));
+      if (tab.dataset.signatureTab === 'draw') requestAnimationFrame(() => this.prepareSignatureCanvas());
+      if (moveFocus) tab.focus();
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        let target: HTMLButtonElement | undefined;
+        if (event.key === 'ArrowRight') target = tabs[(index + 1) % tabs.length];
+        if (event.key === 'ArrowLeft') target = tabs[(index - 1 + tabs.length) % tabs.length];
+        if (event.key === 'Home') target = tabs[0];
+        if (event.key === 'End') target = tabs[tabs.length - 1];
+        if (!target) return;
+        event.preventDefault();
+        activateTab(target, true);
+      });
+    });
     this.root.querySelector<HTMLFormElement>('[data-signature-form]')?.addEventListener('submit', (event) => {
       event.preventDefault();
       const active = this.root.querySelector<HTMLButtonElement>('[data-signature-tab][aria-selected="true"]')?.dataset.signatureTab;
