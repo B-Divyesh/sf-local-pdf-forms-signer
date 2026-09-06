@@ -6,7 +6,6 @@
       "src_app_fielddeskapp_binddialogs",
       "src_app_fielddeskapp_bindeditor",
       "src_app_fielddeskapp_bindglobal",
-      "src_app_fielddeskapp_bindlanding",
       "src_app_fielddeskapp_bindplacedfield",
       "src_app_fielddeskapp_clearfieldgeometries",
       "src_app_fielddeskapp_clearsignaturecanvas",
@@ -27,11 +26,9 @@
       "src_app_fielddeskapp_placefieldat",
       "src_app_fielddeskapp_preparesignaturecanvas",
       "src_app_fielddeskapp_render",
-      "src_app_fielddeskapp_rendercanvases",
       "src_app_fielddeskapp_renderdemobanner",
       "src_app_fielddeskapp_renderlegal",
       "src_app_fielddeskapp_rendernotfound",
-      "src_app_fielddeskapp_rendersignaturedialog",
       "src_app_fielddeskapp_resetdemo",
       "src_app_fielddeskapp_rotatecurrentpage",
       "src_app_fielddeskapp_routefromlocation",
@@ -43,10 +40,10 @@
     ],
     "1": [
       "src_app",
+      "src_app_fielddeskapp_bindlanding",
       "src_app_fielddeskapp_loadfile",
+      "src_app_fielddeskapp_rendercanvases",
       "src_app_route",
-      "src_main",
-      "src_main_root",
       "src_model",
       "src_model_accepted_pdf_types",
       "src_model_clamp",
@@ -66,6 +63,8 @@
       "src_pdf_pdfjspage",
       "src_pdf_renderpage",
       "src_pdf_test",
+      "src_sample",
+      "src_sample_createsamplepdf",
       "src_types",
       "src_types_existingfield",
       "src_types_exportoptions",
@@ -116,6 +115,22 @@
       "pdfjs_dist"
     ],
     "4": [
+      "src_app_fielddeskapp_escape",
+      "src_app_fielddeskapp_escapeattr",
+      "src_app_fielddeskapp_renderapp",
+      "src_app_fielddeskapp_renderdocumentinspector",
+      "src_app_fielddeskapp_rendereditor",
+      "src_app_fielddeskapp_renderexistingfield",
+      "src_app_fielddeskapp_renderexportdialog",
+      "src_app_fielddeskapp_renderfieldinspector",
+      "src_app_fielddeskapp_renderlanding",
+      "src_app_fielddeskapp_renderoverlay",
+      "src_app_fielddeskapp_rendersignaturedialog",
+      "src_app_fielddeskapp_renderthumbnail",
+      "src_app_fielddeskapp_toolbutton",
+      "src_app_icon"
+    ],
+    "5": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -130,23 +145,7 @@
       "vite",
       "vitest"
     ],
-    "5": [
-      "src_app_fielddeskapp_escape",
-      "src_app_fielddeskapp_escapeattr",
-      "src_app_fielddeskapp_renderapp",
-      "src_app_fielddeskapp_renderdocumentinspector",
-      "src_app_fielddeskapp_rendereditor",
-      "src_app_fielddeskapp_renderexistingfield",
-      "src_app_fielddeskapp_renderexportdialog",
-      "src_app_fielddeskapp_renderfieldinspector",
-      "src_app_fielddeskapp_renderlanding",
-      "src_app_fielddeskapp_renderoverlay",
-      "src_app_fielddeskapp_renderthumbnail",
-      "src_app_fielddeskapp_toolbutton",
-      "src_app_icon"
-    ],
     "6": [
-      "test",
       "tests_app_spec",
       "tests_app_spec_contrastratio",
       "tests_app_spec_desktoponly",
@@ -180,8 +179,8 @@
       "scripts_capture_evidence_output"
     ],
     "10": [
-      "src_sample",
-      "src_sample_createsamplepdf"
+      "src_main",
+      "src_main_root"
     ],
     "11": [
       "src_vite_env_d",
@@ -192,13 +191,13 @@
     ]
   },
   "cohesion": {
-    "0": 0.1349527665317139,
-    "1": 0.14838709677419354,
+    "0": 0.1492063492063492,
+    "1": 0.13446969696969696,
     "2": 0.1,
     "3": 0.11764705882352941,
-    "4": 0.15384615384615385,
-    "5": 0.2692307692307692,
-    "6": 0.2,
+    "4": 0.24175824175824176,
+    "5": 0.15384615384615385,
+    "6": 0.2222222222222222,
     "7": 0.25,
     "8": 0.5,
     "9": 0.6666666666666666,
@@ -218,13 +217,13 @@
       "degree": 14
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_app_icon",
+      "label": "icon()",
       "degree": 7
     },
     {
-      "id": "src_app_icon",
-      "label": "icon()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
