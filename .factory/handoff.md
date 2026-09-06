@@ -1,16 +1,30 @@
-# Field Desk review 4 handoff
+# Field Desk review 5 handoff
 
 ## Outcome
 
-Adversarial review 4 is complete with **PASS** and zero findings. No product source code was changed. The only changes in this commit are this handoff and `.factory/review-4.md`.
+Re-review 5 is complete with **FAIL**: 4 minor findings and 0 untested claims.
+No product code changed. The implementation reviewed is `c269e6b`; the input
+documentation SHA is `7ec1a6f`. Full evidence and fixes are in
+`.factory/review-5.md`.
 
-## What was verified
+## What passed
 
-- Fresh live mobile (390 × 844) and desktop first reads: job, audience, first action, and outcome are visible before scrolling; no console errors.
-- One-click `/demo` opens the realistic completed Harbor Street sample editor. Demo banner, Reset demo, Start for real, in-memory isolation, real-data separation, same-origin-only requests, and offline reload were checked.
-- Every `claims.json` command was run individually from a clean clone at `f6f9fe3096e4bfc473ac5cfe6029d77ffb09dffa`; all 16 passed.
-- `npm test` passed (9 tests), `npm run build` produced `dist/`, and `npm run test:e2e` passed (22 passed; 18 expected skips).
-- Live metadata, deep routes, focus/back behaviour, accessible 404, link crawl, headers, visual identity, and prior-review repairs were rechecked.
+- The live deployment is byte-identical to the implementation candidate.
+- The first screen, realistic one-click demo, reset/exit isolation, PDF output,
+  invalid and boundary recovery, offline reload/update, routes, legal pages,
+  expected 404, privacy request log, and prior repairs work.
+- A clean checkout passed `npm test` (9), `npm run build`, `npm run test:e2e`
+  (22 passed; 18 expected skips), and all 16 claim commands individually.
+- Live mobile Lighthouse scored 100 in all four categories. Axe found no
+  violations on five routes at phone and desktop sizes.
+
+## Findings left for the next implementation pass
+
+1. Make header and footer links at least 44 × 44 px on phones.
+2. Raise the orange focus indicator from 2.73:1 to at least 3:1 on charcoal.
+3. Add standard arrow-key and roving-tabindex behavior to the signature tabs.
+4. Remove or rewrite the decorative record/instrument/output labels listed in
+   `.factory/review-5.md`.
 
 ## How to verify
 
@@ -21,8 +35,6 @@ npm run build
 npm run test:e2e
 ```
 
-Run each claim command listed in `.factory/claims.json` from a clean checkout. The demo entry point is `/demo` (also `/?demo=1`).
-
-## Known gaps
-
-None. Preserve the existing claim tests for any future copy or capability change.
+Then run every command in `.factory/claims.json` individually. Check the four
+manual findings at 390 px and with keyboard focus. The demo entry point is
+`/demo` (also `/?demo=1`).
