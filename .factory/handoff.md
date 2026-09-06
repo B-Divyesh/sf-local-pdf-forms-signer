@@ -1,40 +1,56 @@
-# Field Desk review 5 handoff
+# Field Desk repair 4 handoff
 
 ## Outcome
 
-Re-review 5 is complete with **FAIL**: 4 minor findings and 0 untested claims.
-No product code changed. The implementation reviewed is `c269e6b`; the input
-documentation SHA is `7ec1a6f`. Full evidence and fixes are in
-`.factory/review-5.md`.
+Strict review repair 4 is complete. All four review-5 findings are fixed, all
+16 claims pass, and the live deployment matches the clean implementation
+build. No review finding remains.
 
-## What passed
+## Release identity
 
-- The live deployment is byte-identical to the implementation candidate.
-- The first screen, realistic one-click demo, reset/exit isolation, PDF output,
-  invalid and boundary recovery, offline reload/update, routes, legal pages,
-  expected 404, privacy request log, and prior repairs work.
-- A clean checkout passed `npm test` (9), `npm run build`, `npm run test:e2e`
-  (22 passed; 18 expected skips), and all 16 claim commands individually.
-- Live mobile Lighthouse scored 100 in all four categories. Axe found no
-  violations on five routes at phone and desktop sizes.
+- Implementation: `ef92586b63c8cf18d4ce58d86a044cb386db2470`
+- Documentation and evidence: recorded in the final documentation commit
+- Deployment: `7616f7fc-4e57-4f7e-be75-fc846302393e`
+- Live URL: <https://local-pdf-forms-signer.sociobot.in>
 
-## Findings left for the next implementation pass
+## What changed
 
-1. Make header and footer links at least 44 × 44 px on phones.
-2. Raise the orange focus indicator from 2.73:1 to at least 3:1 on charcoal.
-3. Add standard arrow-key and roving-tabindex behavior to the signature tabs.
-4. Remove or rewrite the decorative record/instrument/output labels listed in
-   `.factory/review-5.md`.
+- Phone navigation, skip, and dialog controls now provide 44 × 44 px targets.
+- The focus outline now reaches 3.25:1 against charcoal controls.
+- Signature tabs now use roving focus and standard arrow, Home, and End keys.
+- Decorative record, routing, instrument, and output labels were removed.
+- Outcome-based browser regressions cover all four repairs.
+- The visual-system and copy-audit records now match release 1.0.4.
 
-## How to verify
+## Verification
+
+From a clean checkout:
 
 ```sh
 npm ci
 npm test
 npm run build
 npm run test:e2e
+npm audit --omit=dev
 ```
 
-Then run every command in `.factory/claims.json` individually. Check the four
-manual findings at 390 px and with keyboard focus. The demo entry point is
-`/demo` (also `/?demo=1`).
+Results: 9 unit/PDF tests passed; 26 browser tests passed with 22 intentional
+viewport skips; build and audit passed. Run the 16 claim commands printed by:
+
+```sh
+node -e "for (const c of require('./.factory/claims.json')) console.log(c.test)"
+```
+
+All 16 commands passed separately. The same browser suite passed against the
+live domain. Mobile Lighthouse scored 100 in all four categories, with 1.1 s
+LCP, 0 ms TBT, and 0 CLS. The factory URL verifier found no console errors.
+
+See `.factory/repair-4.md` and `.factory/evidence/repair-4/live/` for the
+finding map, cold-browser evidence, and performance report.
+
+## Known limits
+
+Field Desk does not read scanned text, edit printed page text, support dynamic
+XFA fields, or provide verified digital signatures. Large scanned PDFs remain
+limited by browser memory. These documented limits are unchanged. No repair
+work is deferred.
