@@ -112,18 +112,27 @@ test('public routes and legal links are accessible', async ({ page }) => {
   }
 });
 
-test('phone navigation links provide 44 by 44 CSS pixel targets', async ({ page }, info) => {
+test('phone navigation and dialog controls provide 44 by 44 CSS pixel targets', async ({ page }, info) => {
   test.skip(info.project.name !== 'mobile', 'Phone-only target-size check.');
   await page.goto('/');
-  const targets = await page.locator('.site-header a, .site-footer a').evaluateAll((links) => links.map((link) => {
-    const box = link.getBoundingClientRect();
-    return { name: link.getAttribute('aria-label') || link.textContent?.trim() || 'link', width: box.width, height: box.height };
-  }));
-  expect(targets.length).toBeGreaterThan(0);
-  for (const target of targets) {
-    expect(target.width, `${target.name} target width`).toBeGreaterThanOrEqual(44);
-    expect(target.height, `${target.name} target height`).toBeGreaterThanOrEqual(44);
-  }
+  const expectTargetSize = async (targets: import('@playwright/test').Locator) => {
+    const boxes = await targets.evaluateAll((nodes) => nodes.map((node) => {
+      const box = node.getBoundingClientRect();
+      return { name: node.getAttribute('aria-label') || node.textContent?.trim() || 'control', width: box.width, height: box.height };
+    }));
+    expect(boxes.length).toBeGreaterThan(0);
+    for (const box of boxes) {
+      expect(box.width, `${box.name} target width`).toBeGreaterThanOrEqual(44);
+      expect(box.height, `${box.name} target height`).toBeGreaterThanOrEqual(44);
+    }
+  };
+  await expectTargetSize(page.locator('.skip-link, .site-header a, .site-footer a'));
+  await openDemo(page);
+  await page.getByRole('button', { name: 'Signature' }).click();
+  await expectTargetSize(page.getByRole('button', { name: 'Close signature dialog' }));
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('button', { name: 'Export PDF' }).click();
+  await expectTargetSize(page.getByRole('button', { name: 'Close export dialog' }));
 });
 
 test('keyboard focus remains visible against charcoal controls', async ({ page }, info) => {
